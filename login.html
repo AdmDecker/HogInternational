@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <script type="text/javascript">
+        
+        function stateChange()
+        {
+            let response = xmlhttp.responseText;
+
+            if (!(xmlhttp.readyState==4) && !(xmlhttp.status==200))
+                return;
+                
+            document.getElementById("error").nodeValue = xmlhttp.responseText;
+            if(response.includes("success"))
+            {
+                window.location = "/shortstory.php";
+            }
+            else
+            {
+                document.getElementById("error").innerHTML = response;
+            }
+        }
+        
+        function submitForm(reason)
+        {
+            let action = "";
+            if(reason == "login")
+                action = "/User/login.php"
+            else
+                action = "/User/register.php"
+            
+            xmlhttp = new XMLHttpRequest();
+            
+
+            xmlhttp.open("POST", action, true);
+            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xmlhttp.onreadystatechange = stateChange;
+            let username = "username=" + document.getElementById("username").value;
+            let password = "password=" + document.getElementById("password").value;
+            console.log(username);
+            console.log(password);
+            xmlhttp.send(username +"&" + password);
+        }
+        
+        
+        function onLogin()
+        {
+            submitForm("login");
+            document.getElementById("error").innerHTML = "Logging in...";
+        }
+        function onRegister()
+        {
+            submitForm("register");
+        }
+    </script>
+</head>
+<body>
+<form onsubmit="return validateForm()">
+    <label>Username: </label><input type="text" name="username" id="username" /><br/><br/>
+    <label>Password: </label><input type="password" name="password" id="password" /><br/>
+    <input type="button" value="Login" onClick="onLogin()"/>
+    <input type="button" value="Register" onClick="onRegister()"/>
+    <div id="error"></div>
+</form>
+</body>
+    
+    
+</html>
