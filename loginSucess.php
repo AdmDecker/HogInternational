@@ -6,6 +6,9 @@
             header('/login.html');
     >
     <head>
-        <h1>Login Successful!</h1>
+        
     </head>
+    <body>
+        <h1>Login Successful!</h1>
+    </body>
 </html>

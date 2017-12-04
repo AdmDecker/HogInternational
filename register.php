@@ -21,13 +21,6 @@
         //Get userID
         $userID = $db->getUserID($username);
         
-        //Add default words to user account
-        $words = $db->getDefaultWordIDs();
-        foreach($words as $row)
-        {
-            $db->associateWord($userID, $row['wordID']);
-        }
-        
         session_start();
         $_SESSION['username'] = $username;
         $_SESSION['timeout'] = time() + 60*60*12;
