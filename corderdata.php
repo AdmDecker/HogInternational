@@ -1,0 +1,3 @@
+<?php
+	echo '{"orders":[{"id":"1","destination":"Sioux Falls, SD","pickup":"Brookings, SD","pickupTime":"12:40pm","pickupDate":"10/28/17","status":"Driver not dispatched","percentage":"10"},{"id":"2","destination":"Sioux Falls, SD","pickup":"Huron, SD","pickupTime":"12:21pm","pickupDate":"10/28/17","status":"Driver not dispatched","percentage":"10"},{"id":"3","destination":"Brookings, SD","pickup":"Huron, SD","pickupTime":"12:22pm","pickupDate":"10/28/17","status":"On the way!","percentage":"40"}]}';
+?>
