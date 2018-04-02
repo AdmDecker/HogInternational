@@ -62,5 +62,13 @@ class dbAccess
     {
         
     }
+    
+    public function getOrders($userID)
+    {
+        $statement = $this->dbObject->prepare("SELECT * FROM Orders WHERE userID=:userID");
+        $statement->bindParam(':userID', $userID);
+        $statement->execute();
+        return $statement->fetch();
+    }
 }
 ?>

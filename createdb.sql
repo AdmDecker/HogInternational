@@ -10,6 +10,9 @@ CREATE TABLE users
 
 CREATE TABLE orders
 (
+    userID int NOT NULL,
+    FOREIGN KEY userID references users(userID),
+    
     id int NOT NULL AUTO_INCREMENT,
     destination VARCHAR(255),
     pickup VARCHAR(255),
