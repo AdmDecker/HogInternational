@@ -68,7 +68,22 @@ class dbAccess
         $statement = $this->dbObject->prepare("SELECT * FROM Orders WHERE userID=:userID");
         $statement->bindParam(':userID', $userID);
         $statement->execute();
-        return $statement->fetch();
+        $statement->setFetchMode(PDO::FETCH_OBJ);
+        return $statement->fetchAll();
+    }
+    
+    public function postOrder($userID, $destination, $pickup, $pickupTime, $pickupDate, $oStatus, $statusPercent, $price)
+    {
+        $statement = $this->dbObject->prepare("insert into orders values(:userID,)");
+    }
+    
+    public function getCCs($userID)
+    {
+        $statement = $this->dbObject->prepare("SELECT * FROM CCs WHERE userID=:userID");
+        $statement->bindParam(':userID', $userID);
+        $statement->execute();
+        $statement->setFetchMode(PDO::FETCH_OBJ);
+        return $statement->fetchAll();
     }
 }
 ?>
