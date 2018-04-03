@@ -11,8 +11,7 @@ CREATE TABLE orders
 (
     userID int NOT NULL,
     FOREIGN KEY userID references users(userID),
-    
-    id int NOT NULL AUTO_INCREMENT,
+    orderID int NOT NULL AUTO_INCREMENT,
     destination VARCHAR(255),
     pickup VARCHAR(255),
     pickupTime TIME,
@@ -20,8 +19,7 @@ CREATE TABLE orders
     oStatus VARCHAR(255),
     statusPercent int,
     price DECIMAL(5,2),
-    
-    PRIMARY KEY(userID)
+    PRIMARY KEY(orderID)
 );
 
 CREATE TABLE creditCards
@@ -41,6 +39,5 @@ CREATE TABLE drivers
     FOREIGN KEY(driverID) REFERENCES users(UserID),
     salary int NOT NULL,
     hours int NOT NULL,
-    
     PRIMARY KEY(driverID)
 );
