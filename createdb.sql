@@ -3,7 +3,7 @@ CREATE TABLE users
 	userID int NOT NULL AUTO_INCREMENT,
 	userName VARCHAR(255) NOT NULL,
 	password VARCHAR(255) NOT NULL,
-    role CHAR CHECK(role IN("R", "D", "M")),
+    role CHAR,
 	PRIMARY KEY (userID),
 );
 
@@ -18,7 +18,7 @@ CREATE TABLE orders
     pickupTime TIME,
     pickupDate DATE,
     oStatus VARCHAR(255),
-    statusPercent int CHECK(BETWEEN 0 AND 100),
+    statusPercent int,
     price DECIMAL(5,2),
     
     PRIMARY KEY(userID)
