@@ -3,9 +3,8 @@ CREATE TABLE users
 	userID int NOT NULL AUTO_INCREMENT,
 	userName VARCHAR(255) NOT NULL,
 	password VARCHAR(255) NOT NULL,
-    role CHAR CHECK(role IN("R", "D", "M")) NOT NULL,
+    role CHAR CHECK(role IN("R", "D", "M")),
 	PRIMARY KEY (userID),
-    CONSTRAINT roleConstraint role 
 );
 
 CREATE TABLE orders
