@@ -41,3 +41,9 @@ CREATE TABLE drivers
     hours int NOT NULL,
     PRIMARY KEY(driverID)
 );
+
+
+/*test data*/
+INSERT INTO users VALUES(1337, "ElCustomer", "LastPass", "C");
+
+INSERT INTO orders VALUES(1337, NULL, "The Void", "Earth", '12:14:16', '2018-04-27', "Pending", 0, 32.75);
