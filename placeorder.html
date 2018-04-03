@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta name="description" content="rides-r-us bus system">
+    <meta name="author" content="Justin Hoogestraat">
+    <script src="map_js.js"></script>
+
+    <script type="text/javascript">
+
+    	document.addEventListener("DOMContentLoaded", function(){
+	    	fdistance();
+		});
+        
+        function stateChange()
+        {
+            let response = xmlhttp.responseText;
+            
+            if (!(xmlhttp.readyState==4) && !(xmlhttp.status==200))
+                return;
+                
+            document.getElementById("error").nodeValue = xmlhttp.responseText;
+            if(response.includes("success"))
+            {
+                window.location = "placeorderSuccess.php";
+            }
+            else
+            {
+                document.getElementById("error").innerHTML = response;
+            }
+        }
+        
+        function submitForm(reason)
+        {
+			xmlhttp = new XMLHttpRequest();
+            
+            xmlhttp.open("POST", action, true);
+            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            
+            xmlhttp.onreadystatechange = stateChange;
+            
+			var myObj =
+			{
+				whereto: document.getElementById("whereto").value,
+				wherefrom: document.getElementById("wherefrom").value,
+				when: document.getElementById("when").value,
+				noofpeople: document.getElementById("noofpeople").value,
+				handicap: document.getElementById("handicap").value,
+				payment_visa: document.getElementById("payment_visa").value,
+				payment_mastercard: document.getElementById("payment_mastercard").value
+			};
+            var myJSON = JSON.stringify(myObj);
+			window.location = "placeorderSuccess.php?x="+myJSON;
+			/*
+			let whereto = "whereto=" + document.getElementById("whereto").value;
+            let wherefrom = "wherefrom=" + document.getElementById("wherefrom").value;
+            let when = "when=" + document.getElementById("when").value;
+            let noofpeople = "noofpeople=" + document.getElementById("noofpeople").value;
+            let handicap = "handicap=" + document.getElementById("handicap").value;
+            let payment_visa = "payment_visa=" + document.getElementById("payment_visa").value;
+            let payment_mastercard = "payment_mastercard=" + document.getElementById("payment_mastercard").value;
+            xmlhttp.send(whereto +"&" + wherefrom +"&" + when +"&" + noofpeople +"&" + handicap +"&" + payment_visa +"&" + payment_mastercard);
+			*/
+        }
+        
+        
+        function oncreateorder()
+        {
+            submitForm();
+            document.getElementById("error").innerHTML = "Creating Order ......";
+        }
+    </script>
+    <link rel="stylesheet" href="w3.css"> 
+
+	<link href="style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <header class="main-header">
+      <ul class="nav-list">
+        <li><a href="help.html">Help</a></li>
+        <li><a href="logout.php">Logout</a></li>
+        <li><a href="account.html">Account</a></li>
+        <li><a href="cmain.html">Main</a></li>
+
+        <li class="rides-r-us"><a href="index.html"><b>Rides R' Us™</b></a></li>
+      </ul>
+      <hr width="100%">
+    </header>
+    <section>
+	     <form>
+	     	<div class="w3 row">
+
+
+	     		<div class="w3-half w3-container">
+				    <input class="w3-input" type="text" name="whereto" id="whereto" placeholder="Where to?"	/>
+				    <input class="w3-input" type="text" name="wherefrom" id="wherefrom" placeholder="Where from?" />
+				    <input class="w3-input" type="text" name="when" id="when" placeholder="When? ex. 9:30 on Saturday" />
+					<input class="w3-input" type="number" name="noofpeople" id="noofpeople" placeholder="How many people?" />
+
+					<p/><p/>
+
+					<label>Handicap?: </label>
+					<input style="" type="radio" name="handicap" id="handicap" value="1" />
+					<br/><br/>
+
+					<label>Amount Due </p>$30.00
+
+					<p>Payment Option: </p>
+					<form>
+						  <input type="radio" name="card" value="payment_visa"> Visa ending in 0121<br>
+						  <input type="radio" name="card" value="payment_mastercard"> Mastercard ending in 1203<br>
+					</form> 		
+	     		</div>
+
+	     		<div class="w3-rest w3-container">
+
+	     			<div class="alert alert-info" style="width:100%; border:2px solid black; text-align:center;">
+					<div id="map" style="width:100%; height:20em;"></div>
+					</div>
+					
+					<input style="display:none;" type="radio" name="distancemode[]" checked="checked" id="driving" value="driving" />
+					<p id="distanceinfo"></p>
+					<input type="hidden" id="totaldistancemiles" />
+					<input type="hidden" id="totaldistancenamiles" />
+
+		
+	     		</div>
+
+	     	</div>
+
+
+			<br /><br />
+		    <div id="error"></div>
+		</form>
+
+       <hr width="100%">
+       <input type="button" value="Create Order" onClick="oncreateorder()"/>
+       <hr width="100%">
+
+
+
+
+    </section>
+
+
+    <footer>
+      <center>Copyright ©2018 Brookings Area Transit Authority</center>
+      <center>Usage of this site constitues acceptance of our</center>
+      
+       <center> <a href="terms.html">Terms of Service</a>
+        and our
+      <a href="privacy.html">Privacy Policy</a></center>
+    </footer>
+  </body>
+<body>
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=geometry&key=AIzaSyCLPoefHbYJCIvyhqpsj13man604bMmhto&libraries=places&callback=initialize"></script>
+
+</html>
