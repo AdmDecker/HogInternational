@@ -8,6 +8,8 @@
 
     <script type="text/javascript">
 
+    	var FLAT_RATE = 4;
+    	var PRICE_PER_MILE = .10;
 
     	var markers = [];
     	var map;
@@ -19,6 +21,11 @@
     	var directionsService;
     	var directionsDisplay;
     	var plottabble = false;
+    	var date = new Date();
+    	var travelTime = 0;
+    	var distTravelled = 0;
+    	var price = 0;
+
 
 
     	// resets bounds to markers
@@ -28,6 +35,7 @@
 
 		    for (var i=0; i<markers.length; i++) {
 		        if(markers[i].getVisible()) {
+
 
 		            bounds.extend( markers[i].getPosition() );
 
@@ -50,7 +58,12 @@
 		    	var request = {
 		    		origin: fromMarker.getPosition(),
 		    		destination: marker.getPosition(),
-		    		travelMode: 'DRIVING'
+		    		travelMode: 'DRIVING',
+		    		drivingOptions: {
+		    			departureTime: date,
+		    			trafficModel: 'pessimistic'
+		    		},
+		    		unitSystem: google.maps.UnitSystem.IMPERIAL
 		    	};
 
 		    	directionsService.route(request, function(result, status) {
@@ -60,9 +73,12 @@
 		    			directionsDisplay.setMap(map);
 		    			directionsDisplay.setOptions( { suppressMarkers: true } );
 		    			directionsDisplay.setDirections(result);
+
 		    		}
 		    		else
 		    		{
+		    			document.getElementById("arrivalInfo").innerHTML = "Not plottable";
+		    			document.getElementById("distanceInfo").innerHTML = "";
 		    			plottabble = false;
 		    			directionsDisplay.setMap(null);
 		    		}
@@ -97,6 +113,28 @@
 			directionsService = new google.maps.DirectionsService();
   			directionsDisplay = new google.maps.DirectionsRenderer();
 
+  					    			
+
+			  directionsDisplay.addListener('directions_changed', function() {
+			  	  var result = directionsDisplay.getDirections();
+		          var total = 0;
+				  var myroute = result.routes[0];
+				  travelTime = 0;
+
+				  for (var i = 0; i < myroute.legs.length; i++) {
+				  	travelTime += myroute.legs[i].duration.value;
+				    total += myroute.legs[i].distance.value;
+				  }
+				  total = total / 1000;
+
+				  distTravelled = total;
+
+
+				 
+				  updateTimeEstimate();
+
+
+			  });
 
 
 
@@ -204,9 +242,51 @@
 
     	}
     	document.addEventListener("DOMContentLoaded", function(){
+    		document.getElementById("whenDate").addEventListener("change", function() {
+			    var input = this.value;
+			    var dateEntered = new Date(input);
+
+			    date.setMonth(dateEntered.getMonth());
+			    date.setDate(dateEntered.getDay());
+			    date.setFullYear(dateEntered.getFullYear());
+
+			    console.log(date); //e.g. Fri Nov 13 2015 00:00:00 GMT+0000 (GMT Standard Time)
+			    updateTimeEstimate();
+
+			});
+
+			document.getElementById("whenTime").addEventListener("change", function() {
+			    var input = this.value;
+			    var time = input.match(/(\d+)(:(\d\d))?\s*(p?)/i);
+			    if (time == null) return;
+			    var hours = parseInt(time[1],10);    
+			    if (hours == 12 && !time[4]) {
+			          hours = 0;
+			    }
+			    else {
+			        hours += (hours < 12 && time[4])? 12 : 0;
+			    }   
+			    date.setHours(hours);
+			    date.setMinutes(parseInt(time[3],10) || 0);
+			    date.setSeconds(0, 0); 
+			    console.log(input); //e.g. 2015-11-13
+			    console.log(date); //e.g. Fri Nov 13 2015 00:00:00 GMT+0000 (GMT Standard Time)
+			    updateTimeEstimate();
+			});
 
     		
 		});
+
+		function updateTimeEstimate()
+		{
+			var tmpDate = new Date(date.getTime());
+
+			  tmpDate.setSeconds(tmpDate.getSeconds()+travelTime);
+			  document.getElementById('distanceInfo').innerHTML = "Travel Distance: " + distTravelled * 0.621371 + ' mi';
+			  document.getElementById('arrivalInfo').innerHTML = "ETA: " + tmpDate.toString();
+			  price = FLAT_RATE + distTravelled * 0.621371 *PRICE_PER_MILE;
+			  document.getElementById('ammountDue').innerHTML = "Ammount Due: $" + price.toFixed(2);
+		}
         
         function stateChange()
         {
@@ -251,7 +331,14 @@
             {
             	window.alert("Path is unplottable.");
             	return;
+            }
 
+            var numOfPeople = document.getElementById("noofpeople").value;
+
+            if (!numOfPeople || numOfPeople < 1)
+            {
+            	window.alert("Specify number of people");
+            	return;
             }
 
 
@@ -266,8 +353,11 @@
 			{
 				whereto: whereToPlace.name,
 				wherefrom: whereFromPlace.name,
-				when: document.getElementById("when").value,
-				noofpeople: document.getElementById("noofpeople").value,
+				when: date.getDate(),
+				travelTime: travelTime,
+				noofpeople: numOfPeople,
+				price: price,
+				distance: distTravelled,
 				handicap: document.getElementById("handicap").value,
 				payment_visa: document.getElementById("payment_visa").value,
 				payment_mastercard: document.getElementById("payment_mastercard").value
@@ -317,7 +407,9 @@
 	     		<div class="w3-half w3-container">
 				    <input class="w3-input" type="text" name="whereto" id="whereto" placeholder="Where to?"	/>
 				    <input class="w3-input" type="text" name="wherefrom" id="wherefrom" placeholder="Where from?" />
-				    <input class="w3-input" type="text" name="when" id="when" placeholder="When? ex. 9:30 on Saturday" />
+				    
+				    <input   class="w3-input" type="date"  name="Date" id="whenDate"/>
+				    <input   class="w3-input" type="time"  name="Time" id="whenTime"/>
 					<input class="w3-input" type="number" name="noofpeople" id="noofpeople" placeholder="How many people?" />
 
 					<p/><p/>
@@ -326,7 +418,7 @@
 					<input style="" type="radio" name="handicap" id="handicap" value="1" />
 					<br/><br/>
 
-					<label>Amount Due </p>$30.00
+					<label id="ammountDue">Amount Due: </p>
 
 					<p>Payment Option: </p>
 					<form>
@@ -341,10 +433,8 @@
 					<div id="map" style="width:100%; height:25em;"></div>
 					</div>
 					
-					<input style="display:none;" type="radio" name="distancemode[]" checked="checked" id="driving" value="driving" />
-					<p id="distanceinfo"></p>
-					<input type="hidden" id="totaldistancemiles" />
-					<input type="hidden" id="totaldistancenamiles" />
+					<p id="distanceInfo"></p>
+					<p id="arrivalInfo"></p>
 
 		
 	     		</div>
