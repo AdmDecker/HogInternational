@@ -33,15 +33,20 @@ class PupSession {
         //Check for session timeout
         if(!isset($_SESSION['timeout']) || $_SESSION['timeout'] < time())
         { 
-            return "Session timed out";
+            PupSession::ReturnToDefault();
         }
         
         //Check for valid userID
         if (!isset($_SESSION['userID']))
         {
-            return "Session error: Invalid UserID";
+            PupSession::ReturnToDefault();
         }
 
-        return NULL;
+        return;
+    }
+    
+    public static function ReturnToDefault()
+    {
+        header('Location: /index.php');
     }
 }
