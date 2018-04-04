@@ -2,7 +2,7 @@
 
 class PupSession {
     
-    public static function Create(timeout, username, userID)
+    public static function Create($timeout, $username, $userID)
     {
         //Start the session
         LoadSession();
