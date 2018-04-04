@@ -281,7 +281,7 @@
 			  document.getElementById('distanceInfo').innerHTML = "Travel Distance: " + distTravelled * 0.621371 + ' mi';
 			  document.getElementById('arrivalInfo').innerHTML = "ETA: " + tmpDate.toString();
 			  price = FLAT_RATE + distTravelled * 0.621371 *PRICE_PER_MILE;
-			  document.getElementById('ammountDue').innerHTML = "Ammount Due: $" + price.toFixed(2);
+			  document.getElementById('amountDue').innerHTML = "Amount Due: $" + price.toFixed(2);
 		}
         
         function stateChange()
@@ -360,16 +360,6 @@
 			};
             var myJSON = JSON.stringify(myObj);
 			window.location = "placeorderSuccess.php?x="+myJSON;
-			/*
-			let whereto = "whereto=" + document.getElementById("whereto").value;
-            let wherefrom = "wherefrom=" + document.getElementById("wherefrom").value;
-            let when = "when=" + document.getElementById("when").value;
-            let noofpeople = "noofpeople=" + document.getElementById("noofpeople").value;
-            let handicap = "handicap=" + document.getElementById("handicap").value;
-            let payment_visa = "payment_visa=" + document.getElementById("payment_visa").value;
-            let payment_mastercard = "payment_mastercard=" + document.getElementById("payment_mastercard").value;
-            xmlhttp.send(whereto +"&" + wherefrom +"&" + when +"&" + noofpeople +"&" + handicap +"&" + payment_visa +"&" + payment_mastercard);
-			*/
         }
         
         
@@ -405,7 +395,7 @@
 				    <input class="w3-input" type="text" name="wherefrom" id="wherefrom" autocomplete="off" placeholder="Where from?" />
 				    
 				    <input   class="w3-input" type="date"  name="Date" id="whenDate"/>
-				    <input   class="w3-input" type="time"  name="Time" id="whenTime"/>
+				    <input   class="w3-input" type="time" value="12:00"  name="Time" id="whenTime"/>
 					<input class="w3-input" type="number" name="noofpeople" id="noofpeople" placeholder="How many people?" />
 
 					<p/><p/>
@@ -414,7 +404,7 @@
 					<input style="" type="radio" name="handicap" id="handicap" value="1" />
 					<br/><br/>
 
-					<label id="ammountDue">Amount Due: </p>
+					<label id="amountDue">Amount Due: </p>
 
 					<p>Payment Option: </p>
 					<form>
