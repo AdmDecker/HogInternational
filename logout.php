@@ -1,9 +1,7 @@
 <?php 
     session_start();
-    if (is_null($_SESSION['userID']))
-        header('/login.html');
-    else
-        PupSession->Destroy();
+    if (!is_null($_SESSION['userID']))
+        PupSession::Destroy();
 ?>
 
 <html>
@@ -13,7 +11,7 @@
     </head>
     <body>
         <h1>You have been logged out successfully.</h1>
-        <a href="/login.html">
+        <a href="/index.php">
             <button>Return</button>
         </a>
     </body>
