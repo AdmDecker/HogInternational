@@ -5,7 +5,11 @@
     $location = 'index.html';
     
     if (!isset($_SESSION['userType']))
+    {
         header("Location: /$location");
+        exit();
+    }
+       
 
     if ($_SESSION["userType"] == "M")
         $location = 'mindex.html';
