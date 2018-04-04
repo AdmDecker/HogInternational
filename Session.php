@@ -5,7 +5,7 @@ class PupSession {
     public static function Create($timeout, $username, $userID, $userType)
     {
         //Start the session
-        LoadSession();
+        PupSession::LoadSession();
         $_SESSION['timeout'] = time() + $timeout;
         $_SESSION['username'] = $username;
         $_SESSION['userID'] = $userID;
@@ -15,7 +15,7 @@ class PupSession {
     
     public static function Destroy()
     {
-        LoadSession();
+        PupSession::LoadSession();
         session_unset();
         session_destroy();
     }
@@ -29,7 +29,7 @@ class PupSession {
     //Check for valid userID TODO: return false if logged in from somewhere else
     public static function Validate()
     {
-        LoadSession();
+        PupSession::LoadSession();
         //Check for session timeout
         if(!isset($_SESSION['timeout']) || $_SESSION['timeout'] < time())
         { 
