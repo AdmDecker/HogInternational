@@ -2,13 +2,14 @@
 
 class PupSession {
     
-    public static function Create($timeout, $username, $userID)
+    public static function Create($timeout, $username, $userID, $userType)
     {
         //Start the session
         LoadSession();
         $_SESSION['timeout'] = time() + $timeout;
         $_SESSION['username'] = $username;
         $_SESSION['userID'] = $userID;
+        $_SESSION['userType'] = $userType;
         echo "success";
     }
     
@@ -19,7 +20,7 @@ class PupSession {
         session_destroy();
     }
     
-    private static function LoadSession()
+    public static function LoadSession()
     {
         if (!isset($_SESSION))
             session_start();

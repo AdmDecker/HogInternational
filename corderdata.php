@@ -8,7 +8,7 @@
         //Initialize db
         $db = new dbaccess();
 		
-        $ordersObject = $db->getOrders($);
+        $ordersObject = $db->getOrders($userID);
         
         //Encode the json
         $sjson = json_encode($);
