@@ -41,6 +41,7 @@ footer {
   float: left;
 }
 
+
 a {
   color: #e64f1c;
 }
@@ -111,6 +112,13 @@ button {
   
 }
 
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
+}
+
 
 .right {
   float: right;
@@ -135,4 +143,8 @@ hr {
    margin-right: 1em;
   margin-bottom: 0em;
   border-width: 0.1em;
+}
+
+.no-decor {
+  text-decoration: none;
 }
