@@ -4,7 +4,7 @@
     PupSession::LoadSession();
     $location = 'index.html';
     
-    if (!is_set($_SESSION['userType']))
+    if (!isset($_SESSION['userType']))
         header("Location: /$location");
 
     if ($_SESSION["userType"] == "M")
