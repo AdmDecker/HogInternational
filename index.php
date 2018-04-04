@@ -1,7 +1,7 @@
 <?php
     require "Session.php";
     
-    PupSession.LoadSession();
+    PupSession::LoadSession();
     $location = 'index.html';
 
     if ($_SESSION["userType"] == "M")
