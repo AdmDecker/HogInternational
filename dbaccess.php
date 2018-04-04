@@ -20,13 +20,14 @@ class dbAccess
         $dbObject = NULL;
     }
     
-    public function addUser($username, $password)
+    public function addUser($username, $password, $role)
     {
         //Insert user to database
         $username = trim($username);
-        $statement = $this->dbObject->prepare("insert into users values(NULL, :username, :password)");
+        $statement = $this->dbObject->prepare("insert into users values(NULL, :username, :password, :role)");
         $statement->bindParam(':username', $username);
         $statement->bindParam(':password', password_hash($password, PASSWORD_DEFAULT));
+        $statement->bindParam(':role', $role);
         $statement->execute();
     }
     
@@ -84,6 +85,15 @@ class dbAccess
         $statement->execute();
         $statement->setFetchMode(PDO::FETCH_OBJ);
         return $statement->fetchAll();
+    }
+    
+    public function getUserType($userID)
+    {
+        $statement = $this->dbObject->prepare("SELECT role FROM users WHERE userID=:userID");
+        $statement->bindParam(':userID', $userID);
+        $statement->execute();
+        $statement->setFetchMode(PDO::FETCH_ASSOC);
+        return $statement->fetch()["role"];
     }
 }
 ?>

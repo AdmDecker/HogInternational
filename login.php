@@ -25,6 +25,7 @@
             $_SESSION['timeout'] = time() + 60 * 60 * 15;
             $_SESSION['username'] = $username;
             $_SESSION['userID'] = $userID;
+            $_SESSION['userType'] = $db->getUserType($userID);
             echo "success";
         }	
 		else

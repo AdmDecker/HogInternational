@@ -16,7 +16,7 @@
         }
         
         //Insert user to database
-        $db->addUser($username, $password);
+        $db->addUser($username, $password, "C");
         
         //Get userID
         $userID = $db->getUserID($username);
@@ -25,6 +25,7 @@
         $_SESSION['username'] = $username;
         $_SESSION['timeout'] = time() + 60*60*12;
         $_SESSION['userID'] = $userID;
+        $_SESSION['userType'] = $db->getUserType($userID);
         echo "success";
 	}
 	catch(PDOException $e)
