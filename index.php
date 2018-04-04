@@ -2,7 +2,7 @@
     require "Session.php";
     
     PupSession->LoadSession();
-    $location = 'cindex.html';
+    $location = 'index.html';
 
     if ($_SESSION["userType"] == "M")
         $location = 'mindex.html';
