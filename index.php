@@ -1,5 +1,5 @@
-!DOCTYPE html>
-<html lang="end">
+<!DOCTYPE html>
+<html lang="eng">
   <head>
     <meta charset="UTF-8">
     <meta name="description" content="rides-r-us bus system">
