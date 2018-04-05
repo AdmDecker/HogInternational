@@ -37,7 +37,7 @@
         {
             ?>
 
-              <a href="mmain.html" class="no-decor">
+              <a href="mmain.php" class="no-decor">
                 <button  class="w3-button w3-blue center" style="width:17em">Manager Enter</button>
               </a>
             <?php
@@ -46,7 +46,7 @@
         {
             ?>
                 
-              <a href="dmain.html" class="no-decor">
+              <a href="dmain.php" class="no-decor">
                 <button  class="w3-button w3-blue center" style="width:17em">Driver Enter</button>
               </a>
             <?php
@@ -54,7 +54,7 @@
         else if ($uid == 'C')
         {
             ?>
-                <a href="cmain.html" class="no-decor">
+                <a href="cmain.php" class="no-decor">
                     <button  class="w3-button w3-blue center" style="width:17em">Enter</button>
                 </a>
             <?php
