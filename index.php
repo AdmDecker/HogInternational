@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+<?php
+    // includes
+    require 'Nav.php';
+
+?>
 <html lang="eng">
   <head>
     <meta charset="UTF-8">
@@ -13,8 +18,6 @@
     <header class="main-header">
       <ul class="nav-list">
         <?php 
-            require 'Nav.php';
-
             echo Nav::getNavHtml();
         ?>
 
@@ -27,8 +30,7 @@
       <p style="text-align:center">Exceptional bus transit services.</p>
 
       <?php 
-        require 'Nav.php';
-
+      
         $uid = PupSession::getUserType();
 
         if ($uid == 'M')

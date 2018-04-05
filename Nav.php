@@ -3,8 +3,6 @@
 
     class Nav {
 
-
-
         public static function getNavHtml() {
             $type = PupSession::getUserType();
 
