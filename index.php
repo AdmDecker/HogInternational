@@ -30,7 +30,7 @@
       <p style="text-align:center">Exceptional bus transit services.</p>
 
       <?php 
-      
+
         $uid = PupSession::getUserType();
 
         if ($uid == 'M')
@@ -62,9 +62,13 @@
         else
         {
             ?>
-                <a href="mmain.html" class="no-decor">
-                    <button  class="w3-button w3-blue center" style="width:17em">Manager Enter</button>
-                </a>
+                  <a href="login.html" class="no-decor">
+                    <button  class="w3-button w3-blue center" style="width:17em">Login</button>
+                  </a>
+                  <br/>
+                  <a href="createaccount.html" class="no-decor">
+                    <button  class="w3-button w3-blue center" style="width:17em">Create Account</button>
+                  </a>
             <?php
         }
 
