@@ -377,9 +377,9 @@
     <header class="main-header">
       <ul class="nav-list">
         <?php 
-        	require 'getnav.php';
+        	require 'Nav.php';
 
-        	echo getNavHtml();
+        	echo Nav::getNavHtml();
         ?>
 
         <li class="rides-r-us"><a href="index.php"><b>Rides R' Us™</b></a></li>
