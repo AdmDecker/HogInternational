@@ -16,8 +16,8 @@
         }
 
 
-         public static function getNavHtml() {
-            $type = getUserType();
+        public static function getNavHtml() {
+            $type = Nav::getUserType();
 
 
             if ($type == "M")
