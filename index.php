@@ -27,7 +27,7 @@
       <p style="text-align:center">Exceptional bus transit services.</p>
 
       <?php 
-        require 'nav.php';
+        require 'Nav.php';
 
         $uid =Nav::getUserType();
 
