@@ -36,7 +36,7 @@
                     <li><a href="help.html">Help</a></li>
                     <li><a href="logout.php">Logout</a></li>
                     <li><a href="account.html">Account</a></li>
-                    <li><a href="cmain.html">Main</a></li>
+                    <li><a href="cmain.php">Main</a></li>
                 <?php
             }
             else{
