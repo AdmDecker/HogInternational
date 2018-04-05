@@ -2,22 +2,11 @@
     require "Session.php";
 
     class Nav {
-        public static function getUserType() {
-            PupSession::LoadSession();
-            $type = 'U';
 
-            if (isset($_SESSION['userType']))
-            {
-                
-                $type = $_SESSION['userType'];
-            }
-
-            return $type;
-        }
 
 
         public static function getNavHtml() {
-            $type = Nav::getUserType();
+            $type = PupSession::getUserType();
 
 
             if ($type == "M")

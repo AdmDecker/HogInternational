@@ -49,4 +49,18 @@ class PupSession {
     {
         header('Location: /index.php');
     }
+
+    // Returns user type, or U if no type found.
+    public static function getUserType() {
+            PupSession::LoadSession();
+            $type = 'U';
+
+            if (isset($_SESSION['userType']))
+            {
+                
+                $type = $_SESSION['userType'];
+            }
+
+            return $type;
+        }
 }

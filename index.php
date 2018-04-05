@@ -29,7 +29,7 @@
       <?php 
         require 'Nav.php';
 
-        $uid =Nav::getUserType();
+        $uid = PupSession::getUserType();
 
         if ($uid == 'M')
         {
