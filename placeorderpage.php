@@ -376,7 +376,11 @@
 <body>
     <header class="main-header">
       <ul class="nav-list">
-        <?php echo getnav(); ?>
+        <?php 
+        	require 'getnav.php';
+
+        	echo getNavHtml();
+        ?>
 
         <li class="rides-r-us"><a href="index.php"><b>Rides R' Us™</b></a></li>
       </ul>
