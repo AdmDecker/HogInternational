@@ -1,7 +1,7 @@
 <?php
     require "Session.php";
 
-    public static function getUserType() {
+    function getUserType() {
         PupSession::LoadSession();
         $type = 'U';
 
@@ -15,7 +15,7 @@
     }
 
 
-    public static function getNavHtml() {
+    function getNavHtml() {
         $type = getUserType();
 
 
