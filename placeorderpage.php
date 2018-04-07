@@ -403,7 +403,7 @@
 
 					<p>Payment Option: </p>
 					<form>
-						  <input type="radio" name="card" value="Visa"> Visa ending in 0121<br>
+						  <input type="radio" name="card" value="Visa" checked="checked"> Visa ending in 0121<br>
 						  <input type="radio" name="card" value="Mastercard"> Mastercard ending in 1203<br>
 					</form> 		
 	     		</div>
