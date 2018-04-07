@@ -93,10 +93,6 @@
 
     	function initMap()
     	{
-
-
-
-
 			var options = {
 			  componentRestrictions: {country: 'us'}
 			};
@@ -229,13 +225,6 @@
 	          }
 
 	        });
-
-
-
-
-
-
-
     	}
     	document.addEventListener("DOMContentLoaded", function(){
     		document.getElementById("whenDate").addEventListener("change", function() {
@@ -269,8 +258,6 @@
 			    console.log(date); //e.g. Fri Nov 13 2015 00:00:00 GMT+0000 (GMT Standard Time)
 			    updateTimeEstimate();
 			});
-
-    		
 		});
 
 		function updateTimeEstimate()
@@ -304,7 +291,7 @@
         
         function submitForm(reason)
         {
-			
+			let action = "/placeorder.php";
 
             // Sanitize
             var whereToPlace = whereToAutocomplete.getPlace();
@@ -336,7 +323,6 @@
             	window.alert("Specify number of people");
             	return;
             }
-
 
             xmlhttp = new XMLHttpRequest();
             
