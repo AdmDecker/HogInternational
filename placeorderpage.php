@@ -344,7 +344,8 @@
 				paymentType: document.querySelector('input[name="card"]:checked').value
 			};
             var myJSON = JSON.stringify(myObj);
-			window.location = "placeorderSuccess.php?x="+myJSON;
+			xmlhttp.send(myObj);
+			window.location="/cmain.html";
         }
         
         
