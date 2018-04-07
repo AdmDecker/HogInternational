@@ -353,7 +353,7 @@
 			};
             var myJSON = JSON.stringify(myObj);
 			xmlhttp.send(myObj);
-			window.location="/index.php";
+			window.location="/cmain.php";
         }
         
         
