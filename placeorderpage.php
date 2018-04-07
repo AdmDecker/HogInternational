@@ -324,6 +324,14 @@
             	return;
             }
 
+			//verify credit card is checked
+			let paymentType = document.querySelector('input[name="card"]:checked').value;
+			if (paymentType is null)
+			{
+				window.alert("Please select a credit card");
+				return;
+			}
+
             xmlhttp = new XMLHttpRequest();
             
             xmlhttp.open("POST", action, true);
@@ -341,11 +349,11 @@
 				price: price,
 				distance: distTravelled,
 				handicap: document.getElementById("handicap").checked,
-				paymentType: document.querySelector('input[name="card"]:checked').value
+				paymentType: paymentType
 			};
             var myJSON = JSON.stringify(myObj);
 			xmlhttp.send(myObj);
-			window.location="/cmain.html";
+			window.location="/index.php";
         }
         
         
