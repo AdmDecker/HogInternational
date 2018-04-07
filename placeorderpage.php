@@ -326,7 +326,7 @@
 
 			//verify credit card is checked
 			let paymentType = document.querySelector('input[name="card"]:checked').value;
-			if (paymentType is null)
+			if (paymentType == null)
 			{
 				window.alert("Please select a credit card");
 				return;
