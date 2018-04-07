@@ -5,13 +5,9 @@
 
     $json = file_get_contents('php://input');
     $obj = json_decode($json);
-    
-    $cardType = 'Visa';
-    if ($obj['payment_mastercard'])
-        $cardType = 'Mastercard';
 
     $db = new dbaccess();
-    postOrder($_SESSION['userID'],
+    $db->postOrder($_SESSION['userID'],
               $obj['whereto'],
               $obj['wherefrom'],
               $obj['travelTime'],
@@ -21,5 +17,5 @@
               $obj['price'],
               $obj['handicap'],
               $obj['distance'],
-              $cardType)
+              $obj['paymentType']);
 ?>

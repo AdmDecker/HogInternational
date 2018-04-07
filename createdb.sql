@@ -19,6 +19,10 @@ CREATE TABLE orders
     oStatus VARCHAR(255),
     statusPercent int,
     price DECIMAL(5,2),
+    headCount int,
+    handicap BOOL,
+    distance DECIMAL(5, 2),
+    paymentMethod VARCHAR(255),
     PRIMARY KEY(orderID)
 );
 
@@ -27,7 +31,7 @@ CREATE TABLE creditCards
     ccID int NOT NULL AUTO_INCREMENT,
     customer int NOT NULL,
     FOREIGN KEY(customer) REFERENCES users(userID),
-    type VARCHAR(255),
+    type VARCHAR(255),ss
     number CHAR(16),
     expirationDate DATE,
     PRIMARY KEY(ccID)

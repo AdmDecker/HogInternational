@@ -51,7 +51,12 @@ class PupSession {
     }
 
     // Returns user type, or U if no type found.
-    public static function getUserType() {
+    //User types: C for Customer,
+    //            M for Manager,
+    //            D for Driver,
+    //            U for Undefined
+    public static function getUserType() 
+    {
             PupSession::LoadSession();
             $type = 'U';
 
@@ -62,5 +67,5 @@ class PupSession {
             }
 
             return $type;
-        }
+    }
 }

@@ -354,9 +354,8 @@
 				noofpeople: numOfPeople,
 				price: price,
 				distance: distTravelled,
-				handicap: document.getElementById("handicap").value,
-				payment_visa: document.getElementById("payment_visa").value,
-				payment_mastercard: document.getElementById("payment_mastercard").value
+				handicap: document.getElementById("handicap").checked,
+				paymentType: document.querySelector('input[name="card"]:checked').value
 			};
             var myJSON = JSON.stringify(myObj);
 			window.location = "placeorderSuccess.php?x="+myJSON;
@@ -402,15 +401,15 @@
 					<p/><p/>
 
 					<label>Handicap?: </label>
-					<input style="" type="radio" name="handicap" id="handicap" value="1" />
+					<input style="" type="checkbox" name="handicap" id="handicap" value="1" />
 					<br/><br/>
 
 					<label id="amountDue">Amount Due: </p>
 
 					<p>Payment Option: </p>
 					<form>
-						  <input type="radio" name="card" value="payment_visa"> Visa ending in 0121<br>
-						  <input type="radio" name="card" value="payment_mastercard"> Mastercard ending in 1203<br>
+						  <input type="radio" name="card" value="Visa"> Visa ending in 0121<br>
+						  <input type="radio" name="card" value="Mastercard"> Mastercard ending in 1203<br>
 					</form> 		
 	     		</div>
 
