@@ -433,7 +433,7 @@
 		</form>
 
        <hr width="100%">
-       <input class="w3-button w3-blue" type="button" value="Create Order" onClick="oncreateorder()"/>
+       <input class="w3-button w3-blue" type="button" value="Create Order" onclick="oncreateorder()"/>
        <hr width="100%">
 
 
