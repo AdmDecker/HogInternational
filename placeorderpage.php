@@ -245,13 +245,13 @@
 			// initalise when date
 			let curDate = new Date();
 
-			let curTimePlusOneHour = curDate.setHours(curDate.getHours() + 1);
+			curDate.setHours(curDate.getHours() + 1);
 
-			document.getElementById("whenDate").valueAsDate = curTimePlusOneHour;
+			document.getElementById("whenDate").valueAsDate = curDate;
 
 
 
-			document.getElementById("whenTime").valueAsDate = curTimePlusOneHour;
+			document.getElementById("whenTime").valueAsDate = curDate;
 
 			document.getElementById("whenTime").addEventListener("change", function() {
 			    var input = this.value;
