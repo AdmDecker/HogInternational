@@ -96,6 +96,61 @@
 
 		}
 
+		function updateTimeEstimate()
+		{
+			var tmpDate = new Date(date.getTime());
+
+			if (plottabble)
+			{
+			  tmpDate.setSeconds(tmpDate.getSeconds()+travelTime);
+			  document.getElementById('distanceInfo').innerHTML = "Travel Distance: " + distTravelled * 0.621371 + ' mi';
+			  document.getElementById('arrivalInfo').innerHTML = "ETA: " + tmpDate.toString();
+			  price = FLAT_RATE + distTravelled * 0.621371 *PRICE_PER_MILE;
+			  document.getElementById('amountDue').innerHTML = "Amount Due: $" + price.toFixed(2);
+			}
+			else
+			{
+				document.getElementById('distanceInfo').innerHTML = "";
+				document.getElementById('amountDue').innerHTML = "";
+				document.getElementById('arrivalInfo').innerHTML = "";
+			}
+
+
+		}
+
+		function onDateChange()
+		{
+				var input = this.value;
+			    var dateEntered = new Date(input);
+
+			    date.setMonth(dateEntered.getMonth());
+			    date.setDate(dateEntered.getDate()+1);
+			    date.setFullYear(dateEntered.getFullYear());
+
+			    console.log(date); //e.g. Fri Nov 13 2015 00:00:00 GMT+0000 (GMT Standard Time)
+			    updateTimeEstimate();
+		}
+
+		function onTimeChange()
+		{
+			var input = this.value;
+		    var time = input.match(/(\d+)(:(\d\d))?\s*(p?)/i);
+		    if (time == null) return;
+		    var hours = parseInt(time[1],10);    
+		    if (hours == 12 && !time[4]) {
+		          hours = 0;
+		    }
+		    else {
+		        hours += (hours < 12 && time[4])? 12 : 0;
+		    }   
+		    date.setHours(hours);
+		    date.setMinutes(parseInt(time[3],10) || 0);
+		    date.setSeconds(0, 0); 
+		    console.log(input); //e.g. 2015-11-13
+		    console.log(date); //e.g. Fri Nov 13 2015 00:00:00 GMT+0000 (GMT Standard Time)
+		    updateTimeEstimate();
+		}
+
     	function initMap()
     	{
 			var options = {
@@ -233,15 +288,7 @@
     	}
     	document.addEventListener("DOMContentLoaded", function(){
     		document.getElementById("whenDate").addEventListener("change", function() {
-			    var input = this.value;
-			    var dateEntered = new Date(input);
-
-			    date.setMonth(dateEntered.getMonth());
-			    date.setDate(dateEntered.getDate()+1);
-			    date.setFullYear(dateEntered.getFullYear());
-
-			    console.log(date); //e.g. Fri Nov 13 2015 00:00:00 GMT+0000 (GMT Standard Time)
-			    updateTimeEstimate();
+    			onDateChange();
 
 			});
 
@@ -252,38 +299,17 @@
 
 			document.getElementById("whenDate").valueAsDate = curDate;
 
+			onDateChange();
+			onTimeChange();
+
 
 
 			document.getElementById("whenTime").addEventListener("change", function() {
-			    var input = this.value;
-			    var time = input.match(/(\d+)(:(\d\d))?\s*(p?)/i);
-			    if (time == null) return;
-			    var hours = parseInt(time[1],10);    
-			    if (hours == 12 && !time[4]) {
-			          hours = 0;
-			    }
-			    else {
-			        hours += (hours < 12 && time[4])? 12 : 0;
-			    }   
-			    date.setHours(hours);
-			    date.setMinutes(parseInt(time[3],10) || 0);
-			    date.setSeconds(0, 0); 
-			    console.log(input); //e.g. 2015-11-13
-			    console.log(date); //e.g. Fri Nov 13 2015 00:00:00 GMT+0000 (GMT Standard Time)
-			    updateTimeEstimate();
+				onTimeChange();
 			});
 		});
 
-		function updateTimeEstimate()
-		{
-			var tmpDate = new Date(date.getTime());
 
-			  tmpDate.setSeconds(tmpDate.getSeconds()+travelTime);
-			  document.getElementById('distanceInfo').innerHTML = "Travel Distance: " + distTravelled * 0.621371 + ' mi';
-			  document.getElementById('arrivalInfo').innerHTML = "ETA: " + tmpDate.toString();
-			  price = FLAT_RATE + distTravelled * 0.621371 *PRICE_PER_MILE;
-			  document.getElementById('amountDue').innerHTML = "Amount Due: $" + price.toFixed(2);
-		}
         
         function stateChange()
         {
