@@ -251,8 +251,6 @@
 
 
 
-			document.getElementById("whenTime").valueAsDate = curDate;
-
 			document.getElementById("whenTime").addEventListener("change", function() {
 			    var input = this.value;
 			    var time = input.match(/(\d+)(:(\d\d))?\s*(p?)/i);
