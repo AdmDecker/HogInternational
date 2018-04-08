@@ -16,6 +16,7 @@
               'Pending',
               0,
               $obj['price'],
+              $obj['noofpeople'],
               $obj['handicap'],
               $obj['distance'],
               $obj['paymentType']);
