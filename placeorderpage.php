@@ -1,3 +1,6 @@
+<?php
+	PupSession::LoadSession();
+?>
 <!DOCTYPE html>
 <html>
 <head>
