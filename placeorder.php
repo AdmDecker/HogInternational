@@ -1,5 +1,6 @@
 <?php
     require "Session.php";
+    require "dbaccess.php";
 
     PupSession::Validate();
 
