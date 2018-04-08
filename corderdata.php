@@ -2,6 +2,8 @@
     require 'dbaccess.php';
     require 'Session.php';
 
+    PupSession::LoadSession();
+
     //Make the database queries
     try 
     {
