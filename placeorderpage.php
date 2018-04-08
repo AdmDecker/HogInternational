@@ -334,9 +334,10 @@
 				return;
 			}
 
-			if (when < new Date())
+			if (!date || date < new Date())
 			{
 				window.alert(" specify a time in the future.");
+				return;
 			}
 
             xmlhttp = new XMLHttpRequest();
