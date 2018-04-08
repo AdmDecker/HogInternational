@@ -48,6 +48,9 @@ CREATE TABLE drivers
 
 
 /*test data*/
-INSERT INTO users VALUES(1337, "ElCustomer", "LastPass", "C");
+INSERT INTO users VALUES(1337, "TestCustomer", "TestPass", "C");
+INSERT INTO users VALUES(1338, "TestDriver", "TestPass", "D");
+INSERT INTO drivers VALUES(1338, 10000, 40);
+INSERT INTO users VALUES(1339, "TestManager", "TestPass", "M");
 
 INSERT INTO orders VALUES(1337, NULL, "The Void", "Earth", '12:14:16', '2018-04-27', "Pending", 0, 32.75);
