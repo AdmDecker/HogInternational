@@ -15,7 +15,7 @@ class dbAccess
 	    $this->dbObject = new PDO("mysql:host=$hostname; dbname=$dbname", $dbuser, $dbpassword);
     }
     
-    private function __destruct()
+    public function __destruct()
     {
         $dbObject = NULL;
     }
