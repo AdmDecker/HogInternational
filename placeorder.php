@@ -1,5 +1,5 @@
 <?php
-    require PupSession;
+    require "Session.php";
 
     PupSession::Validate();
 
