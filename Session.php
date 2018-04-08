@@ -62,10 +62,21 @@ class PupSession {
 
             if (isset($_SESSION['userType']))
             {
-                
+                $
                 $type = $_SESSION['userType'];
             }
 
             return $type;
+    }
+
+    public static function getUserID()
+    {
+        PupSession::LoadSession();
+        if (isset($_SESSION['userID']))
+        {
+            return $_SESSION['userID'];
+        }
+
+        return NULL;
     }
 }

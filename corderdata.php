@@ -3,6 +3,7 @@
     require 'Session.php';
 
     PupSession::LoadSession();
+    $userID = PupSession::getUserID();
 
     //Make the database queries
     try 
