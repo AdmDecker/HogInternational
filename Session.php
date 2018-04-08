@@ -22,7 +22,7 @@ class PupSession {
     
     public static function LoadSession()
     {
-        if (session_status() == PHP_SESSION_NONE)
+        if (!isset($_SESSION))
             session_start();
     }
     
