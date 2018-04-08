@@ -242,6 +242,15 @@
 
 			});
 
+			// initalise when date
+			let curDate = new Date();
+			
+			document.getElementById("whenDate").value = curDate.toDateInputValue();
+
+			let curTimePlusOneHour = curDate.setHours(curDate.getHours() + 1).toDateInputValue();
+
+			document.getElementById("whenTime").value = curTimePlusOneHour;
+
 			document.getElementById("whenTime").addEventListener("change", function() {
 			    var input = this.value;
 			    var time = input.match(/(\d+)(:(\d\d))?\s*(p?)/i);
