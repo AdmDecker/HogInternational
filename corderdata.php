@@ -11,7 +11,7 @@
         $ordersObject = $db->getOrders($userID);
         
         //Encode the json
-        $sjson = json_encode($);
+        $sjson = json_encode($ordersObject);
         echo $sjson;
     }
 	catch(PDOException $e)
