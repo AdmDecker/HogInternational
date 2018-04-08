@@ -30,8 +30,8 @@ CREATE TABLE creditCards
 (
     ccID int NOT NULL AUTO_INCREMENT,
     customer int NOT NULL,
-    FOREIGN KEY(customer) REFERENCES users(userID),
-    type VARCHAR(255),ss
+    FOREIGN KEY (customer) REFERENCES users(userID),
+    type VARCHAR(255),
     number CHAR(16),
     expirationDate DATE,
     PRIMARY KEY(ccID)
