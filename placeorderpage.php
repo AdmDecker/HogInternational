@@ -380,7 +380,6 @@
             	}
             };
 
-            onreadystatechange
 			xmlhttp.send(myObj);
         }
         
