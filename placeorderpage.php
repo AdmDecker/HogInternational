@@ -5,6 +5,8 @@
     <meta name="description" content="rides-r-us bus system">
     <meta name="author" content="Justin Hoogestraat">
     <script src="map_js.js"></script>
+    <script src="coommon.js"></script>
+
 
     <script type="text/javascript">
 
@@ -335,7 +337,7 @@
             xmlhttp = new XMLHttpRequest();
             
             xmlhttp.open("POST", action, true);
-            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xmlhttp.setRequestHeader("Content-type", "application/json;charset=UTF-8");
             
             xmlhttp.onreadystatechange = stateChange;
             
@@ -352,6 +354,9 @@
 				paymentType: paymentType
 			};
             var myJSON = JSON.stringify(myObj);
+
+
+            HogLog.d(myJSON);
 			xmlhttp.send(myObj);
 			window.location="/cmain.php";
         }
