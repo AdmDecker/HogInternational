@@ -86,7 +86,7 @@ class dbAccess
         $statement->bindParam(':price', $price);
         $stetement->bindParam(':headCount', $headCount);
         $stetement->bindParam(':handicap', $handicap);
-        $statement->bindParam('distance', $distance);
+        $statement->bindParam(':distance', $distance);
         $statement->bindParam(':paymentMethod', $paymentMethod);
         $statement->execute();
         
