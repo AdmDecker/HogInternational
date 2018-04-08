@@ -13,6 +13,6 @@ var HogLog = {
 	},
 	d: function(what) {
 		if (LOG && DEBUG)
-			console.log("WARNING: " + what)
+			console.log("DEBUG: " + what)
 	}
 };

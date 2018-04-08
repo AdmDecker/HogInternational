@@ -334,6 +334,11 @@
 				return;
 			}
 
+			if (when < new Date())
+			{
+				window.alert(" specify a time in the future.");
+			}
+
             xmlhttp = new XMLHttpRequest();
             
             xmlhttp.open("POST", action, true);
@@ -345,7 +350,7 @@
 			{
 				whereto: whereToPlace.name,
 				wherefrom: whereFromPlace.name,
-				when: date.getDate(),
+				when: date.toString(),
 				travelTime: travelTime,
 				noofpeople: numOfPeople,
 				price: price,
