@@ -363,8 +363,24 @@
 
 
             HogLog.d(myJSON);
+
+            // callback for request
+            xmlhttp.onreadystatechange = function (event) {
+            	if (this.readyState == 4)
+            	{
+            		if (this.status == 200)
+            		{
+            			// okay
+            		    window.location="/cmain.php";
+            		}
+            		else
+            		{
+            			window.alert("Order request failed. Code: " + this.statusText);
+            		}
+            	}
+            };
+
 			xmlhttp.send(myObj);
-			window.location="/cmain.php";
         }
         
         
