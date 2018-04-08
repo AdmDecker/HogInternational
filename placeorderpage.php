@@ -1,7 +1,3 @@
-<?php
-	require "Session.php";
-	PupSession::LoadSession();
-?>
 <!DOCTYPE html>
 <html>
 <head>
