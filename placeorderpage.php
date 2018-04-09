@@ -383,8 +383,8 @@
             
             xmlhttp.onreadystatechange = stateChange;
 
-            let whereToLoc = document.getElementById('whereto');
-			let whereFromLoc = document.getElementById('wherefrom');
+            let whereToLoc = document.getElementById('whereto').value;
+			let whereFromLoc = document.getElementById('wherefrom').value;
             
 			var myObj =
 			{
