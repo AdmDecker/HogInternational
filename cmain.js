@@ -6,8 +6,18 @@ xmlHttp.onreadystatechange = function() {
   // 200 is STATUS OKAY
   if (this.readyState == 4 && this.status == 200)
     {
-      var stuffs = JSON.parse(this.responseText);
-      fillOrders(stuffs.orders);
+      if (!this.responseText)
+      {
+        HogLog.w("Server responded without conent to order request.");
+      }
+      else
+      {
+        HogLog.d("Server responed to order request with: " + this.responseText);
+        var stuffs = JSON.parse(this.responseText);
+        fillOrders(stuffs.orders);
+      }
+      
+      
     }
 }
 
@@ -62,6 +72,7 @@ function addOrder(order)
 document.addEventListener("DOMContentLoaded", function(){
     // Make our http request
     xmlHttp.open("GET", "corderdata.php", true);
+    HogLog.d("SENDING GET to corderdata.php with null content.");
     xmlHttp.send();
 
 });

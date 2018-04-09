@@ -117,20 +117,20 @@
 
 		function onDateChange()
 		{
-				var input = this.value;
-			    var dateEntered = new Date(input);
+			var input = document.getElementById("whenDate").value;
+		    var dateEntered = new Date(input);
 
-			    date.setMonth(dateEntered.getMonth());
-			    date.setDate(dateEntered.getDate()+1);
-			    date.setFullYear(dateEntered.getFullYear());
+		    date.setMonth(dateEntered.getMonth());
+		    date.setDate(dateEntered.getDate()+1);
+		    date.setFullYear(dateEntered.getFullYear());
 
-			    console.log(date); //e.g. Fri Nov 13 2015 00:00:00 GMT+0000 (GMT Standard Time)
-			    updateTimeEstimate();
+		    console.log(date); //e.g. Fri Nov 13 2015 00:00:00 GMT+0000 (GMT Standard Time)
+		    updateTimeEstimate();
 		}
 
 		function onTimeChange()
 		{
-			var input = this.value;
+			var input = document.getElementById("whenTime").value;
 		    var time = input.match(/(\d+)(:(\d\d))?\s*(p?)/i);
 		    if (time == null) return;
 		    var hours = parseInt(time[1],10);    
