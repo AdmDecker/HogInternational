@@ -61,7 +61,7 @@ function addOrder(order)
   dests[i].innerHTML +=  order.destination;
   pickupTimes[i].innerHTML += order.pickupTime;
   status[i].innerHTML += order.status;
-  statusbars[i].value = parseInt(order.percentage)/100.0;
+  statusbars[i].value = parseInt(order.statusPercent)/100.0;
   links[i].href = "corder?order=" + order.id;
   i++;
    
