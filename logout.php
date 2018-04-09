@@ -27,8 +27,8 @@
       <img src="appicon.svg" class="center" style="width:17em" alt="App Icon Logo">
 
       <h1 style="text-align:center">You have been logged out successfully.</h1>
-        <a class="center" href="/index.php">
-            <button class="center">Return</button>
+        <a class="no-decor" href="/index.php">
+            <button class="w3-button w3-blue center">Return</button>
         </a>
 
       <br/>
