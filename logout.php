@@ -28,7 +28,7 @@
 
       <h1 style="text-align:center">You have been logged out successfully.</h1>
         <a class="center" href="/index.php">
-            <button>Return</button>
+            <button class="center">Return</button>
         </a>
 
       <br/>
