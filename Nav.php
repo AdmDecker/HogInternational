@@ -10,7 +10,7 @@
             if ($type == "M")
             {
                 ?>
-                    <li><a href="help.html">Help</a></li>
+                    <li><a href="help.php">Help</a></li>
                     <li><a href="logout.php">Logout</a></li>
                     <li><a href="account.html">Account</a></li>
                     <li><a href="account.html">Busses</a></li>
@@ -23,7 +23,7 @@
             else if ($type == "D")
             {
                 ?>
-                    <li><a href="help.html">Help</a></li>
+                    <li><a href="help.php">Help</a></li>
                     <li><a href="logout.php">Logout</a></li>
                     <li><a href="account.html">Account</a></li>
                     <li><a href="dhours.html">Hours</a></li>
@@ -33,7 +33,7 @@
             else if ($type == "C")
             {
                 ?>
-                    <li><a href="help.html">Help</a></li>
+                    <li><a href="help.php">Help</a></li>
                     <li><a href="logout.php">Logout</a></li>
                     <li><a href="account.html">Account</a></li>
                     <li><a href="cmain.php">Main</a></li>
@@ -41,7 +41,7 @@
             }
             else{
                 ?>
-
+                    
                 <?php
             }    
         }
