@@ -66,7 +66,7 @@ class dbAccess
     
     public function getOrders($userID)
     {
-        $statement = $this->dbObject->prepare("SELECT * FROM Orders WHERE userID=:userID");
+        $statement = $this->dbObject->prepare("SELECT * FROM orders WHERE userID=:userID");
         $statement->bindParam(':userID', $userID);
         $statement->execute();
         $statement->setFetchMode(PDO::FETCH_ASSOC);
