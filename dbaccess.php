@@ -73,13 +73,13 @@ class dbAccess
         return $statement->fetchAll();
     }
     
-    public function postOrder($userID, $destination, $pickup, $pickupTime, $pickupDate, $oStatus, $statusPercent, $price, $headCount, $handicap, $distance, $paymentMethod)
+    public function postOrder($userID, $destination, $pickup, $travelTime, $pickupDate, $oStatus, $statusPercent, $price, $headCount, $handicap, $distance, $paymentMethod)
     {
-        $statement = $this->dbObject->prepare("insert into orders values(:userID, NULL, :destination, :pickup, :pickupTime, :pickupDate, :oStatus, :statusPercent, :price, :headCount, :handicap, :distance, :paymentMethod)");
+        $statement = $this->dbObject->prepare("insert into orders values(:userID, NULL, :destination, :pickup, :travelTime, :pickupDate, :oStatus, :statusPercent, :price, :headCount, :handicap, :distance, :paymentMethod)");
         $statement->bindParam(':userID', $userID);
         $statement->bindParam(':destination', $destination);
         $statement->bindParam(':pickup', $pickup);
-        $statement->bindParam(':pickupTime', $pickupTime);
+        $statement->bindParam(':travelTime', $travelTime);
         $statement->bindParam(':pickupDate', $pickupDate);
         $statement->bindParam(':oStatus', $oStatus);
         $statement->bindParam(':statusPercent', $statusPercent);
