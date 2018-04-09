@@ -384,8 +384,8 @@
             
 			var myObj =
 			{
-				whereto: whereToPlace.name,
-				wherefrom: whereFromPlace.name,
+				whereto: whereToPlace.toString(),
+				wherefrom: whereFromPlace.toString(),
 				when: date.toISOString(),
 				travelTime: travelTime,
 				noofpeople: numOfPeople,
