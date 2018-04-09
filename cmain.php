@@ -2,13 +2,13 @@
 <?php
     // includes
     require 'Nav.php';
-
 ?>
 <html lang="end">
   <head>
     <meta charset="UTF-8">
     <meta name="description" content="rides-r-us bus system">
     <meta name="author" content="Justin Hoogestraat">
+    <script src="common.js"></script>
     <script src="cmain.js"></script>
     <link href="w3.css" rel="stylesheet" type="text/css">
     <link href="style.css" rel="stylesheet" type="text/css">
