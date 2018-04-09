@@ -65,9 +65,9 @@
       <center>Copyright ©2018 Brookings Area Transit Authority</center>
       <center>Usage of this site constitues acceptance of our</center>
       
-       <center> <a href="terms.html">Terms of Service</a>
+       <center> <a href="terms.php">Terms of Service</a>
         and our
-      <a href="privacy.html">Privacy Policy</a></center>
+      <a href="privacy.php">Privacy Policy</a></center>
     </footer>
   </body>
 </html>
