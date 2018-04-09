@@ -10,8 +10,9 @@
     {
         //Initialize db
         $db = new dbaccess();
-		
-        $ordersObject = $db->getOrders($userID);
+        
+        $ordersObject = [];
+        $ordersObject['orders'] = $db->getOrders($userID);
         
         //Encode the json
         $sjson = json_encode($ordersObject);
