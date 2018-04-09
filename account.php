@@ -26,40 +26,45 @@
     </header>
     <section>
       <ul class="order-header-list">
-        <h1 class="left">Orders</h1>
-        <li class="right">
-          <a href="placeorderpage.php">
-            <button><b>Make Order</b></button>
-          </a>
-          
-        </li>
+        <h1 class="left">Account</h1>
       </ul>
        <hr width="100%">
     </section>
 
-    <template id="order-template">
-      <ul class="orderListElement">
-        <li>
-          <p class="pickup">Pickup: </p>
-          <p class="destination">Destination: </p>
-          <p class="pickupTime">Pickup Time: </p>
-        </li>
-        <li class="right">
-          <a class="orderLink"href="404.html">
-            <button><span>i</span></button>
-          </a>
-
-        </li>
-        <li class="right status">
-          <p class="Status">Status: </p>
-          <progress class="statusBar" value= "0" max="100"></progress> 
-        </li>
-      </ul>
-      <hr class="light" width="100%">
-    </template>
     <section>
-      <div id="orders">
-      </div>
+      <?php 
+
+        $uid = PupSession::getUserType();
+
+        if ($uid == 'M')
+        {
+            ?>
+              Account Info For Manager
+            <?php
+        }
+        else if ($uid == 'D')
+        {
+            ?>
+              Account Info For Driver
+            <?php
+        }
+        else if ($uid == 'C')
+        {
+            ?>
+                Account Info For Customer
+            <?php
+        }
+        else
+        {
+            ?>
+                Not valid account type.
+            <?php
+        }
+
+
+      ?>
+      <hr width="100%">
+
     </section>
     <footer>
       <center>Copyright ©2018 Brookings Area Transit Authority</center>

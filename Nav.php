@@ -12,8 +12,8 @@
                 ?>
                     <li><a href="help.php">Help</a></li>
                     <li><a href="logout.php">Logout</a></li>
-                    <li><a href="account.html">Account</a></li>
-                    <li><a href="account.html">Busses</a></li>
+                    <li><a href="account.php">Account</a></li>
+                    <li><a href="account.php">Busses</a></li>
 
                     <li><a href="dhours.html">Drivers</a></li>
                     <li><a href="dcontact.html">Reports</a></li>
@@ -25,7 +25,7 @@
                 ?>
                     <li><a href="help.php">Help</a></li>
                     <li><a href="logout.php">Logout</a></li>
-                    <li><a href="account.html">Account</a></li>
+                    <li><a href="account.php">Account</a></li>
                     <li><a href="dhours.html">Hours</a></li>
                     <li><a href="dcontact.html">Contact</a></li>
                 <?php
@@ -35,13 +35,13 @@
                 ?>
                     <li><a href="help.php">Help</a></li>
                     <li><a href="logout.php">Logout</a></li>
-                    <li><a href="account.html">Account</a></li>
+                    <li><a href="account.php">Account</a></li>
                     <li><a href="cmain.php">Main</a></li>
                 <?php
             }
             else{
                 ?>
-                    
+
                 <?php
             }    
         }
