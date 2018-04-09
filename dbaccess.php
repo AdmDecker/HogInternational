@@ -69,7 +69,7 @@ class dbAccess
         $statement = $this->dbObject->prepare("SELECT * FROM Orders WHERE userID=:userID");
         $statement->bindParam(':userID', $userID);
         $statement->execute();
-        $statement->setFetchMode(PDO::FETCH_OBJ);
+        $statement->setFetchMode(PDO::FETCH_ASSOC);
         return $statement->fetchAll();
     }
     
@@ -89,7 +89,6 @@ class dbAccess
         $statement->bindParam(':distance', $distance);
         $statement->bindParam(':paymentMethod', $paymentMethod);
         $statement->execute();
-        
     }
     
     public function getCCs($userID)
