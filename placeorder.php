@@ -9,15 +9,15 @@
 
     $db = new dbaccess();
     $db->postOrder($_SESSION['userID'],
-              $obj['whereto'],
-              $obj['wherefrom'],
-              $obj['travelTime'],
-              $obj['when'],
+              $obj->{'whereto'},
+              $obj->{'wherefrom'},
+              $obj->{'travelTime'},
+              $obj->{'when'},
               'Pending',
               0,
-              $obj['price'],
-              $obj['noofpeople'],
-              $obj['handicap'],
-              $obj['distance'],
-              $obj['paymentType']);
+              $obj->{'price'},
+              $obj->{'noofpeople'},
+              $obj->{'handicap'},
+              $obj->{'distance'},
+              $obj->{'paymentType'});
 ?>
