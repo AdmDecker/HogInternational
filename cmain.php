@@ -25,7 +25,7 @@
       <hr width="100%">
     </header>
     <section>
-      <ul class="order-header-list">
+      <ul class="nav-list">
         <h1 class="left">Orders</h1>
         <li class="right">
           <a href="placeorderpage.php">
