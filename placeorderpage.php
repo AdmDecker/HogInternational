@@ -386,7 +386,7 @@
 			{
 				whereto: whereToPlace.name,
 				wherefrom: whereFromPlace.name,
-				when: date.toString(),
+				when: date.toISOString(),
 				travelTime: travelTime,
 				noofpeople: numOfPeople,
 				price: price,
