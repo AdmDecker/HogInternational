@@ -155,6 +155,7 @@
 			};
 
 
+
 			whereToAutocomplete = new google.maps.places.Autocomplete(document.getElementById('whereto'), options);
 			whereFromAutocomplete = new google.maps.places.Autocomplete(document.getElementById('wherefrom'), options);
 
@@ -381,11 +382,14 @@
             xmlhttp.setRequestHeader("Content-type", "application/json;charset=UTF-8");
             
             xmlhttp.onreadystatechange = stateChange;
+
+            let whereToLoc = document.getElementById('whereto');
+			let whereFromLoc = document.getElementById('wherefrom');
             
 			var myObj =
 			{
-				whereto: whereToPlace.toString(),
-				wherefrom: whereFromPlace.toString(),
+				whereto: whereToLoc,
+				wherefrom: whereFromLoc,
 				when: date.toISOString(),
 				travelTime: travelTime,
 				noofpeople: numOfPeople,
