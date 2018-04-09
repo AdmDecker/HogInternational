@@ -62,7 +62,6 @@ class PupSession {
 
             if (isset($_SESSION['userType']))
             {
-                $
                 $type = $_SESSION['userType'];
             }
 
