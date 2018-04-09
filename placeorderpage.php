@@ -415,7 +415,7 @@
             	}
             };
 
-			xmlhttp.send(myObj);
+			xmlhttp.send(myJSON);
         }
         
         
