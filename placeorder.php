@@ -12,7 +12,7 @@
               $obj->{'whereto'},
               $obj->{'wherefrom'},
               $obj->{'travelTime'},
-              $date = $obj->{'when'}),
+              $date = $obj->{'when'},
               'Pending',
               0,
               $obj->{'price'},
