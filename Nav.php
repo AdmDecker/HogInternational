@@ -51,6 +51,57 @@
         }
 
 
+        private static function printOrderAdmin($order)
+        {
+
+        }
+
+        private static function printOrderBasic($order)
+        {
+            // print reactive 2 columns, info, actions
+            // @todo config
+            $HRSFORCANCEL = '+24 hours';
+            $cancellable = false;
+
+
+            // get date from order
+            $date = DateTime::createFromFormat(DateTime::ISO8601, $order['pickupDate']);
+            $curTimePlusOffset = (new \DateTime())->modify($HRSFORCANCEL);
+
+            if ($curTimePlusOffset < $date)
+            {
+                // we can cancel our order
+                $cancellable = true;
+            }
+
+
+
+            ?>
+            <div class="w3 row">
+                <div class="w3-half w3-container">
+                    <h3>Info:</h3>
+                    <?= echo printOrder($order) ?>
+                </div>
+                <div class="w3-half w3-container">
+                    <h3>Actions:</h3>
+                    <?php 
+
+                    if ($cancellable)
+                    {
+                        ?>
+                            <a href=<?= "deleteOrder.php$order="+$order["orderID"] ?>>
+                                <button class="w3-button w3-blue"><b>Make Order</b></button>
+                            </a>
+                        <?php
+                    }
+
+                    ?>
+
+                </div>
+            </div>
+
+            <?php
+        }
         // echo order in object form
         private static function printOrder($order)
         {
@@ -64,11 +115,11 @@
                 <b>Pickup: </b> <?= $order["pickup"] ?><br />
                 <b>Pickup Time: </b> <?= $order["pickupDate"] ?><br />
                 <b>Status: </b> <?= $order["oStatus"] ?><br />
-                <b>Price: </b> <?= $order["price"] ?><br />
+                <b>Price: </b> $<?= $order["price"] ?><br />
                 <b>Number of People: </b> <?= $order["headCount"] ?><br />
                 <b>Handicap: </b> <?= $handicap ?><br />
                 <b>Distance: </b> <?= $order["distance"] ?><br />
-                <b>Travel Time: </b> <?= $order["travelTime"] ?><br />
+                <b>Travel Time: </b> <?= $order["travelTime"] ?> seconds.<br />
                 <b>Payment Method: </b> <?= $order["paymentMethod"] ?><br />
             <?php
         }
@@ -81,6 +132,8 @@
         }
 
 
+        // prints order
+        // has acesss security control
         public static function getOrderInfo($orderId) {
 
             $type = PupSession::getUserType();
@@ -101,9 +154,17 @@
             $id = $lookup["userID"];
 
             // depending on user type define access
-            if ($type == "M" || $type == "D")
+            if ($type == "M")
             {
-                // Always show for manager and driver
+                // print admin
+                echo Nav::printOrderAdmin($lookup);
+            }
+            else if ($type == "D")
+            {
+                // print simple
+                echo Nav::printOrder($lookup);
+
+
             }
             else if ($type == "C")
             {
@@ -115,6 +176,9 @@
                     return;
                 }
 
+                echo Nav::printOrderBasic($lookup);
+
+
             }
             else{
                 ?>
@@ -123,11 +187,15 @@
                 return;
             }
 
-            echo Nav::printOrder($lookup);
 
 
 
         }
+
+    }
+
+    public static function requestOrderCancel($orderId)
+    {
 
     }
     
