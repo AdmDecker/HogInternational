@@ -84,7 +84,7 @@
                 return;
             }
 
-            $id = $lookup["orderID"];
+            $id = $lookup["userID"];
 
             // depending on user type define access
             if ($type == "M" || $type == "D")
