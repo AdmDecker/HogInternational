@@ -50,6 +50,20 @@
 
         }
 
+        
+        // echo order in object form
+        public static function printOrder($order)
+        {
+            echo "Order ID: " . $order["orderId"];
+        }
+
+
+        public static function printPermsDenied() {
+            ?>
+                Access Denied :(
+            <?php
+        }
+
 
         public static function getOrderInfo($orderId) {
 
@@ -99,18 +113,6 @@
 
         }
 
-        // echo order in object form
-        private static function printOrder($order)
-        {
-            echo "Order ID: " . $order["orderId"];
-        }
-
-
-        private static function printPermsDenied() {
-            ?>
-                Access Denied :(
-            <?php
-        }
     }
     
     
