@@ -100,7 +100,7 @@
                     if ($cancelButton)
                     {
                         ?>
-                            <a href=<?= 'cancelOrder.php$order=' . $order["orderID"] ?>>
+                            <a href=<?= 'cancelOrder.php?order=' . $order["orderID"] ?>>
                                 <button class="w3-button w3-blue"><b>Cancel Order</b></button>
                             </a>
                         <?php
