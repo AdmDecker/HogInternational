@@ -50,15 +50,15 @@
 
         }
 
-        
+
         // echo order in object form
-        public static function printOrder($order)
+        private static function printOrder($order)
         {
             echo "Order ID: " . $order["orderId"];
         }
 
 
-        public static function printPermsDenied() {
+        private static function printPermsDenied() {
             ?>
                 Access Denied :(
             <?php
@@ -95,7 +95,7 @@
 
                 if (id != userId)
                 {
-                    echo printPermsDenied();
+                    echo Nav::printPermsDenied();
                     return;
                 }
 
@@ -107,7 +107,7 @@
                 return;
             }
 
-            echo printOrder($lookup);
+            echo Nav::printOrder($lookup);
 
 
 
