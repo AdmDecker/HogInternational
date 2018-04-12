@@ -51,9 +51,9 @@
         else if ($uid == 'C')
         {
             ?>
-                Account Info For Customer
+                Account Info For Customer<br/><br/>
                 <a href= 'callorders.php'>
-                  <button class="w3-button w3-blue"><b>All Order</b></button>
+                  <button class="w3-button w3-blue"><b>All Orders</b></button>
               </a>
             <?php
         }
