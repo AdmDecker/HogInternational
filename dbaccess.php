@@ -99,6 +99,14 @@ class dbAccess
         $statement->bindParam(':paymentMethod', $paymentMethod);
         $statement->execute();
     }
+
+    public function deleteOrder($orderId)
+    {
+        $statement = $this->dbObject->prepare("DELETE * FROM orders WHERE orderID=:orderID");
+        $statement->bindParam(':orderID', $orderID);
+        $statement->execute();
+    }
+
     
     public function getCCs($userID)
     {

@@ -2,6 +2,7 @@
     require "Session.php";
     require "dbaccess.php";
 
+    // Contains navigational data and deals with access clearance for user type.
     class Nav {
 
         public static function getNavHtml() {
@@ -208,7 +209,54 @@
 
         public static function requestOrderCancel($orderId)
         {
+            $type = PupSession::getUserType();
+            $userID = PupSession::getUserID();
 
+
+            //Initialize db
+            $db = new dbaccess();
+
+            $lookup = $db->getOrderById($orderId);
+
+            if (is_null($lookup))
+            {
+                // order not found, return false
+                return false;
+            }
+
+            $id = $lookup["userID"];
+
+            // depending on user type define access
+            if ($type == "M")
+            {
+                // we are an admin, delete order
+                db->deleteOrder($orderId);
+            }
+            else if ($type == "D")
+            {
+                // Driver's cant delete orders
+                return false;
+            }
+            else if ($type == "C")
+            {
+                // Show if look up order userId matches session user id.
+
+                if ($id != $userID)
+                {
+                    return false;
+                }
+
+                // else delete order
+                db->deleteOrder($orderId);
+
+
+
+            }
+            else 
+                return false;
+            }
+
+            return true;
         }
 
     }
