@@ -112,6 +112,7 @@
                             <a href=<?= 'cancelOrder.php?order=' . $order["orderID"] ?>>
                                 <button class="w3-button w3-blue"><b>Cancel Order</b></button>
                             </a>
+                            <br/>
                         <?php
                     }
 
@@ -232,10 +233,6 @@
                     echo Nav::printPermsDenied();
                     return;
                 }
-
-                echo Nav::printOrderBasic($lookup);
-                echo Nav::printOrderDriverContactInfo($lookup);
-
 
             }
             else{
