@@ -95,7 +95,7 @@
             {
                 // Show if look up order userId matches session user id.
 
-                if ($id != $userId)
+                if ($id != $userID)
                 {
                     echo Nav::printPermsDenied();
                     return;
