@@ -55,7 +55,7 @@
         private static function printOrder($order)
         {
             ?>
-                Order ID: <?= $order['orderId'] ?>
+                Order ID: <?= $order["orderId"] ?>
             <?php
         }
 
@@ -84,7 +84,7 @@
                 return;
             }
 
-            $id = $lookup['orderId'];
+            $id = $lookup["orderId"];
 
             // depending on user type define access
             if ($type == "M" || $type == "D")
