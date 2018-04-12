@@ -1,5 +1,6 @@
 <?php
     require "Session.php";
+    require "dbaccess.php";
 
     class Nav {
 
@@ -14,6 +15,7 @@
                     <li><a href="logout.php">Logout</a></li>
                     <li><a href="account.php">Account</a></li>
                     <li><a href="account.php">Busses</a></li>
+
 
                     <li><a href="dhours.html">Drivers</a></li>
                     <li><a href="dcontact.html">Reports</a></li>
@@ -43,7 +45,61 @@
                 ?>
 
                 <?php
+
+            }   
+
+        }
+
+
+        public static function getOrderInfo($orderId) {
+
+            $type = PupSession::getUserType();
+            $userID = PupSession::getUserID();
+
+
+            //Initialize db
+            $db = new dbaccess();
+
+            $lookup = $db->getOrderById($orderId);
+
+            if (is_null($lookup))
+            {
+                echo "Order not found :(";
+                return;
+            }
+
+            // depending on user type define access
+            if ($type == "M" || $type == "D")
+            {
+                // Always show
+            }
+            else if ($type == "C")
+            {
+                // Show if look up order userId matches session user id.
+            }
+            else{
+                ?>
+                    Access Denied - Not Logged In
+                <?php
             }    
+
+
+
+        }
+
+        // echo order in object form
+        private static function printOrder($order)
+        {
+            ?>
+                Print order here
+            <?php
+        }
+
+
+        private static function printPermsDenied() {
+            ?>
+                Access Denied :(
+            <?php
         }
     }
     

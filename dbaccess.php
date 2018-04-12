@@ -72,6 +72,15 @@ class dbAccess
         $statement->setFetchMode(PDO::FETCH_OBJ);
         return $statement->fetchAll();
     }
+
+    public function getOrderById($orderID)
+    {
+        $statement = $this->dbObject->prepare("SELECT * FROM orders WHERE orderID=:orderID");
+        $statement->bindParam(':orderID', $orderID);
+        $statement->execute();
+        $statement->setFetchMode(PDO::FETCH_OBJ);
+        return $statement->fetch();
+    }
     
     public function postOrder($userID, $destination, $pickup, $travelTime, $pickupDate, $oStatus, $statusPercent, $price, $headCount, $handicap, $distance, $paymentMethod)
     {
