@@ -54,7 +54,7 @@
 
         private static function printOrderAdmin($order)
         {
-            echo Nav::printOrderWithActions($order, true, true);
+            echo Nav::printOrderWithActions($order, true, true, true);
         }
 
         private static function printOrderSmartAction($order)
@@ -64,6 +64,7 @@
             $HRSFORCANCEL = '+24 hours';
             $cancellable = false;
             $driveContact = false;
+            $archive = false;
 
 
             // get date from order
@@ -79,6 +80,11 @@
                 $driveContact = true;
             }
 
+            else if ($curTime > $date)
+            {
+                $archive = true;
+            }
+
             $curTime->modify('+24 hours');
 
             $curTime->modify($HRSFORCANCEL);
@@ -89,13 +95,15 @@
                 $cancellable = true;
             }
 
-            echo Nav::printOrderWithActions($order, $cancellable, $driveContact);
+
+
+            echo Nav::printOrderWithActions($order, $cancellable, $driveContact, $archive);
 
 
 
 
         }
-        private static function printOrderWithActions($order, $cancelButton, $contactDriver)
+        private static function printOrderWithActions($order, $cancelButton, $contactDriver, $archive)
         {
 
             ?>
@@ -114,7 +122,7 @@
                             <a href=<?= 'cancelOrder.php?order=' . $order["orderID"] ?>>
                                 <button class="w3-button w3-blue"><b>Cancel Order</b></button>
                             </a>
-                            <br/>
+                            <br/><br/>
                         <?php
                     }
 
@@ -124,6 +132,18 @@
                             <a href=<?= 'contactDriverForOrder.php?order=' . $order["orderID"] ?>>
                                 <button class="w3-button w3-blue"><b>Contact Driver</b></button>
                             </a>
+                            <br/><br/>
+
+                        <?php
+                    }
+
+                    if ($archive)
+                    {
+                        ?>
+                            <a href=<?= 'archiveOrder.php?order=' . $order["orderID"] ?>>
+                                <button class="w3-button w3-blue"><b>Archive Order</b></button>
+                            </a>
+                            <br/><br/>
                         <?php
                     }
 
