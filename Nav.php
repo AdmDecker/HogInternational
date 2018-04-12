@@ -57,7 +57,7 @@
             echo Nav::printOrderWithActions($order, true, true);
         }
 
-        private static function printOrderBasic($order)
+        private static function printOrderSmartAction($order)
         {
             // print reactive 2 columns, info, actions
             // @todo config
@@ -234,7 +234,7 @@
                     echo Nav::printPermsDenied();
                     return;
                 }
-                echo Nav::printOrder($lookup);
+                echo Nav::printOrderSmartAction($lookup);
 
 
             }
