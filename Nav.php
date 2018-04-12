@@ -68,20 +68,32 @@
                 return;
             }
 
+            $id = $lookup['orderId'];
+
             // depending on user type define access
             if ($type == "M" || $type == "D")
             {
-                // Always show
+                // Always show for manager and driver
             }
             else if ($type == "C")
             {
                 // Show if look up order userId matches session user id.
+
+                if (id != userId)
+                {
+                    echo printPermsDenied();
+                    return
+                }
+
             }
             else{
                 ?>
                     Access Denied - Not Logged In
                 <?php
-            }    
+                return
+            }
+
+            echo printOrder($lookup);
 
 
 
@@ -90,9 +102,7 @@
         // echo order in object form
         private static function printOrder($order)
         {
-            ?>
-                Print order here
-            <?php
+            echo "Order ID: " . $order["orderId"];
         }
 
 

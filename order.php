@@ -26,6 +26,14 @@
       <hr width="100%">
     </header>
     <section>
+      <ul class="order-header-list">
+        <li class="left">
+          <h1 class="left">Order Info</h1>
+        </li>
+      </ul>
+       <hr width="100%">
+    </section>
+    <section>
       
       <?php
         if (!isset($_GET['order']))
