@@ -191,13 +191,14 @@
 
 
         }
+        
+        public static function requestOrderCancel($orderId)
+        {
+
+        }
 
     }
 
-    public static function requestOrderCancel($orderId)
-    {
-
-    }
     
     
     
