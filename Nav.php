@@ -78,7 +78,7 @@
             {
                 $driveContact = true;
             }
-            
+
             $curTime->modify('+24 hours');
 
             $curTime->modify($HRSFORCANCEL);
@@ -221,7 +221,6 @@
                 // print simple
                 echo Nav::printOrder($lookup);
                 echo Nav::printOrderCustomerContactInfo($lookup);
-                echo Nav::printOrderDriverContactInfo($lookup);
 
 
 
@@ -235,6 +234,8 @@
                     echo Nav::printPermsDenied();
                     return;
                 }
+                echo Nav::printOrder($lookup);
+
 
             }
             else{
