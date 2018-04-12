@@ -80,7 +80,7 @@
             <div class="w3 row">
                 <div class="w3-half w3-container">
                     <h3>Info:</h3>
-                    <?= echo printOrder($order) ?>
+                    <?= printOrder($order) ?>
                 </div>
                 <div class="w3-half w3-container">
                     <h3>Actions:</h3>
