@@ -75,7 +75,7 @@
             $curTime->modify('-24 hours');
             if (curTime < $date)
             {
-                $driveContact = true
+                $driveContact = true;
             }
             $curTime->modify('+24 hours');
 
