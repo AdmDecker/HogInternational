@@ -100,7 +100,7 @@ class dbAccess
         $statement->execute();
     }
 
-    public function deleteOrder($orderId)
+    public function deleteOrder($orderID)
     {
         $statement = $this->dbObject->prepare("DELETE * FROM orders WHERE orderID=:orderID");
         $statement->bindParam(':orderID', $orderID);
