@@ -82,7 +82,7 @@
                 if (id != userId)
                 {
                     echo printPermsDenied();
-                    return
+                    return;
                 }
 
             }
@@ -90,7 +90,7 @@
                 ?>
                     Access Denied - Not Logged In
                 <?php
-                return
+                return;
             }
 
             echo printOrder($lookup);
