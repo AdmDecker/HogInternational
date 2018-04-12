@@ -230,7 +230,7 @@
             if ($type == "M")
             {
                 // we are an admin, delete order
-                db->deleteOrder($orderId);
+                $db->deleteOrder($orderId);
             }
             else if ($type == "D")
             {
@@ -247,7 +247,7 @@
                 }
 
                 // else delete order
-                db->deleteOrder($orderId);
+                $db->deleteOrder($orderId);
 
 
 
