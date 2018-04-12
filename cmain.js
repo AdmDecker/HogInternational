@@ -34,7 +34,7 @@ var i = 0;
 function addOrder(order)
 {
   // show or not show archived
-  if (showArchived == false && (order.oStatus == "ARCHIVED" || order.oStatus == "Archived"()))
+  if (showArchived == false && (order.oStatus == "ARCHIVED" || order.oStatus == "Archived"))
     return;
   
   var temp = document.getElementById("order-template");
