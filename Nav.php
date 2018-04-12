@@ -53,7 +53,7 @@
 
         private static function printOrderAdmin($order)
         {
-
+            echo Nav::printOrderWithActions($order, true);
         }
 
         private static function printOrderBasic($order)

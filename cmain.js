@@ -55,10 +55,12 @@ function addOrder(order)
    var statusbars = document.getElementsByClassName("statusBar");
   var links = document.getElementsByClassName("orderLink");
 
+  var pickupDate = Date.parse(order.pickupDate);
+
   
   pickups[i].innerHTML += order.pickup;
   dests[i].innerHTML +=  order.destination;
-  pickupTimes[i].innerHTML += order.pickupDate;
+  pickupTimes[i].innerHTML += pickupDate.toLocaleString();
   status[i].innerHTML += order.oStatus;
   statusbars[i].value = parseInt(order.statusPercent)/100.0;
   links[i].href = "order.php?order=" + order.orderID;
