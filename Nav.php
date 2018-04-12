@@ -74,19 +74,25 @@
                 $cancellable = true;
             }
 
+            echo Nav::printOrderWithActions($order, $cancellable);
 
 
-            ?>
+
+
+        }
+        private static function printOrderWithActions($order, $cancelButton)
+        {
+                        ?>
             <div class="w3 row">
                 <div class="w3-half w3-container">
                     <h3>Info:</h3>
-                    <?= printOrder($order) ?>
+                    <?= Nav::printOrder($order) ?>
                 </div>
                 <div class="w3-half w3-container">
                     <h3>Actions:</h3>
                     <?php 
 
-                    if ($cancellable)
+                    if ($cancelButton)
                     {
                         ?>
                             <a href=<?= "cancelOrder.php$order="+$order["orderID"] ?>>
@@ -191,7 +197,7 @@
 
 
         }
-        
+
         public static function requestOrderCancel($orderId)
         {
 
