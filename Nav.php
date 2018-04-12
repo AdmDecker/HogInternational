@@ -44,7 +44,7 @@
             else{
                 ?>
                     <li><a href="help.php">Help</a></li>
-                    <li><a href="login.php">Login</a></li>
+                    <li><a href="login.html">Login</a></li>
                 <?php
 
             }   
