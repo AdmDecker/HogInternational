@@ -61,7 +61,7 @@ function addOrder(order)
   pickupTimes[i].innerHTML += order.pickupDate;
   status[i].innerHTML += order.oStatus;
   statusbars[i].value = parseInt(order.statusPercent)/100.0;
-  links[i].href = "order?order=" + order.id;
+  links[i].href = "order?order=" + order.orderID;
   i++;
    
 }
