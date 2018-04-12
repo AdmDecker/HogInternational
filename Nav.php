@@ -293,7 +293,7 @@
             if ($type == "M")
             {
                 // we are an admin, delete order
-                $db->deleteOrder($orderId);
+                $db->cancelOrder($orderId);
 
             }
             else if ($type == "D")
@@ -311,7 +311,63 @@
                 }
 
                 // else delete order
-                $db->deleteOrder($orderId);
+                $db->cancelOrder($orderId);
+
+
+
+
+            }
+            else {
+                return false;
+            }
+
+            return true;
+
+        
+        }
+
+        public static function requestOrderArchive($orderId)
+        {
+            $type = PupSession::getUserType();
+            $userID = PupSession::getUserID();
+
+
+            //Initialize db
+            $db = new dbaccess();
+
+            $lookup = $db->getOrderById($orderId);
+
+            if (is_null($lookup))
+            {
+                // order not found, return false
+                return false;
+            }
+
+            $id = $lookup["userID"];
+
+            // depending on user type define access
+            if ($type == "M")
+            {
+                // we are an admin, delete order
+                $db->archiveOrder($orderId);
+
+            }
+            else if ($type == "D")
+            {
+                // Driver's cant archive orders
+                return false;
+            }
+            else if ($type == "C")
+            {
+                // Show if look up order userId matches session user id.
+
+                if ($id != $userID)
+                {
+                    return false;
+                }
+
+                // else archive order
+                $db->archiveOrder($orderId);
 
 
 

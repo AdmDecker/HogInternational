@@ -125,13 +125,17 @@ class dbAccess
     // Set status to CANCELLED
     public function cancelOrder($orderID)
     {
-
+        $statement = $this->dbObject->prepare("UPDATE orders SET oStatus='CANCELLED' WHERE orderID=:orderID");
+        $statement->bindParam(':orderID', $orderID);
+        $statement->execute();
     }
 
     // SET STATUS TO ARCHIVED
     public function archiveOrder($orderID)
     {
-
+        $statement = $this->dbObject->prepare("UPDATE orders SET oStatus='ARCHIVED' WHERE orderID=:orderID");
+        $statement->bindParam(':orderID', $orderID);
+        $statement->execute();
     }
 
     // set status, percent status, to specified
