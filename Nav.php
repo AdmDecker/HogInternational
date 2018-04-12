@@ -54,7 +54,9 @@
         // echo order in object form
         private static function printOrder($order)
         {
-            echo "Order ID: " . $order['orderId'];
+            ?>
+                Order ID: <?= $order['orderId'] ?>
+            <?php
         }
 
 
