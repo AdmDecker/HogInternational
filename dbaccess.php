@@ -65,7 +65,7 @@ class dbAccess
     }
 
     // GRAB EM ALL
-    public function getOrders()
+    public function getAllOrders()
     {
         $statement = $this->dbObject->prepare("SELECT * FROM orders");
         $statement->execute();
