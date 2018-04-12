@@ -59,17 +59,17 @@
             if ($order["handicap"] != "0")
                 $handicap="Yes"
             ?>
-                <b>Order ID: </b> <?= $order["orderID"] ?>
-                <b>Destination: </b> <?= $order["destination"] ?>
-                <b>Pickup: </b> <?= $order["pickup"] ?>
-                <b>Pickup Time: </b> <?= $order["pickupDate"] ?>
-                <b>Status: </b> <?= $order["oStatus"] ?>
-                <b>Price: </b> <?= $order["price"] ?>
-                <b>Number of People: </b> <?= $order["headCount"] ?>
-                <b>Handicap: </b> <?= $handicap ?>
-                <b>Distance: </b> <?= $order["distance"] ?>
-                <b>Travel Time: </b> <?= $order["travelTime"] ?>
-                <b>Payment Method: </b> <?= $order["paymentMethod"] ?>
+                <b>Order ID: </b> <?= $order["orderID"] ?><br />
+                <b>Destination: </b> <?= $order["destination"] ?><br />
+                <b>Pickup: </b> <?= $order["pickup"] ?><br />
+                <b>Pickup Time: </b> <?= $order["pickupDate"] ?><br />
+                <b>Status: </b> <?= $order["oStatus"] ?><br />
+                <b>Price: </b> <?= $order["price"] ?><br />
+                <b>Number of People: </b> <?= $order["headCount"] ?><br />
+                <b>Handicap: </b> <?= $handicap ?><br />
+                <b>Distance: </b> <?= $order["distance"] ?><br />
+                <b>Travel Time: </b> <?= $order["travelTime"] ?><br />
+                <b>Payment Method: </b> <?= $order["paymentMethod"] ?><br />
             <?php
         }
 
