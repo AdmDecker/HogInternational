@@ -52,6 +52,9 @@
         {
             ?>
                 Account Info For Customer
+                <a href= 'callorders.php'>
+                  <button class="w3-button w3-blue"><b>All Order</b></button>
+              </a>
             <?php
         }
         else
