@@ -73,11 +73,12 @@
             $curTime = new DateTime("now");
 
             $curTime->modify('-24 hours');
-            
+
             if ($curTime < $date)
             {
                 $driveContact = true;
             }
+            
             $curTime->modify('+24 hours');
 
             $curTime->modify($HRSFORCANCEL);
