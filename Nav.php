@@ -54,8 +54,22 @@
         // echo order in object form
         private static function printOrder($order)
         {
+            $handicap = "No";
+
+            if ($order["handicap"] != "0")
+                $handicap="Yes"
             ?>
-                Order ID: <?= $order["orderID"] ?>
+                <b>Order ID: </b> <?= $order["orderID"] ?>
+                <b>Destination: </b> <?= $order["destination"] ?>
+                <b>Pickup: </b> <?= $order["pickup"] ?>
+                <b>Pickup Time: </b> <?= $order["pickupDate"] ?>
+                <b>Status: </b> <?= $order["oStatus"] ?>
+                <b>Price: </b> <?= $order["price"] ?>
+                <b>Number of People: </b> <?= $order["headCount"] ?>
+                <b>Handicap: </b> <?= $handicap ?>
+                <b>Distance: </b> <?= $order["distance"] ?>
+                <b>Travel Time: </b> <?= $order["travelTime"] ?>
+                <b>Payment Method: </b> <?= $order["paymentMethod"] ?>
             <?php
         }
 
