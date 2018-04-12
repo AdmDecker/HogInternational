@@ -60,15 +60,16 @@
         {
             // print reactive 2 columns, info, actions
             // @todo config
-            $HRSFORCANCEL = '-24 hours';
+            $HRSFORCANCEL = '+24 hours';
             $cancellable = false;
 
 
             // get date from order
             $date = DateTime::createFromFormat(DateTime::ISO8601, $order['pickupDate'], new DateTimeZone('Etc/Zulu'));
 
-            $date->modify($HRSFORCANCEL);
+            
             $curTime = new DateTime("now");
+            $curTime->modify($HRSFORCANCEL);
 
             if ($curTime < $date)
             {
