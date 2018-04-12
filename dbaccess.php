@@ -63,6 +63,15 @@ class dbAccess
     {
         
     }
+
+    // GRAB EM ALL
+    public function getOrders()
+    {
+        $statement = $this->dbObject->prepare("SELECT * FROM orders");
+        $statement->execute();
+        $statement->setFetchMode(PDO::FETCH_OBJ);
+        return $statement->fetchAll();
+    }
     
     public function getOrders($userID)
     {
@@ -80,6 +89,11 @@ class dbAccess
         $statement->execute();
         $statement->setFetchMode(PDO::FETCH_ASSOC);
         return $statement->fetch();
+    }
+
+    public function getOrdersForDriver($driverID)
+    {
+        
     }
     
     public function postOrder($userID, $destination, $pickup, $travelTime, $pickupDate, $oStatus, $statusPercent, $price, $headCount, $handicap, $distance, $paymentMethod)
@@ -100,12 +114,44 @@ class dbAccess
         $statement->execute();
     }
 
+    // Delete an order
     public function deleteOrder($orderID)
     {
         $statement = $this->dbObject->prepare("DELETE * FROM orders WHERE orderID=:orderID");
         $statement->bindParam(':orderID', $orderID);
         $statement->execute();
     }
+
+    // Set status to CANCELLED
+    public function cancelOrder($orderID)
+    {
+
+    }
+
+    // SET STATUS TO ARCHIVED
+    public function archiveOrder($orderID)
+    {
+
+    }
+
+    // set status, percent status, to specified
+    public function setStatus($orderId, $status, $percent)
+    {
+
+    }
+
+    public function postBus()
+    {
+
+    }
+
+    public function deleteBus()
+    {
+
+    }
+
+
+
 
     
     public function getCCs($userID)

@@ -15,12 +15,12 @@
                     <li><a href="help.php">Help</a></li>
                     <li><a href="logout.php">Logout</a></li>
                     <li><a href="account.php">Account</a></li>
-                    <li><a href="account.php">Busses</a></li>
+                    <li><a href="busses.php">Busses</a></li>
 
 
-                    <li><a href="dhours.html">Drivers</a></li>
-                    <li><a href="dcontact.html">Reports</a></li>
-                    <li><a href="dcontact.html">Locations</a></li>
+                    <li><a href="drivers.php">Drivers</a></li>
+                    <li><a href="reports.php">Reports</a></li>
+                    <li><a href="locations.php">Locations</a></li>
                 <?php
             }
             else if ($type == "D")
@@ -29,8 +29,7 @@
                     <li><a href="help.php">Help</a></li>
                     <li><a href="logout.php">Logout</a></li>
                     <li><a href="account.php">Account</a></li>
-                    <li><a href="dhours.html">Hours</a></li>
-                    <li><a href="dcontact.html">Contact</a></li>
+                    <li><a href="dhours.php">Hours</a></li>
                 <?php
             }
             else if ($type == "C")
@@ -44,7 +43,8 @@
             }
             else{
                 ?>
-
+                    <li><a href="help.php">Help</a></li>
+                    <li><a href="login.php">Login</a></li>
                 <?php
 
             }   
@@ -54,7 +54,7 @@
 
         private static function printOrderAdmin($order)
         {
-            echo Nav::printOrderWithActions($order, true);
+            echo Nav::printOrderWithActions($order, true, true);
         }
 
         private static function printOrderBasic($order)
@@ -63,6 +63,7 @@
             // @todo config
             $HRSFORCANCEL = '+24 hours';
             $cancellable = false;
+            $driveContact = false;
 
 
             // get date from order
@@ -70,6 +71,14 @@
 
             
             $curTime = new DateTime("now");
+
+            $curTime->modify('-24 hours');
+            if (curTime < $date)
+            {
+                $driveContact = true
+            }
+            $curTime->modify('+24 hours');
+
             $curTime->modify($HRSFORCANCEL);
 
             if ($curTime < $date)
@@ -78,13 +87,13 @@
                 $cancellable = true;
             }
 
-            echo Nav::printOrderWithActions($order, $cancellable);
+            echo Nav::printOrderWithActions($order, $cancellable, $driveContact);
 
 
 
 
         }
-        private static function printOrderWithActions($order, $cancelButton)
+        private static function printOrderWithActions($order, $cancelButton, $contactDriver)
         {
 
             ?>
@@ -102,6 +111,15 @@
                         ?>
                             <a href=<?= 'cancelOrder.php?order=' . $order["orderID"] ?>>
                                 <button class="w3-button w3-blue"><b>Cancel Order</b></button>
+                            </a>
+                        <?php
+                    }
+
+                    if ($contactDriver)
+                    {
+                        ?>
+                            <a href=<?= 'contactDriverForOrder.php?order=' . $order["orderID"] ?>>
+                                <button class="w3-button w3-blue"><b>Contact Driver</b></button>
                             </a>
                         <?php
                     }
@@ -139,6 +157,23 @@
             <?php
         }
 
+        private static function printOrderCustomerContactInfo($customer)
+        {
+            ?>
+                <h3>Customer Contact</h3>
+                Print Customer contact info here
+            <?php
+        }
+
+        private static function printOrderDriverContactInfo($customer)
+        {
+            ?>
+                <h3>Driver Contact</h3>
+
+                Print Driver contact info here
+            <?php
+        }
+
 
         private static function printPermsDenied() {
             ?>
@@ -173,11 +208,18 @@
             {
                 // print admin
                 echo Nav::printOrderAdmin($lookup);
+                echo Nav::printOrderCustomerContactInfo($lookup);
+                echo Nav::printOrderDriverContactInfo($lookup);
+
+
             }
             else if ($type == "D")
             {
                 // print simple
                 echo Nav::printOrder($lookup);
+                echo Nav::printOrderCustomerContactInfo($lookup);
+                echo Nav::printOrderDriverContactInfo($lookup);
+
 
 
             }
@@ -192,6 +234,7 @@
                 }
 
                 echo Nav::printOrderBasic($lookup);
+                echo Nav::printOrderDriverContactInfo($lookup);
 
 
             }
