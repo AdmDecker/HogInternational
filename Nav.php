@@ -231,6 +231,7 @@
             {
                 // we are an admin, delete order
                 $db->deleteOrder($orderId);
+
             }
             else if ($type == "D")
             {
@@ -251,12 +252,15 @@
 
 
 
+
             }
-            else 
+            else {
                 return false;
             }
 
             return true;
+
+        
         }
 
     }
