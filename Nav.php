@@ -85,7 +85,9 @@
         }
         private static function printOrderWithActions($order, $cancelButton)
         {
-                        ?>
+
+            $orderId = $order["orderID"]
+            ?>
             <div class="w3 row">
                 <div class="w3-half w3-container">
                     <h3>Info:</h3>
@@ -98,7 +100,7 @@
                     if ($cancelButton)
                     {
                         ?>
-                            <a href=<?= "cancelOrder.php$order=" . $order["orderID"] ?>>
+                            <a href=<?= "cancelOrder.php$order=" . $orderId?>>
                                 <button class="w3-button w3-blue"><b>Cancel Order</b></button>
                             </a>
                         <?php
