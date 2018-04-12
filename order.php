@@ -2,7 +2,6 @@
 <?php
     // includes
     require 'Nav.php';
-    require 'dbaccess.php';
 
 ?>
 <html lang="eng">
