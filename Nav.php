@@ -115,6 +115,8 @@
         private static function printOrder($order)
         {
             $handicap = "No";
+            $date = DateTime::createFromFormat(DateTime::ISO8601, $order['pickupDate'], new DateTimeZone('Etc/Zulu'));
+
 
             if ($order["handicap"] != "0")
                 $handicap="Yes"
@@ -122,7 +124,9 @@
                 <b>Order ID: </b> <?= $order["orderID"] ?><br />
                 <b>Destination: </b> <?= $order["destination"] ?><br />
                 <b>Pickup: </b> <?= $order["pickup"] ?><br />
-                <b>Pickup Time: </b> <?= $order["pickupDate"] ?><br />
+                <b>Pickup Time: </b> <?= $date -> format("H:i") ?><br />
+                <b>Pickup Date: </b> <?= $date -> format("Y:m-d") ?><br />
+
                 <b>Status: </b> <?= $order["oStatus"] ?><br />
                 <b>Price: </b> $<?= $order["price"] ?><br />
                 <b>Number of People: </b> <?= $order["headCount"] ?><br />
