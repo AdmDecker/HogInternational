@@ -29,12 +29,9 @@
     <section>
       <ul class="order-header-list">
         <li class="left">
-          <h1 class="left">Orders</h1>
+          <h1 class="left">All Orders</h1>
         </li>
         <li class="right">
-          <a href="placeorderpage.php">
-            <button><b>Make Order</b></button>
-          </a>
           
         </li>
       </ul>
