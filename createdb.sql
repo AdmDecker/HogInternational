@@ -23,6 +23,8 @@ CREATE TABLE orders
     handicap BOOL,
     distance DECIMAL(5, 2),
     paymentMethod VARCHAR(255),
+    driverID int,
+    FOREIGN KEY(driverID) REFERENCES drivers(driverID),
     PRIMARY KEY(orderID)
 );
 

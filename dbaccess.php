@@ -82,6 +82,15 @@ class dbAccess
         return $statement->fetchAll();
     }
 
+    public function getDriverOrders($userID)
+    {
+        $statement = $this->dbObject->prepare("SELECT * FROM orders WHERE driverID=:userID");
+        $statement->bindParam(':userID', $userID);
+        $statement->execute();
+        $statement->setFetchMode(PDO::FETCH_OBJ);
+        return $statement->fetchAll();
+    }
+
     public function getOrderById($orderID)
     {
         $statement = $this->dbObject->prepare("SELECT * FROM orders WHERE orderID=:orderID");
