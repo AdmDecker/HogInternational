@@ -21,7 +21,8 @@ CREATE TABLE creditCards
 CREATE TABLE busses
 (
     busID int NOT NULL AUTO_INCREMENT,
-    handicap BOOL NOT NULL
+    handicap BOOL NOT NULL,
+    PRIMARY KEY(busID)
 );
 
 CREATE TABLE drivers
