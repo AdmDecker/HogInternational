@@ -257,7 +257,7 @@ class dbAccess
     public function getAvailableBusForDriver()
     {
         //Might want to date bind this later but that will require some database changes
-        $today = date('Y-m-d');
+        $today = gmdate('Y-m-d');
         $today0 = $today. ' 00:00:00';
         $today1 = $today. ' 23:59:59';
         trigger_error("today0: $today0 today1: $today1");
