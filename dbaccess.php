@@ -249,6 +249,8 @@ class dbAccess
 
     public function getAvailableBusForDriver()
     {
+        $today0 = $this->getToday();
+        $today1 = $this->getTomorrow();
         $statement = $this->dbObject->prepare('SELECT busID FROM busses WHERE busID NOT IN (SELECT assignedBus FROM drivers WHERE assignedBus IS NOT NULL) AND busID IN (SELECT assignedBus FROM orders WHERE (pickupDate >= :today0 AND pickupDate <= :today1) AND assignedBus IS NOT NULL)');
         //$statement = $this->dbObject->prepare('SELECT busID FROM busses WHERE busID NOT IN (SELECT assignedBus FROM drivers WHERE assignedBus IS NOT NULL)');
         $statement->bindParam(':today0', $today0);
