@@ -49,7 +49,7 @@
     <section>
       <ul class="order-header-list">
         <li class="left">
-          <h1 class="left">Order Cancellation</h1>
+          <h1 class="left">Order Progression</h1>
         </li>
       </ul>
        <hr width="100%">
