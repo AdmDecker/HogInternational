@@ -112,7 +112,7 @@ class dbAccess
         $returnDate = $date;
         $totalTime = $travelTime + $depotTime;
         $returnDate->modify("+$totalTime seconds");
-        $statement = $this->dbObject->prepare("insert into orders values(:userID, NULL, :destination, :pickup, :travelTime, :pickupDate, :oStatus, :statusPercent, :price, :headCount, :handicap, :distance, :paymentMethod, :pickupDateDT, :depotTim0e)");
+        $statement = $this->dbObject->prepare("insert into orders values(:userID, NULL, :destination, :pickup, :travelTime, :pickupDate, :oStatus, :statusPercent, :price, :headCount, :handicap, :distance, :paymentMethod, :pickupDateDT, :depotTime, :returnDate)");
         $statement->bindParam(':userID', $userID);
         $statement->bindParam(':destination', $destination);
         $statement->bindParam(':pickup', $pickup);
@@ -127,6 +127,7 @@ class dbAccess
         $statement->bindParam(':paymentMethod', $paymentMethod);
         $statement->bindParam(':pickupDateDT', $date);
         $statement->bindParam(':depotTime', $depotTime);
+        $statement->bindParam(':returnDate', $returnDate);
         $statement->execute();
     }
 
