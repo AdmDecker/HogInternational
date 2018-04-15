@@ -274,7 +274,7 @@ class dbAccess
         else
             {
                 $db->setOrderStatus($orderID, $statuses[index];
-                $db->setOrderPercent($orderID, $index * (100 /count($statuses)))
+                $db->setOrderPercent($orderID, $index * (100 /count($statuses)));
                 return $statuses[$index];
             }
     }
