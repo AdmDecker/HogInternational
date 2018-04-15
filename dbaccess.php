@@ -265,7 +265,7 @@ class dbAccess
         $orderState = $this->getOrderById($orderID)['oStatus'];
         $statuses = array('PENDING', 'Awaiting Dispatch', 'Driver Dispatched', 'Driver Arrived', 'Customers Picked Up', 'Complete');
         $index = array_search($orderState, $statuses) + 1;
-        if ($index > count($statuses))
+        if ($index > count($statuses) - 1)
             return $statuses[count($statuses) - 1];
         else if ($index === FALSE)
             return $orderState;
