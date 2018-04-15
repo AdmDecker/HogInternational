@@ -107,7 +107,7 @@ class dbAccess
     public function postOrder($userID, $destination, $pickup, $travelTime, $pickupDate, $oStatus, $statusPercent, $price, $headCount, $handicap, $distance, $paymentMethod, $depotTime)
     {
         $totalTime = $travelTime + $depotTime;
-        $returnDate = $pickupDate + $totalTime
+        $returnDate = $pickupDate + $totalTime;
         $statement = $this->dbObject->prepare("insert into orders values(:userID, NULL, :destination, :pickup, :travelTime, :pickupDate, :oStatus, :statusPercent, :price, :headCount, :handicap, :distance, :paymentMethod, NULL, :depotTime, :returnDate)");
         $statement->bindParam(':userID', $userID);
         $statement->bindParam(':destination', $destination);
