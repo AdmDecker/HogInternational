@@ -17,7 +17,12 @@
                 
             //The response from the server will be our error message to the user
             document.getElementById("error").nodeValue = xmlhttp.responseText;
-            if(response.includes("success"))
+            if(response.includes("success-register"))
+            {
+                // go to register complete page
+                window.location = "registerCompletePage.php";
+            }
+            else if (response.includes("sucess"))
             {
                 //Redirect the user to the next page if the request is successful
                 window.location = "index.php";
