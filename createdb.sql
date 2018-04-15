@@ -18,6 +18,12 @@ CREATE TABLE creditCards
     PRIMARY KEY(ccID)
 );
 
+CREATE TABLE busses
+{
+    busID int NOT NULL AUTO_INCREMENT,
+    handicap BOOL NOT NULL
+}
+
 CREATE TABLE drivers
 (
     driverID int,
@@ -28,12 +34,6 @@ CREATE TABLE drivers
     FOREIGN KEY assignedBus REFERENCES busses(busID),
     PRIMARY KEY(driverID)
 );
-
-CREATE TABLE busses
-{
-    busID int NOT NULL AUTO_INCREMENT,
-    handicap BOOL NOT NULL
-}
 
 CREATE TABLE orders
 (
@@ -51,11 +51,11 @@ CREATE TABLE orders
     handicap BOOL,
     distance DECIMAL(5, 2),
     paymentMethod VARCHAR(255),
-    busID int,
+    assignedBus int,
     pickupDateDT DATETIME,
     depotTime int,
     returnDateDT DATETIME,
-    FOREIGN KEY(busID) REFERENCES busses(busID),
+    FOREIGN KEY(assignedBus) REFERENCES busses(busID),
     PRIMARY KEY(orderID)
 );
 
