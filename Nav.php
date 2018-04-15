@@ -322,11 +322,9 @@
             }
 
             return true;
-
-        
         }
 
-        private static function progressOrder($orderID)
+        public static function progressOrder($orderID)
         {
             $db = new dbaccess();
             $db->progressOrder($orderID);
@@ -340,14 +338,14 @@
             if ($type == "M")
             {
                 // we are an admin, delete order
-                progressOrder($orderID);
+                $this->progressOrder($orderID);
                 return true;
 
             }
             else if ($type == "D")
             {
                 // Driver's cant archive orders
-                progressOrder($orderID);
+                $this->progressOrder($orderID);
                 return true;
             }
             else
