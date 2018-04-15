@@ -110,7 +110,7 @@ class dbAccess
         // get date from order
         $format = 'Y-m-d\TH:i:s.uP';
         $date = DateTime::createFromFormat('Y-m-d\TH:i:s.uP', $pickupDate, new DateTimeZone('Etc/Zulu'));
-        $returnDate = new DateTime($date);
+        $returnDate = clone $date;
         $totalTime = $travelTime + $depotTime;
         $returnDate->modify("+$totalTime seconds");
         $statement = $this->dbObject->prepare("insert into orders values(:userID, NULL, :destination, :pickup, :travelTime, :pickupDate, :oStatus, :statusPercent, :price, :headCount, :handicap, :distance, :paymentMethod, NULL, :pickupDateDT, :depotTime, :returnDate)");
