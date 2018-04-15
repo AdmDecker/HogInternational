@@ -47,8 +47,11 @@
           <p class="pickupTime">Pickup Time: </p>
         </li>
         <li class="right">
-          <a class="orderLink"href="404.html">
+          <a class="orderLink" href="404.html">
             <button><span>i</span></button>
+          </a>
+          <a class="progressLink" href="404.html">
+            <button><span>+</span></button>
           </a>
 
         </li>

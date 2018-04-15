@@ -54,6 +54,7 @@ function addOrder(order)
   var status = document.getElementsByClassName("Status");
   var statusbars = document.getElementsByClassName("statusBar");
   var links = document.getElementsByClassName("orderLink");
+  var progLinks = document.getElementsByClassName("progressLink");
 
   let pickupDate = new Date(order.pickupDate);
 
@@ -64,6 +65,7 @@ function addOrder(order)
   status[i].innerHTML += order.oStatus;
   statusbars[i].value = parseInt(order.statusPercent)/100.0;
   links[i].href = "order.php?order=" + order.orderID;
+  progLinks[i].href = "progressOrder.php?order=" + order.orderID;
   i++;
    
 }

@@ -2,17 +2,37 @@
 <?php
     // includes
     require 'Nav.php';
+    $suc = false;
+    if (!isset($_GET['order']))
+    {
+      $suc = false;
+      http_response_code(403);
+    }
+    else
+    {
+      // try
+      if ( Nav::requestOrderProgress($_GET['order']))
+        {
+            $suc = true;
+            http_response_code(200);
+        }
+        else
+        {
+            $suc = false;
+             http_response_code(403);
+        }
+    }
+
 ?>
-<html lang="end">
+<html lang="eng">
   <head>
     <meta charset="UTF-8">
     <meta name="description" content="rides-r-us bus system">
     <meta name="author" content="Justin Hoogestraat">
-    <script src="common.js"></script>
-    <script src="dmain.js"></script>
-
+    <meta http-equiv="content-type" content="image/svg+xml">
     <link href="w3.css" rel="stylesheet" type="text/css">
     <link href="style.css" rel="stylesheet" type="text/css">
+
   </head>
   <body>
     <header class="main-header">
@@ -28,37 +48,33 @@
     <section>
       <ul class="order-header-list">
         <li class="left">
-          <h1 class="left">Outlook Schedule</h1>
+          <h1 class="left">Order Cancellation</h1>
         </li>
-      
       </ul>
        <hr width="100%">
     </section>
-
-    <template id="order-template">
-      <ul class="orderListElement">
-        <li>
-          <p class="pickup">Pickup: </p>
-          <p class="destination">Destination: </p>
-          <p class="pickupTime">Pickup Time: </p>
-        </li>
-        <li class="right">
-          <a class="orderLink"href="404.html">
-            <button><span>i</span></button>
-          </a>
-
-        </li>
-        <li class="right status">
-          <p class="Status">Status: </p>
-          <progress class="statusBar" value= "0" max="100"></progress> 
-        </li>
-      </ul>
-      <hr class="light" width="100%">
-    </template>
     <section>
-      <div id="orders">
-      </div>
+      
+      <?php
+          if ( $suc)
+            {
+                ?>
+                    Order progressed.
+                <?php
+            }
+            else
+            {
+                ?>
+                    We can't cancel that order. Sorry.
+                <?php
+            }
+
+
+      ?>
+      <hr width="100%">
     </section>
+
+  
     <footer>
       <center>Copyright ©2018 Brookings Area Transit Authority</center>
       <center>Usage of this site constitues acceptance of our</center>
