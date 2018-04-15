@@ -22,7 +22,7 @@ CREATE TABLE busses
 (
     busID int NOT NULL AUTO_INCREMENT,
     handicap BOOL NOT NULL
-)
+);
 
 CREATE TABLE drivers
 (
