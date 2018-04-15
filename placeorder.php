@@ -30,7 +30,6 @@
         $busID = $db->getAvailableBus($orderID);
     if ($busID == NULL)
     {
-        http_response_code(277);
         echo "Fail: No busses available";
     }
     else
