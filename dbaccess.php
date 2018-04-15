@@ -280,7 +280,7 @@ class dbAccess
             return $orderState;
         else
             {
-                $this->setOrderStatus($orderID, $statuses[index]);
+                $this->setOrderStatus($orderID, $statuses[$index]);
                 $this->setOrderPercent($orderID, $index * (100 /count($statuses)));
                 return $statuses[$index];
             }
