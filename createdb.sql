@@ -67,6 +67,6 @@ INSERT INTO users VALUES(1338, "TestDriver", "$2y$10$YhcXJOg.Y2KwOAd5MrZZX.qlWlv
 INSERT INTO drivers VALUES(1338, 10000, 40, NULL);
 INSERT INTO users VALUES(1339, "TestManager", "$2y$10$YhcXJOg.Y2KwOAd5MrZZX.qlWlvRql8xn50cbVotU9lajyhp1qNsS", "M");
 
-INSERT INTO busses(NULL, 0);
-INSERT INTO busses(NULL, 1);
+INSERT INTO busses VALUES(NULL, 0);
+INSERT INTO busses VALUES(NULL, 1);
 INSERT INTO orders VALUES(1337, NULL, "The Void", "Earth", '12:14:16', '2018-04-27', "Pending", 0, 32.75);
