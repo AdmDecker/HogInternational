@@ -5,7 +5,8 @@
     $suc = false;
     if (!isset($_GET['order']))
     {
-      echo "Invalid Request";
+      $suc = false;
+      http_response_code(403);
     }
     else
     {
