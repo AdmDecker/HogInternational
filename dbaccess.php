@@ -110,7 +110,7 @@ class dbAccess
         // get date from order
         $format = 'Y-m-d\TH:i:s.uP';
         $date = DateTime::createFromFormat('Y-m-d\TH:i:s.uP', $pickupDate, new DateTimeZone('Etc/Zulu'));
-        $returnDate = $date;
+        $returnDate = new DateTime($date);
         $totalTime = $travelTime + $depotTime;
         $returnDate->modify("+$totalTime seconds");
         $statement = $this->dbObject->prepare("insert into orders values(:userID, NULL, :destination, :pickup, :travelTime, :pickupDate, :oStatus, :statusPercent, :price, :headCount, :handicap, :distance, :paymentMethod, NULL, :pickupDateDT, :depotTime, :returnDate)");
@@ -192,7 +192,7 @@ class dbAccess
         $order = $this->getOrderById($orderID);
         $pickupDate = $order['pickupDateDT'];
         $orderDate = $order['returnDateDT'];
-        $statement = $this->dbObject->prepare("SELECT busID FROM busses WHERE busID NOT IN (SELECT assignedBus FROM orders WHERE pickupDateDT >= :pickupDate AND returnDateDT <= :pickupDate OR pickupDateDT >= :returnDate AND returnDateDT <= :pickupDate)");
+        $statement = $this->dbObject->prepare("SELECT busID FROM busses WHERE busID NOT IN (SELECT assignedBus FROM orders WHERE (pickupDateDT >= :pickupDate AND returnDateDT <= :pickupDate OR pickupDateDT >= :returnDate AND returnDateDT <= :pickupDate) AND assignedBus IS NOT NULL)");
         $statement->bindParam(':pickupDate', $pickupDate);
         $statement->bindParam(':returnDate', $returnDate);
         $statement->execute();
