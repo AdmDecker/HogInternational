@@ -257,9 +257,14 @@ class dbAccess
     public function getAvailableBusForDriver()
     {
         //Might want to date bind this later but that will require some database changes
-        $today = gmdate('Y-m-d');
-        $today0 = $today. ' 00:00:00';
-        $today1 = $today. ' 23:59:59';
+        //$today = gmdate('Y-m-d');
+        //$today0 = $today. ' 00:00:00';
+        //$today1 = $today. ' 23:59:59';
+        $curTime = new DateTime('now');
+        $curTime->modify('-24 hours');
+        $today0 = $curtime->format('Y-m-d H:i:s');
+        $curTime->modify('+48 hours');
+        $today1 = $curtime->format('Y-m-d H:i:s');
         trigger_error("today0: $today0 today1: $today1");
         $statement = $this->dbObject->prepare('SELECT busID FROM busses WHERE busID NOT IN (SELECT assignedBus FROM drivers WHERE assignedBus IS NOT NULL) AND busID IN (SELECT assignedBus FROM orders WHERE (pickupDateDT >= :today0 AND pickupDateDT <= :today1) AND assignedBus IS NOT NULL)');
         //$statement = $this->dbObject->prepare('SELECT busID FROM busses WHERE busID NOT IN (SELECT assignedBus FROM drivers WHERE assignedBus IS NOT NULL)');
