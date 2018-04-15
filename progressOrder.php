@@ -15,6 +15,7 @@
         {
             $suc = true;
             http_response_code(200);
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
         }
         else
         {
