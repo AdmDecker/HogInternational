@@ -338,14 +338,14 @@
             if ($type == "M")
             {
                 // we are an admin, delete order
-                $this->progressOrder($orderID);
+                Nav::progressOrder($orderID);
                 return true;
 
             }
             else if ($type == "D")
             {
                 // Driver's cant archive orders
-                $this->progressOrder($orderID);
+                Nav::progressOrder($orderID);
                 return true;
             }
             else
