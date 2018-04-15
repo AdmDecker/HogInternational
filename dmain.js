@@ -8,7 +8,7 @@ xmlHttp.onreadystatechange = function() {
     {
       if (!this.responseText)
       {
-        HogLog.w("Server responded without conent to order request.");
+        HogLog.w("Server responded without content to order request.");
       }
       else
       {
