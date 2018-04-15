@@ -259,7 +259,8 @@ class dbAccess
         $today = date('Y-m-d');
         $today0 = $today. ' 00:00:00';
         $today1 = $today. ' 23:59:59';
-        $statement = $this->dbObject->prepare('SELECT busID FROM busses WHERE busID NOT IN (SELECT assignedBus FROM drivers WHERE assignedBus IS NOT NULL) AND busID IN (SELECT assignedBus FROM orders WHERE (pickupDate >= :today0 AND pickupDate <= :today1) AND assignedBus IS NOT NULL)');
+        trigger_error("today0: $today0 today1: $today1");
+        $statement = $this->dbObject->prepare('SELECT busID FROM busses WHERE busID NOT IN (SELECT assignedBus FROM drivers WHERE assignedBus IS NOT NULL) AND busID IN (SELECT assignedBus FROM orders WHERE (pickupDateDT >= :today0 AND pickupDateDT <= :today1) AND assignedBus IS NOT NULL)');
         //$statement = $this->dbObject->prepare('SELECT busID FROM busses WHERE busID NOT IN (SELECT assignedBus FROM drivers WHERE assignedBus IS NOT NULL)');
         $statement->bindParam(':today0', $today0);
         $statement->bindParam(':today1', $today1);
