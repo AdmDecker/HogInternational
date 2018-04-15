@@ -130,6 +130,7 @@ class dbAccess
         $statement->bindParam(':depotTime', $depotTime);
         $statement->bindParam(':returnDate', $returnDate->format($format));
         $statement->execute();
+        return $db->lastInsertId();
     }
 
     // Delete an order
