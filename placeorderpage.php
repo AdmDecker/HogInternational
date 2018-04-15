@@ -484,11 +484,17 @@
             		if (this.status == 200)
             		{
             			// okay
-            		    window.location="/cmain.php";
-            		}
-            		else if (this.status == 277)
-            		{
-            			window.alert("Yikes. We don't have the resources to serve during this time. Try a different time.");
+            			let response = xmlhttp.responseText;
+
+            			if (response.includes('Fail'))
+            			{
+            				window.alert(response);
+            			}
+            			else
+            			{
+            				window.location="/cmain.php";
+
+            			}
             		}
             		else
             		{
