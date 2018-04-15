@@ -326,6 +326,36 @@
         
         }
 
+        private static function progressOrder($orderID)
+        {
+            $db = new dbaccess();
+            $db->progressOrder($orderID);
+        }
+
+        public static function requestOrderProgress($orderID)
+        {
+            $type = PupSession::getUserType();
+            $userID = PupSession::getUserID();
+
+            if ($type == "M")
+            {
+                // we are an admin, delete order
+                progressOrder($orderID);
+                return true;
+
+            }
+            else if ($type == "D")
+            {
+                // Driver's cant archive orders
+                progressOrder($orderID);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public static function requestOrderArchive($orderId)
         {
             $type = PupSession::getUserType();
