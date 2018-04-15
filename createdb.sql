@@ -27,7 +27,7 @@ CREATE TABLE busses
 CREATE TABLE drivers
 (
     driverID int,
-    FOREIGN KEY(driverID) REFERENCES users(UserID),
+    FOREIGN KEY(driverID) REFERENCES users(userID),
     salary int NOT NULL,
     hours int NOT NULL,
     assignedBus int,
