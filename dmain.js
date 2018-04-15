@@ -56,7 +56,8 @@ function addOrder(order)
   var links = document.getElementsByClassName("orderLink");
   var progLinks = document.getElementsByClassName("progressLink");
 
-  let pickupDate = new Date(order.pickupDate);
+  let pickupDate = new Date(parseInt(order.pickupDate)/1000);
+
 
   
   pickups[i].innerHTML += order.pickup;
