@@ -84,10 +84,9 @@ class dbAccess
 
     public function getTodaysOrders($busID)
     {
-        $today = date('Y-m-d');
-        $today0 = $today. ' 00:00:00';
-        $today1 = $today. ' 23:59:59';
-        $statement = $this->dbObject->prepare("SELECT * FROM orders WHERE assignedBus=:busID AND pickupDateDT >= :today0 AND pickupDateDT <= :today1");
+        $today0 = $this->getToday();
+        $today1 = $this->getTomorrow();
+        $statement = $this->dbObject->prepare("SELECT * FROM orders WHERE assignedBus=:busID AND pickupDate >= :today0 AND pickupDate <= :today1");
         $statement->bindParam(':busID', $busID);
         $statement->bindParam(':today0', $today0);
         $statement->bindParam(':today1', $today1);
@@ -107,14 +106,9 @@ class dbAccess
     
     public function postOrder($userID, $destination, $pickup, $travelTime, $pickupDate, $oStatus, $statusPercent, $price, $headCount, $handicap, $distance, $paymentMethod, $depotTime)
     {
-        // get date from order
-        $format = 'Y-m-d\TH:i:s.uP';
-        $newFormat = 'Y-m-d H:i:s';
-        $date = DateTime::createFromFormat('Y-m-d\TH:i:s.uP', $pickupDate, new DateTimeZone('Etc/Zulu'));
-        $returnDate = clone $date;
         $totalTime = $travelTime + $depotTime;
-        $returnDate->modify("+$totalTime seconds");
-        $statement = $this->dbObject->prepare("insert into orders values(:userID, NULL, :destination, :pickup, :travelTime, :pickupDate, :oStatus, :statusPercent, :price, :headCount, :handicap, :distance, :paymentMethod, NULL, :pickupDateDT, :depotTime, :returnDate)");
+        $returnDate = $pickupDate + $totalTime
+        $statement = $this->dbObject->prepare("insert into orders values(:userID, NULL, :destination, :pickup, :travelTime, :pickupDate, :oStatus, :statusPercent, :price, :headCount, :handicap, :distance, :paymentMethod, NULL, :pickupDate, :depotTime, :returnDate)");
         $statement->bindParam(':userID', $userID);
         $statement->bindParam(':destination', $destination);
         $statement->bindParam(':pickup', $pickup);
@@ -127,9 +121,9 @@ class dbAccess
         $statement->bindParam(':handicap', $handicap);
         $statement->bindParam(':distance', $distance);
         $statement->bindParam(':paymentMethod', $paymentMethod);
-        $statement->bindParam(':pickupDateDT', $date->format($newFormat));
+        $statement->bindParam(':pickupDate', $date);
         $statement->bindParam(':depotTime', $depotTime);
-        $statement->bindParam(':returnDate', $returnDate->format($newFormat));
+        $statement->bindParam(':returnDate', $returnDate);
         $statement->execute();
         return $this->dbObject->lastInsertId();
     }
@@ -191,9 +185,9 @@ class dbAccess
     public function getAvailableBus($orderID)
     {
         $order = $this->getOrderById($orderID);
-        $pickupDate = $order['pickupDateDT'];
-        $orderDate = $order['returnDateDT'];
-        $statement = $this->dbObject->prepare("SELECT busID FROM busses WHERE busID NOT IN (SELECT assignedBus FROM orders WHERE (pickupDateDT >= :pickupDate AND returnDateDT <= :pickupDate OR pickupDateDT >= :returnDate AND returnDateDT <= :pickupDate) AND assignedBus IS NOT NULL)");
+        $pickupDate = $order['pickupDate'];
+        $orderDate = $order['returnDate'];
+        $statement = $this->dbObject->prepare("SELECT busID FROM busses WHERE busID NOT IN (SELECT assignedBus FROM orders WHERE (pickupDate >= :pickupDate AND returnDate <= :pickupDate OR pickupDate >= :returnDate AND returnDate <= :pickupDate) AND assignedBus IS NOT NULL)");
         $statement->bindParam(':pickupDate', $pickupDate);
         $statement->bindParam(':returnDate', $returnDate);
         $statement->execute();
@@ -203,7 +197,7 @@ class dbAccess
 
     public function getAvailableHandicapBus($pickupDate)
     {
-        $statement = $this->dbObject->prepare("SELECT busID FROM busses WHERE handicap=1 AND busID NOT IN (SELECT assignedBus FROM orders WHERE pickupDateDT >= :pickupDate AND returnDateDT <= :pickupDate OR pickupDateDT >= :returnDate AND returnDateDT <= :pickupDate");
+        $statement = $this->dbObject->prepare("SELECT busID FROM busses WHERE handicap=1 AND busID NOT IN (SELECT assignedBus FROM orders WHERE pickupDate >= :pickupDate AND returnDate <= :pickupDate OR pickupDate >= :returnDate AND returnDate <= :pickupDate");
         $statement->bindParam(':pickupDate', $pickupDate);
         $statement->bindParam(':returnDate', $returnDate);
         $statement->execute();
@@ -256,17 +250,7 @@ class dbAccess
 
     public function getAvailableBusForDriver()
     {
-        //Might want to date bind this later but that will require some database changes
-        //$today = gmdate('Y-m-d');
-        //$today0 = $today. ' 00:00:00';
-        //$today1 = $today. ' 23:59:59';
-        $curTime = new DateTime('now');
-        $curTime->modify('-24 hours');
-        $today0 = $curtime->format('Y-m-d H:i:s');
-        $curTime->modify('+48 hours');
-        $today1 = $curtime->format('Y-m-d H:i:s');
-        trigger_error("today0: $today0 today1: $today1");
-        $statement = $this->dbObject->prepare('SELECT busID FROM busses WHERE busID NOT IN (SELECT assignedBus FROM drivers WHERE assignedBus IS NOT NULL) AND busID IN (SELECT assignedBus FROM orders WHERE (pickupDateDT >= :today0 AND pickupDateDT <= :today1) AND assignedBus IS NOT NULL)');
+        $statement = $this->dbObject->prepare('SELECT busID FROM busses WHERE busID NOT IN (SELECT assignedBus FROM drivers WHERE assignedBus IS NOT NULL) AND busID IN (SELECT assignedBus FROM orders WHERE (pickupDate >= :today0 AND pickupDate <= :today1) AND assignedBus IS NOT NULL)');
         //$statement = $this->dbObject->prepare('SELECT busID FROM busses WHERE busID NOT IN (SELECT assignedBus FROM drivers WHERE assignedBus IS NOT NULL)');
         $statement->bindParam(':today0', $today0);
         $statement->bindParam(':today1', $today1);
@@ -290,6 +274,22 @@ class dbAccess
                 $this->setOrderPercent($orderID, $index * (100 /count($statuses)));
                 return $statuses[$index];
             }
+    }
+
+    private function getToday()
+    {
+        $date = new DateTime();
+        $date->setTimezone(new DateTimeZone('America/Chicago'));
+        $date->modify('today');
+        return $date->getTimestamp();
+    }
+
+    private function getTomorrow()
+    {
+        $date = new DateTime();
+        $date->setTimezone(new DateTimeZone('America/Chicago'));
+        $date->modify('tomorrow');
+        return $date->getTimestamp();
     }
 }
 ?>

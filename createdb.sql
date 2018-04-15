@@ -44,7 +44,7 @@ CREATE TABLE orders
     destination VARCHAR(255),
     pickup VARCHAR(255),
     travelTime int,
-    pickupDate VARCHAR(255),
+    pickupDate bigint,
     oStatus VARCHAR(255),
     statusPercent int,
     price DECIMAL(5,2),
@@ -53,9 +53,8 @@ CREATE TABLE orders
     distance DECIMAL(5, 2),
     paymentMethod VARCHAR(255),
     assignedBus int,
-    pickupDateDT DATETIME,
     depotTime int,
-    returnDateDT DATETIME,
+    returnDate bigint,
     FOREIGN KEY(assignedBus) REFERENCES busses(busID),
     PRIMARY KEY(orderID)
 );
