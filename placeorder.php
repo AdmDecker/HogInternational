@@ -30,6 +30,7 @@
         $busID = $db->getAvailableBus($orderID);
     if ($busID == NULL)
     {
+        $db->deleteOrder($orderID);
         echo "Fail: No busses available";
     }
     else
