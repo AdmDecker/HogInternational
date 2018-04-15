@@ -29,6 +29,9 @@
                 action = "login.php"
             else
                 action = "register.php"
+
+
+            window.location = "index.php";
         }
         
         
@@ -51,6 +54,14 @@
       <hr width="100%">
     </header>
     <section>
+      <ul class="order-header-list">
+        <li class="left">
+          <h1 class="left">Complete Your Registration</h1>
+        </li>
+      </ul>
+       <hr width="100%">
+    </section>
+    <section>
       <form onsubmit="return validateForm()">
           <input class ="w3-input center" type="text" name="firstName" id="firstName" style="width: 20em" placeholder="First Name" /><br/><br/>
           <input class ="w3-input center" type="text" name="lastName" id="lastName" style="width: 20em" placeholder="Last Name" /><br/><br/>
@@ -58,7 +69,7 @@
           <input class ="w3-input center" type="text" name="creditCardNumber" id="creditCardNumber" style="width: 20em" placeholder="Credit Card Number" /><br/><br/>
           <input class ="w3-input center" type="text" name="cvn" id="cvn" style="width: 20em" placeholder="CVN" /><br/>
           <br/>
-          <input class ="w3-button w3-blue center" type="button" value="Complete Registration" onClick="onRegister()" style="width: 10em"/>
+          <input class ="w3-button w3-blue center" type="button" value="Register" onClick="onRegister()" style="width: 20em"/>
           <div id="error"></div>
           <br/>
       </form>
