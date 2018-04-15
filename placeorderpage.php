@@ -13,6 +13,9 @@
     	var FLAT_RATE = 4;
     	var PRICE_PER_MILE = .10;
 
+    	var DEPOT_MARKER;
+
+
     	var markers = [];
     	var map;
     	var marker;
@@ -26,6 +29,9 @@
     	var date = new Date();
     	var travelTime = 0;
     	var distTravelled = 0;
+    	var travelTimeFromDepot = 0;
+    	var travelTimeToDepot = 0;
+
     	var price = 0;
 
 
@@ -64,6 +70,20 @@
 		    		unitSystem: google.maps.UnitSystem.IMPERIAL
 		    	};
 
+		    	var logicalFromDepot = {
+		    		origin: DEPOT_MARKER.getPosition(),
+		    		destination: fromMarker.getPosition(),
+		    		travelMode: 'DRIVING',
+		    		unitSystem: google.maps.UnitSystem.IMPERIAL
+		    	};
+
+		    	var logicalToDepot = {
+		    		origin: marker.getPosition(),
+		    		destination: DEPOT_MARKER.getPosition(),
+		    		travelMode: 'DRIVING',
+		    		unitSystem: google.maps.UnitSystem.IMPERIAL
+		    	};
+
 		    	directionsService.route(request, function(result, status) {
 		    		if (status == 'OK')
 		    		{
@@ -79,6 +99,51 @@
 		    			document.getElementById("distanceInfo").innerHTML = "";
 		    			plottabble = false;
 		    			directionsDisplay.setMap(null);
+		    		}
+
+		    	});
+
+		    	directionsService.route(logicalToDepot, function(result, status) {
+		    		if (status == 'OK')
+		    		{
+		    			  let myroute = result.routes[0];
+						  var logicalTravelTime = 0;
+
+						  var logicalTotal = 0;
+
+						  for (var i = 0; i < myroute.legs.length; i++) {
+						  	logicalTravelTime += myroute.legs[i].duration.value;
+						    logicalTotal += myroute.legs[i].distance.value;
+						  }
+
+						  travelTimeToDepot = logicalTotal;
+
+		    		}
+		    		else
+		    		{
+		    			travelTimeToDepot = 0;
+		    		}
+
+		    	});
+		    	directionsService.route(logicalFromDepot, function(result, status) {
+		    		if (status == 'OK')
+		    		{
+		    			  let myroute = result.routes[0];
+						  var logicalTravelTime = 0;
+
+						  var logicalTotal = 0;
+
+						  for (var i = 0; i < myroute.legs.length; i++) {
+						  	logicalTravelTime += myroute.legs[i].duration.value;
+						    logicalTotal += myroute.legs[i].distance.value;
+						  }
+
+						  travelTimeFromDepot = logicalTotal;
+
+		    		}
+		    		else
+		    		{
+		    			travelTimeFromDepot = 0;
 		    		}
 
 		    	});
@@ -185,6 +250,13 @@
 
 
 			  });
+
+
+
+	    	DEPOT_MARKER = new google.maps.Marker({
+	    		position: {lat: 44.31, lng: -96.8},
+	    		visible: false
+	    	});
 
 
 
@@ -392,6 +464,8 @@
 				wherefrom: whereFromLoc,
 				when: date.toISOString(),
 				travelTime: travelTime,
+				travelTimeFromDepot: travelTimeFromDepot,
+				travelTimeToDepot: travelTimeToDepot,
 				noofpeople: numOfPeople,
 				price: price,
 				distance: distTravelled,
