@@ -68,7 +68,7 @@
 
 
             // get date from order
-            $date = DateTime::createFromFormat('Y-m-d\TH:i:s.uP', $order['pickupDate'], new DateTimeZone('Etc/Zulu'));
+            $date = new DateTime(@$order['pickupDate'])
 
             
             $curTime = new DateTime("now");
@@ -158,7 +158,7 @@
         private static function printOrder($order)
         {
             $handicap = "No";
-            $date = DateTime::createFromFormat('Y-m-d\TH:i:s.uP', $order['pickupDate'], new DateTimeZone('Etc/Zulu'));
+            $date = new DateTime(@$order['pickupDate'])
 
 
             if ($order["handicap"] != "0")

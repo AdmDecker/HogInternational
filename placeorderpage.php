@@ -462,7 +462,7 @@
 			{
 				whereto: whereToLoc,
 				wherefrom: whereFromLoc,
-				when: date.toISOString(),
+				when: Math.round(date.getTime()/1000),
 				travelTime: travelTime,
 				travelTimeFromDepot: travelTimeFromDepot,
 				travelTimeToDepot: travelTimeToDepot,
