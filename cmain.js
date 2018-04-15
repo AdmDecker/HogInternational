@@ -65,7 +65,7 @@ function addOrder(order)
   dests[i].innerHTML +=  order.destination;
   pickupTimes[i].innerHTML += pickupDate.toLocaleString();
   status[i].innerHTML += order.oStatus;
-  statusbars[i].value = parseInt(order.statusPercent)/100.0;
+  statusbars[i].value = parseInt(order.statusPercent);
   links[i].href = "order.php?order=" + order.orderID;
   i++;
    

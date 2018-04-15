@@ -49,7 +49,7 @@
     <section>
       <ul class="order-header-list">
         <li class="left">
-          <h1 class="left">Order Cancellation</h1>
+          <h1 class="left">Order Progression</h1>
         </li>
       </ul>
        <hr width="100%">
@@ -66,7 +66,7 @@
             else
             {
                 ?>
-                    We can't cancel that order. Sorry.
+                    We can't progress that order. Sorry.
                 <?php
             }
 
