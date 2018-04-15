@@ -186,7 +186,7 @@ class dbAccess
         $order = $this->getOrderById($orderID);
         $pickupDate = $order['pickupDate'];
         $orderDate = $order['returnDate'];
-        $statement = $this->dbObject->prepare("SELECT busID FROM busses WHERE busID NOT IN (SELECT assignedBus FROM orders WHERE (pickupDate >= :pickupDate AND returnDate <= :pickupDate OR pickupDate >= :returnDate AND returnDate <= :pickupDate) AND assignedBus IS NOT NULL)");
+        $statement = $this->dbObject->prepare("SELECT busID FROM busses WHERE busID NOT IN (SELECT assignedBus FROM orders WHERE (pickupDate <= :pickupDate AND returnDate >= :pickupDate OR pickupDate <= :returnDate AND returnDate >= :pickupDate) AND assignedBus IS NOT NULL)");
         $statement->bindParam(':pickupDate', $pickupDate);
         $statement->bindParam(':returnDate', $returnDate);
         $statement->execute();
