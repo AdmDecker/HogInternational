@@ -56,12 +56,8 @@
       <hr class="light" width="100%">
     </template>
     <section>
-      <<?php 
-
-
-
-
-       ?>
+      <div id="orders">
+      </div>
     </section>
     <footer>
       <center>Copyright ©2018 Brookings Area Transit Authority</center>
