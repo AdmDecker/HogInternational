@@ -161,6 +161,14 @@ class dbAccess
         $statement->execute();
     }
 
+    public function setOrderPercent($orderID, $status)
+    {
+        $statement = $this->dbObject->prepare("UPDATE orders SET statusPercent=:status WHERE orderID=:orderID");
+        $statement->bindParam(':status', $status);
+        $statement->bindParam(':orderID', $orderID);
+        $statement->execute();
+    }
+
     public function addBus($handicap)
     {
         if ($handicap === TRUE)
@@ -177,9 +185,11 @@ class dbAccess
 
     }
 
-    public function getAvailableBus($pickupDate)
+    public function getAvailableBus($pickupDate, $returnDate)
     {
         $statement = $this->dbObject->prepare("SELECT busID FROM busses WHERE busID NOT IN (SELECT assignedBus FROM orders WHERE pickupDateDT >= :pickupDate AND returnDateDT <= :pickupDate OR pickupDateDT >= :returnDate AND returnDateDT <= :pickupDate");
+        $statement->bindParam(':pickupDate', $pickupDate);
+        $statement->bindParam(':returnDate', $returnDate);
         $statement->execute();
         $statement->setFetchMode(PDO::FETCH_ASSOC);
         return $statement->fetch()['busID'];
@@ -187,6 +197,12 @@ class dbAccess
 
     public function getAvailableHandicapBus($pickupDate)
     {
+        $statement = $this->dbObject->prepare("SELECT busID FROM busses WHERE handicap=1 AND busID NOT IN (SELECT assignedBus FROM orders WHERE pickupDateDT >= :pickupDate AND returnDateDT <= :pickupDate OR pickupDateDT >= :returnDate AND returnDateDT <= :pickupDate");
+        $statement->bindParam(':pickupDate', $pickupDate);
+        $statement->bindParam(':returnDate', $returnDate);
+        $statement->execute();
+        $statement->setFetchMode(PDO::FETCH_ASSOC);
+        return $statement->fetch()['busID'];
     }
     
     public function getCCs($userID)
@@ -230,6 +246,37 @@ class dbAccess
         $statement->bindParam(':busID', $busID);
         $statement->bindParam(':orderID', $orderID);
         $statement->execute();
+    }
+
+    public function getAvailableBusForDriver()
+    {
+        //Might want to date bind this later but that will require some database changes
+        $today = date('Y-m-d');
+        $today0 = $today. ' 00:00:00';
+        $today1 = $today. ' 23:59:59';
+        $statement = $this->dbObject->prepare('SELECT busID FROM busses WHERE busID NOT IN (SELECT assignedBus FROM drivers) AND busID IN (SELECT assignedBus FROM orders WHERE pickupDate >= :today0 AND pickupDate <= :today1)');
+        $statement->bindParam(':today0', $today0);
+        $statement->bindParam(':today1', $today1);
+        $statement->execute();
+        return $statement->fetch()['busID'];
+    }
+
+    //Progresses the order and returns the next state
+    public function progressOrder($orderID)
+    {
+        $orderState = $this->getOrderById($orderID)['oStatus'];
+        $statuses = array('PENDING', 'Awaiting Dispatch', 'Driver Dispatched', 'Driver Arrived', 'Customers Picked Up', 'Complete');
+        $index = array_search($orderState, $statuses) + 1;
+        if ($index > count(statuses))
+            return statuses[count(statuses) - 1];
+        else if ($index === FALSE)
+            return $orderState;
+        else
+            {
+                $db->setOrderStatus($orderID, $statuses[index];
+                $db->setOrderPercent($orderID, $index * (100 /count($statuses)))
+                return $statuses[$index];
+            }
     }
 }
 ?>

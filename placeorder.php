@@ -8,10 +8,6 @@
     $obj = json_decode($json);
     $date = DateTime::createFromFormat('Y-m-d\TH:i:s.uP', $pickupDate, new DateTimeZone('Etc/Zulu'));
 
-    //Get driver to deliver this order
-    $driver = $db->getAvailableDriver();
-    $db->setDriverAvailability($driver['driverID'], FALSE);
-
     $db = new dbaccess();
     $orderID = $db->postOrder($_SESSION['userID'],
               $obj->{'whereto'},
@@ -30,9 +26,9 @@
     //The order must now be scheduled to a bus
     $busID = -1;
     if ($obj->{'handicap'})
-        $busID = $db->getAvailableHandicapBus($date);
+        $busID = $db->getAvailableHandicapBus($orderID);
     else
-        $busID = $db->getAvailableBus($date);
+        $busID = $db->getAvailableBus($orderID);
 
     $db->assignOrderToBus($orderID, $busID);
 ?>

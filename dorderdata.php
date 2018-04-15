@@ -17,7 +17,7 @@
         //If the driver doesn't have an assigned bus, assign one
         if ($driverBus == NULL)
         {
-            $driverBus = $db->getAvailableBus();
+            $driverBus = $db->getAvailableBusForDriver();
             //If there's no available bus
             if ($driverBus == NULL)
             {
