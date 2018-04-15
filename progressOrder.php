@@ -66,7 +66,7 @@
             else
             {
                 ?>
-                    We can't cancel that order. Sorry.
+                    We can't progress that order. Sorry.
                 <?php
             }
 
