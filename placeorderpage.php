@@ -486,6 +486,10 @@
             			// okay
             		    window.location="/cmain.php";
             		}
+            		eles if (this.status == 277)
+            		{
+            			window.alert("Yikes. We don't have the resources to serve during this time. Try a different time.");
+            		}
             		else
             		{
             			window.alert("Order request failed. Code: " + this.statusText);
