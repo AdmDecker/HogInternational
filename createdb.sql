@@ -64,7 +64,7 @@ CREATE TABLE orders
 /*test data*/
 INSERT INTO users VALUES(1337, "TestCustomer", "$2y$10$YhcXJOg.Y2KwOAd5MrZZX.qlWlvRql8xn50cbVotU9lajyhp1qNsS", "C");
 INSERT INTO users VALUES(1338, "TestDriver", "$2y$10$YhcXJOg.Y2KwOAd5MrZZX.qlWlvRql8xn50cbVotU9lajyhp1qNsS", "D");
-INSERT INTO drivers VALUES(1338, 10000, 40);
+INSERT INTO drivers VALUES(1338, 10000, 40, NULL);
 INSERT INTO users VALUES(1339, "TestManager", "$2y$10$YhcXJOg.Y2KwOAd5MrZZX.qlWlvRql8xn50cbVotU9lajyhp1qNsS", "M");
 
 INSERT INTO busses(NULL, 0);
