@@ -186,7 +186,7 @@ class dbAccess
         $order = $this->getOrderById($orderID);
         $pickupDate = $order['pickupDate'];
         $orderDate = $order['returnDate'];
-        $statement = $this->dbObject->prepare("SELECT busID FROM busses WHERE busID NOT IN (SELECT assignedBus FROM orders WHERE (pickupDate >= :pickupDate AND returnDate <= :pickupDate OR pickupDate >= :returnDate AND returnDate <= :pickupDate) AND assignedBus IS NOT NULL)");
+        $statement = $this->dbObject->prepare("SELECT busID FROM busses WHERE busID NOT IN (SELECT assignedBus FROM orders WHERE (pickupDate <= :pickupDate AND returnDate >= :pickupDate OR pickupDate <= :returnDate AND returnDate >= :pickupDate) AND assignedBus IS NOT NULL)");
         $statement->bindParam(':pickupDate', $pickupDate);
         $statement->bindParam(':returnDate', $returnDate);
         $statement->execute();
@@ -265,14 +265,14 @@ class dbAccess
         $orderState = $this->getOrderById($orderID)['oStatus'];
         $statuses = array('PENDING', 'Awaiting Dispatch', 'Driver Dispatched', 'Driver Arrived', 'Customers Picked Up', 'Complete');
         $index = array_search($orderState, $statuses) + 1;
-        if ($index > count($statuses))
+        if ($index > count($statuses) - 1)
             return $statuses[count($statuses) - 1];
         else if ($index === FALSE)
             return $orderState;
         else
             {
                 $this->setOrderStatus($orderID, $statuses[$index]);
-                $this->setOrderPercent($orderID, $index * (100 /count($statuses)));
+                $this->setOrderPercent($orderID, $index * (100 /(count($statuses) - 1)));
                 return $statuses[$index];
             }
     }
