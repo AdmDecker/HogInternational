@@ -31,8 +31,8 @@
     if ($busID == NULL)
     {
         http_response_code(277);
-        exit();
+        echo "Fail: No busses available";
     }
-        
-    $db->assignOrderToBus($orderID, $busID);
+    else
+        $db->assignOrderToBus($orderID, $busID);
 ?>
