@@ -29,7 +29,7 @@
         }
         
         $ordersObject = [];
-        $ordersObject['orders'] = $db->getDriverOrders($userID);
+        $ordersObject['orders'] = $db->getTodaysOrders($driverBus);
         
         //Encode the json
         $sjson = json_encode($ordersObject);
