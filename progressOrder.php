@@ -11,7 +11,7 @@
     else
     {
       // try
-      if ( Nav::progressOrder($_GET['order']))
+      if ( Nav::requestOrderProgress($_GET['order']))
         {
             $suc = true;
             http_response_code(200);
