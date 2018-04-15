@@ -58,7 +58,7 @@ function addOrder(order)
    var statusbars = document.getElementsByClassName("statusBar");
   var links = document.getElementsByClassName("orderLink");
 
-  let pickupDate = new Date(parseInt(order.pickupDate)/1000);
+  let pickupDate = new Date(parseInt(order.pickupDate)*1000);
 
   
   pickups[i].innerHTML += order.pickup;
