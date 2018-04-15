@@ -116,7 +116,7 @@
 						    logicalTotal += myroute.legs[i].distance.value;
 						  }
 
-						  travelTimeToDepot = logicalTotal;
+						  travelTimeToDepot = logicalTravelTime;
 
 		    		}
 		    		else
@@ -138,7 +138,7 @@
 						    logicalTotal += myroute.legs[i].distance.value;
 						  }
 
-						  travelTimeFromDepot = logicalTotal;
+						  travelTimeFromDepot = logicalTravelTime;
 
 		    		}
 		    		else
