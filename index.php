@@ -66,7 +66,7 @@
                     <button  class="w3-button w3-blue center" style="width:17em">Login</button>
                   </a>
                   <br/>
-                  <a href="createaccount.html" class="no-decor">
+                  <a href="login.html" class="no-decor">
                     <button  class="w3-button w3-blue center" style="width:17em">Create Account</button>
                   </a>
             <?php

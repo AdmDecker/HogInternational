@@ -50,9 +50,7 @@
           <a class="orderLink" href="404.html">
             <button><span>i</span></button>
           </a>
-          <a class="progressLink" href="404.html">
-            <button><span>+</span></button>
-          </a>
+
 
         </li>
         <li class="right status">
