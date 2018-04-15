@@ -32,7 +32,7 @@ CREATE TABLE drivers
     salary int NOT NULL,
     hours int NOT NULL,
     assignedBus int,
-    FOREIGN KEY assignedBus REFERENCES busses(busID),
+    FOREIGN KEY(assignedBus) REFERENCES busses(busID),
     PRIMARY KEY(driverID)
 );
 
