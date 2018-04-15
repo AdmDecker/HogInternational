@@ -28,6 +28,6 @@
         $busID = $db->getAvailableHandicapBus($orderID);
     else
         $busID = $db->getAvailableBus($orderID);
-    trigger_error("BusID: $busID OrderID: $orderID")
+    trigger_error("BusID: $busID OrderID: $orderID");
     $db->assignOrderToBus($orderID, $busID);
 ?>
