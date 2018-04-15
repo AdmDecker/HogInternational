@@ -87,7 +87,7 @@ class dbAccess
         $today = date('Y-m-d');
         $today0 = $today. ' 00:00:00';
         $today1 = $today. ' 23:59:59';
-        $statement = $this->dbObject->prepare("SELECT * FROM orders WHERE assignedBus=:busID AND pickupDate >= :today0 AND pickupDate <= :today1");
+        $statement = $this->dbObject->prepare("SELECT * FROM orders WHERE assignedBus=:busID AND pickupDateDT >= :today0 AND pickupDateDT <= :today1");
         $statement->bindParam(':busID', $busID);
         $statement->bindParam(':today0', $today0);
         $statement->bindParam(':today1', $today1);
