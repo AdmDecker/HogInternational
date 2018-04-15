@@ -186,8 +186,10 @@ class dbAccess
 
     }
 
-    public function getAvailableBus($pickupDate, $returnDate)
+    public function getAvailableBus($orderID)
     {
+        $pickupDate = $orderID['pickupDateDT'];
+        $orderDate = $orderID['returnDateDT'];
         $statement = $this->dbObject->prepare("SELECT busID FROM busses WHERE busID NOT IN (SELECT assignedBus FROM orders WHERE pickupDateDT >= :pickupDate AND returnDateDT <= :pickupDate OR pickupDateDT >= :returnDate AND returnDateDT <= :pickupDate");
         $statement->bindParam(':pickupDate', $pickupDate);
         $statement->bindParam(':returnDate', $returnDate);
