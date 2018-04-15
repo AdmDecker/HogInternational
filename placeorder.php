@@ -31,8 +31,7 @@
     if ($busID == NULL)
     {
         http_response_code(277);
-        exit();
     }
-        
-    $db->assignOrderToBus($orderID, $busID);
+    else
+        $db->assignOrderToBus($orderID, $busID);
 ?>
