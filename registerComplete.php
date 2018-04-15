@@ -29,6 +29,9 @@
                 action = "login.php"
             else
                 action = "register.php"
+
+
+            window.location = "index.php";
         }
         
         
@@ -58,7 +61,7 @@
           <input class ="w3-input center" type="text" name="creditCardNumber" id="creditCardNumber" style="width: 20em" placeholder="Credit Card Number" /><br/><br/>
           <input class ="w3-input center" type="text" name="cvn" id="cvn" style="width: 20em" placeholder="CVN" /><br/>
           <br/>
-          <input class ="w3-button w3-blue center" type="button" value="Complete Registration" onClick="onRegister()" style="width: 10em"/>
+          <input class ="w3-button w3-blue center" type="button" value="Complete Registration" onClick="onRegister()" style="width: 15em"/>
           <div id="error"></div>
           <br/>
       </form>
