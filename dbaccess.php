@@ -109,6 +109,7 @@ class dbAccess
     {
         // get date from order
         $format = 'Y-m-d\TH:i:s.uP';
+        $newFormat = 'Y-m-d H:i:s';
         $date = DateTime::createFromFormat('Y-m-d\TH:i:s.uP', $pickupDate, new DateTimeZone('Etc/Zulu'));
         $returnDate = clone $date;
         $totalTime = $travelTime + $depotTime;
@@ -126,9 +127,9 @@ class dbAccess
         $statement->bindParam(':handicap', $handicap);
         $statement->bindParam(':distance', $distance);
         $statement->bindParam(':paymentMethod', $paymentMethod);
-        $statement->bindParam(':pickupDateDT', $date->format($format));
+        $statement->bindParam(':pickupDateDT', $date->format($newFormat));
         $statement->bindParam(':depotTime', $depotTime);
-        $statement->bindParam(':returnDate', $returnDate->format($format));
+        $statement->bindParam(':returnDate', $returnDate->format($newFormat));
         $statement->execute();
         return $this->dbObject->lastInsertId();
     }
