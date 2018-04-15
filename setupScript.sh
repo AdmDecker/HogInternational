@@ -3,6 +3,8 @@ database_name="RidesDB"
 username="RidesDBUser"
 password="RidesDBPass"
 
+echo "Deleting old database..."
+mysql -e "DROP DATABASE $database_name"
 echo "Creating User..."
 mysql -e "CREATE USER $username IDENTIFIED BY '$password'"
 echo "Creating database..."

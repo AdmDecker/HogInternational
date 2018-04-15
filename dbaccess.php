@@ -82,10 +82,15 @@ class dbAccess
         return $statement->fetchAll();
     }
 
-    public function getDriverOrders($userID)
+    public function getTodaysOrders($busID)
     {
-        $statement = $this->dbObject->prepare("SELECT * FROM orders WHERE driverID=:userID");
-        $statement->bindParam(':userID', $userID);
+        $today = date('Y-m-d');
+        $today0 = $today. ' 00:00:00';
+        $today1 = $today. ' 23:59:59';
+        $statement = $this->dbObject->prepare("SELECT * FROM orders WHERE assignedBus=:busID AND pickupDate >= :today0 AND pickupDate <= :today1");
+        $statement->bindParam(':busID', $busID);
+        $statement->bindParam(':today0', $today0);
+        $statement->bindParam(':today1', $today1);
         $statement->execute();
         $statement->setFetchMode(PDO::FETCH_OBJ);
         return $statement->fetchAll();
@@ -99,15 +104,15 @@ class dbAccess
         $statement->setFetchMode(PDO::FETCH_ASSOC);
         return $statement->fetch();
     }
-
-    public function getOrdersForDriver($driverID)
-    {
-        
-    }
     
-    public function postOrder($userID, $destination, $pickup, $travelTime, $pickupDate, $oStatus, $statusPercent, $price, $headCount, $handicap, $distance, $paymentMethod)
+    public function postOrder($userID, $destination, $pickup, $travelTime, $pickupDate, $oStatus, $statusPercent, $price, $headCount, $handicap, $distance, $paymentMethod, $depotTime)
     {
-        $statement = $this->dbObject->prepare("insert into orders values(:userID, NULL, :destination, :pickup, :travelTime, :pickupDate, :oStatus, :statusPercent, :price, :headCount, :handicap, :distance, :paymentMethod)");
+        // get date from order
+        $date = DateTime::createFromFormat('Y-m-d\TH:i:s.uP', $pickupDate, new DateTimeZone('Etc/Zulu'));
+        $returnDate = $date;
+        $totalTime = $travelTime + $depotTime;
+        $returnDate->modify("+$totalTime seconds");
+        $statement = $this->dbObject->prepare("insert into orders values(:userID, NULL, :destination, :pickup, :travelTime, :pickupDate, :oStatus, :statusPercent, :price, :headCount, :handicap, :distance, :paymentMethod, NULL, :pickupDateDT, :depotTime, :returnDate)");
         $statement->bindParam(':userID', $userID);
         $statement->bindParam(':destination', $destination);
         $statement->bindParam(':pickup', $pickup);
@@ -120,6 +125,9 @@ class dbAccess
         $statement->bindParam(':handicap', $handicap);
         $statement->bindParam(':distance', $distance);
         $statement->bindParam(':paymentMethod', $paymentMethod);
+        $statement->bindParam(':pickupDateDT', $date);
+        $statement->bindParam(':depotTime', $depotTime);
+        $statement->bindParam(':returnDate', $returnDate);
         $statement->execute();
     }
 
@@ -132,40 +140,54 @@ class dbAccess
     }
 
     // Set status to CANCELLED
+    //This method is DEPRECATED. Use setOrderStatus instead
     public function cancelOrder($orderID)
     {
-        $statement = $this->dbObject->prepare("UPDATE orders SET oStatus='CANCELLED' WHERE orderID=:orderID");
-        $statement->bindParam(':orderID', $orderID);
-        $statement->execute();
+        $this->setOrderStatus($orderID, 'CANCELLED');
     }
 
     // SET STATUS TO ARCHIVED
+    //This method is DEPRECATED. Use setOrderStatus instead
     public function archiveOrder($orderID)
     {
-        $statement = $this->dbObject->prepare("UPDATE orders SET oStatus='ARCHIVED' WHERE orderID=:orderID");
+        $this->setOrderStatus($orderID, 'ARCHIVED');
+    }
+
+    public function setOrderStatus($orderID, $status)
+    {
+        $statement = $this->dbObject->prepare("UPDATE orders SET oStatus=:status WHERE orderID=:orderID");
+        $statement->bindParam(':status', $status);
         $statement->bindParam(':orderID', $orderID);
         $statement->execute();
     }
 
-    // set status, percent status, to specified
-    public function setStatus($orderId, $status, $percent)
+    public function addBus($handicap)
+    {
+        if ($handicap === TRUE)
+            $handicap = 1;
+        if ($handicap === FALSE)
+            $handicap = 0;
+        $statement = $this->dbObject->prepare("insert into busses values(NULL, :handicap");
+        $statement->bindParam(':handicap', $handicap);
+        return $db->lastInsertID();
+    }
+
+    public function deleteBus($busID)
     {
 
     }
 
-    public function postBus()
+    public function getAvailableBus($pickupDate)
     {
-
+        $statement = $this->dbObject->prepare("SELECT busID FROM busses WHERE busID NOT IN (SELECT assignedBus FROM orders WHERE pickupDateDT >= :pickupDate AND returnDateDT <= :pickupDate OR pickupDateDT >= :returnDate AND returnDateDT <= :pickupDate");
+        $statement->execute();
+        $statement->setFetchMode(PDO::FETCH_ASSOC);
+        return $statement->fetch()['busID'];
     }
 
-    public function deleteBus()
+    public function getAvailableHandicapBus($pickupDate)
     {
-
     }
-
-
-
-
     
     public function getCCs($userID)
     {
@@ -183,6 +205,31 @@ class dbAccess
         $statement->execute();
         $statement->setFetchMode(PDO::FETCH_ASSOC);
         return $statement->fetch()['role'];
+    }
+
+    public function setAssignedBus($driverID, $busID)
+    {
+        $statement = $this->dbObject->prepare("UPDATE drivers SET assignedBus=:busID WHERE driverID=:driverID");
+        $statement->bindParam(':busID', $busID);
+        $statement->bindParam(':driverID', $driverID);
+        $statement->execute();
+    }
+
+    public function getAssignedBus($driverID)
+    {
+        $statement = $this->dbObject->prepare("SELECT assignedBus FROM drivers WHERE driverID=:driverID");
+        $statement->bindParam(':driverID', $driverID);
+        $statement->execute();
+        $statement->setFetchMode(PDO::FETCH_ASSOC);
+        return $statement->fetch()['assignedBus'];
+    }
+
+    public function assignOrderToBus($orderID, $busID)
+    {
+        $statement = $this->dbObject->prepare('UPDATE orders SET assignedBus=:busID WHERE orderID=:orderID');
+        $statement->bindParam(':busID', $busID);
+        $statement->bindParam(':orderID', $orderID);
+        $statement->execute();
     }
 }
 ?>

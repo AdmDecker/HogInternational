@@ -7,6 +7,35 @@ CREATE TABLE users
 	PRIMARY KEY (userID)
 );
 
+CREATE TABLE creditCards
+(
+    ccID int NOT NULL AUTO_INCREMENT,
+    customer int NOT NULL,
+    FOREIGN KEY (customer) REFERENCES users(userID),
+    type VARCHAR(255),
+    number CHAR(16),
+    expirationDate DATE,
+    PRIMARY KEY(ccID)
+);
+
+CREATE TABLE busses
+(
+    busID int NOT NULL AUTO_INCREMENT,
+    handicap BOOL NOT NULL,
+    PRIMARY KEY(busID)
+);
+
+CREATE TABLE drivers
+(
+    driverID int,
+    FOREIGN KEY(driverID) REFERENCES users(userID),
+    salary int NOT NULL,
+    hours int NOT NULL,
+    assignedBus int,
+    FOREIGN KEY(assignedBus) REFERENCES busses(busID),
+    PRIMARY KEY(driverID)
+);
+
 CREATE TABLE orders
 (
     userID int NOT NULL,
@@ -23,36 +52,21 @@ CREATE TABLE orders
     handicap BOOL,
     distance DECIMAL(5, 2),
     paymentMethod VARCHAR(255),
-    driverID int,
-    FOREIGN KEY(driverID) REFERENCES drivers(driverID),
+    assignedBus int,
+    pickupDateDT DATETIME,
+    depotTime int,
+    returnDateDT DATETIME,
+    FOREIGN KEY(assignedBus) REFERENCES busses(busID),
     PRIMARY KEY(orderID)
-);
-
-CREATE TABLE creditCards
-(
-    ccID int NOT NULL AUTO_INCREMENT,
-    customer int NOT NULL,
-    FOREIGN KEY (customer) REFERENCES users(userID),
-    type VARCHAR(255),
-    number CHAR(16),
-    expirationDate DATE,
-    PRIMARY KEY(ccID)
-);
-
-CREATE TABLE drivers
-(
-    driverID int,
-    FOREIGN KEY(driverID) REFERENCES users(UserID),
-    salary int NOT NULL,
-    hours int NOT NULL,
-    PRIMARY KEY(driverID)
 );
 
 
 /*test data*/
 INSERT INTO users VALUES(1337, "TestCustomer", "$2y$10$YhcXJOg.Y2KwOAd5MrZZX.qlWlvRql8xn50cbVotU9lajyhp1qNsS", "C");
 INSERT INTO users VALUES(1338, "TestDriver", "$2y$10$YhcXJOg.Y2KwOAd5MrZZX.qlWlvRql8xn50cbVotU9lajyhp1qNsS", "D");
-INSERT INTO drivers VALUES(1338, 10000, 40);
+INSERT INTO drivers VALUES(1338, 10000, 40, NULL);
 INSERT INTO users VALUES(1339, "TestManager", "$2y$10$YhcXJOg.Y2KwOAd5MrZZX.qlWlvRql8xn50cbVotU9lajyhp1qNsS", "M");
 
+INSERT INTO busses VALUES(NULL, 0);
+INSERT INTO busses VALUES(NULL, 1);
 INSERT INTO orders VALUES(1337, NULL, "The Void", "Earth", '12:14:16', '2018-04-27', "Pending", 0, 32.75);
