@@ -6,7 +6,6 @@
 
     $json = file_get_contents('php://input');
     $obj = json_decode($json);
-    $date = DateTime::createFromFormat('Y-m-d\TH:i:s.uP', $pickupDate, new DateTimeZone('Etc/Zulu'));
 
     $db = new dbaccess();
     $orderID = $db->postOrder($_SESSION['userID'],

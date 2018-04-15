@@ -108,6 +108,7 @@ class dbAccess
     public function postOrder($userID, $destination, $pickup, $travelTime, $pickupDate, $oStatus, $statusPercent, $price, $headCount, $handicap, $distance, $paymentMethod, $depotTime)
     {
         // get date from order
+        $format = 'Y-m-d\TH:i:s.uP';
         $date = DateTime::createFromFormat('Y-m-d\TH:i:s.uP', $pickupDate, new DateTimeZone('Etc/Zulu'));
         $returnDate = $date;
         $totalTime = $travelTime + $depotTime;
@@ -125,9 +126,9 @@ class dbAccess
         $statement->bindParam(':handicap', $handicap);
         $statement->bindParam(':distance', $distance);
         $statement->bindParam(':paymentMethod', $paymentMethod);
-        $statement->bindParam(':pickupDateDT', $date);
+        $statement->bindParam(':pickupDateDT', $date->format($format));
         $statement->bindParam(':depotTime', $depotTime);
-        $statement->bindParam(':returnDate', $returnDate);
+        $statement->bindParam(':returnDate', $returnDate->format($format));
         $statement->execute();
     }
 
