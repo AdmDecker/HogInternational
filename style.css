@@ -80,10 +80,11 @@ button {
 
 .orderListElement button span {
   font-size: 4em;
-  margin-bottom: : .5em;
+  vertical-align: middle;
 }
 
 .orderListElement button {
+    vertical-align: middle;
     border-radius:50%;
     padding: 0px;
     width:5em;
