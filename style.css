@@ -81,7 +81,7 @@ button {
 .orderListElement button span {
   font-size: 4em;
   vertical-align: middle;
-  padding-bottom: 2em;
+  margin-bottom: 2em;
 }
 
 .orderListElement button {
