@@ -28,7 +28,7 @@
             else if (response.includes("success"))
             {
                 //Redirect the user to the next page if the request is successful
-                window.location = "index.php";
+                window.location = "drivers.php";
             }
             else
             {

@@ -39,7 +39,37 @@
     </section>
 
     <section>
-      Here the manager can edit their drivers.
+      <?php
+        $type = PupSession::getUserType();
+
+        if ($type == 'M')
+        {
+          $lookup = $db->getAllDrivers();
+
+          foreach ($lookup as $driver)
+          {
+             ?>
+              <ul class="orderListElement">
+              <li>
+                <p class="id">Driver ID: <?= $driver->userID ?></p>
+              </li>
+              <li class="right">
+                <a class="orderLink" href="404.html">
+                  <button><span>i</span></button>
+                </a>
+
+              </li>
+            </ul>
+          <?php
+          }
+
+         
+        }
+        else
+        {
+          echo "Nope";
+        }
+      ?>
     </section>
     <footer>
       <center>Copyright ©2018 Brookings Area Transit Authority</center>

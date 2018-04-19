@@ -68,6 +68,14 @@ class dbAccess
         return $driverID;
 
     }
+
+    public function getAllDrivers()
+    {
+        $statement = $this->dbObject->prepare('SELECT * FROM drivers');
+        $statement->execute();
+        $statement->setFetchMode(PDO::FETCH_OBJ);
+        return $statement->fetchAll();
+    }
     
     public function getPassword($username)
     {

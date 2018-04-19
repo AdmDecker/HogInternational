@@ -21,6 +21,8 @@
                     <li><a href="drivers.php">Drivers</a></li>
                     <li><a href="reports.php">Reports</a></li>
                     <li><a href="locations.php">Locations</a></li>
+                    <li><a href="mmain.php">Main</a></li>
+
                 <?php
             }
             else if ($type == "D")
@@ -30,6 +32,8 @@
                     <li><a href="logout.php">Logout</a></li>
                     <li><a href="account.php">Account</a></li>
                     <li><a href="dhours.php">Hours</a></li>
+                    <li><a href="dmain.php">Main</a></li>
+
                 <?php
             }
             else if ($type == "C")
@@ -469,9 +473,10 @@
         
         }
 
+    
     }
 
-    
+
 
     
     
