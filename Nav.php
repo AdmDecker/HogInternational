@@ -381,6 +381,31 @@
             }
         }
 
+        public static function requestAddBus()
+        {
+            $type = PupSession::getUserType();
+
+            if ($type == "M")
+            {
+                 //Initialize db
+                $db = new dbaccess();
+
+                $db->addBus(false);
+                return true;
+
+            }
+            else if ($type == "D")
+            {
+                // Driver's cant delete bus
+
+                return false;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public static function requestOrderArchive($orderId)
         {
             $type = PupSession::getUserType();
