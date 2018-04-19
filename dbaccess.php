@@ -57,6 +57,7 @@ class dbAccess
     //Returns userID/driverID of the inserted driver
     public function addDriver($username, $password)
     {
+        $role = 'D';
         $driverID = addUser($username, $password, $role);
         $statement = $this->dbObject->prepare("insert into drivers values(:driverID, :salary, :hours, NULL)");
         $statement->bindParam(':driverID', $driverID);
