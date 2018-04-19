@@ -381,7 +381,7 @@
             }
         }
 
-        public static function requestAddBus()
+        public static function requestAddBus($handicap)
         {
             $type = PupSession::getUserType();
 
@@ -390,7 +390,7 @@
                  //Initialize db
                 $db = new dbaccess();
 
-                $db->addBus(false);
+                $db->addBus($handicap);
                 return true;
 
             }

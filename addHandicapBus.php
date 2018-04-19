@@ -4,7 +4,7 @@
     require 'Nav.php';
     $suc = false;
     // try
-      if ( Nav::requestAddBus(false))
+      if ( Nav::requestAddBus(true))
         {
             $suc = true;
             http_response_code(200);
