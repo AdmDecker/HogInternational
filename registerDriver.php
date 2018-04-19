@@ -23,7 +23,7 @@
             }
             
             //Insert user to database
-            $db->addDriver($username, $password);
+            $db->addDriver($username, $password, 100, 40);
 
             
 
