@@ -158,7 +158,7 @@
         private static function printOrder($order)
         {
             $handicap = "No";
-            $date = new DateTime((int)$order['pickupDate']);
+            $date = new DateTime('@' . $order['pickupDate']);
 
 
             if ($order["handicap"] != "0")
