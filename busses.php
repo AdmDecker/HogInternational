@@ -34,7 +34,47 @@
     </section>
 
     <section>
-      Here the manager can edit their busses.
+      <div id="busses">
+        <?php 
+          $type = PupSession::getUserType();
+          if ($type == "M")
+          {
+              $db = new dbaccess();
+
+              $lookup = $db->getAllBusses();
+
+              // print busses
+
+              foreach ($lookup as $bus)
+              {
+                ?>
+                <ul class="orderListElement">
+                  <li>
+                    <p class="id">Bus ID: <?= $bus["busID"] ?></p>
+                  </li>
+                  <li class="right">
+                    <a class="orderLink" href="404.html">
+                      <button><span>-</span></button>
+                    </a>
+
+
+                  </li>
+                <hr class="light" width="100%">
+
+              <?php
+              }
+
+              
+
+
+              
+
+
+          }
+            
+        ?>
+      </div>
+        
     </section>
     <footer>
       <center>Copyright ©2018 Brookings Area Transit Authority</center>
