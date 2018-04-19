@@ -43,7 +43,7 @@
         else
         {
           // try
-          echo "Put info here"
+          echo "Put info for driver here";
         }
 
 
