@@ -63,7 +63,7 @@ a:hover {
 
 
 button {
-  
+  display:inline-block;
   border-radius:1em;
   border:none;
   background-color: #008cff;
@@ -79,13 +79,15 @@ button {
 }
 
 .orderListElement button span {
+    display:inline-block;
+
   font-size: 4em;
   vertical-align: middle;
-  margin-bottom: 2em;
 }
 
 .orderListElement button {
     vertical-align: middle;
+    display:inline-block;
     border-radius:50%;
     padding: 0px;
     width:5em;
