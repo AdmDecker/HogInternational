@@ -30,14 +30,14 @@
             echo "success-register";
         }
         catch(PDOException $e)
-        {
-            echo "Database error: " . $e->getMessage();
+        {            echo "Database error: " . $e->getMessage();
         }
     }
     else
     {
         echo "Insufficient Permissions";
     }
+
 
 	
 

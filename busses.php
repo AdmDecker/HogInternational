@@ -63,10 +63,10 @@
                         <button><h1>x</h1></button>
                       </a>
 
-
                     </li>
-                    <hr class="light" width="100%">
+                    
                   </ul>
+                  <hr class="light" width="100%">
 
 
                 <?php

@@ -35,8 +35,33 @@
 
     
     <section>
-      Here the manager can view their reports.
+      <?php
+        $type = PupSession::getUserType();
+        
+        if ($type == 'M')
+        {
+          $db = new dbaccess();
+
+          $orders = $db->getAllOrders();
+
+          $sum = 0;
+
+          foreach ($orders as $order) {
+            $sum = $sum + $order['price'];
+          }
+
+          echo "Total Revenue: " . $sum;
+
+          $sjson = json_encode($orders);
+          echo $sjson;
+
+        }
+     
+      ?>
+      
       <br/>
+      <hr width="100%">
+
     </section>
     <footer>
       <center>Copyright ©2018 Brookings Area Transit Authority</center>
