@@ -356,6 +356,31 @@
             }
         }
 
+        public static function requestBusDelete($busID)
+        {
+            $type = PupSession::getUserType();
+
+            if ($type == "M")
+            {
+                 //Initialize db
+                $db = new dbaccess();
+
+                $db->deleteBus($busID);
+                return true;
+
+            }
+            else if ($type == "D")
+            {
+                // Driver's cant delete bus
+
+                return false;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public static function requestOrderArchive($orderId)
         {
             $type = PupSession::getUserType();

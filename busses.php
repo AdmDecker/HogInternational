@@ -28,6 +28,12 @@
         <li class="left">
           <h1 class="left">Busses</h1>
         </li>
+        <li class="right">
+          <a href="makeBus.php">
+            <button><b>Make Bus</b></button>
+          </a>
+          
+        </li>
       
       </ul>
        <hr width="100%">
@@ -53,13 +59,15 @@
                     <p class="id">Bus ID: <?= $bus["busID"] ?></p>
                   </li>
                   <li class="right">
-                    <a class="orderLink" href="404.html">
+                    <a class="orderLink" href=<?= "deleteBus.php?busID=" . $bus["busID"] ?>>
                       <button><span>-</span></button>
                     </a>
 
 
                   </li>
-                <hr class="light" width="100%">
+                  <hr class="light" width="100%">
+                </ul>
+
 
               <?php
               }
