@@ -29,7 +29,7 @@
           <h1 class="left">Busses</h1>
         </li>
         <li class="right">
-          <a href="makeBus.php">
+          <a href="addBus.php">
             <button><b>Make Bus</b></button>
           </a>
           
