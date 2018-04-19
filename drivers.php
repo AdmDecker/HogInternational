@@ -52,7 +52,7 @@
              ?>
               <ul class="orderListElement">
               <li>
-                <p class="id">Driver ID: <?= $driver->userID ?></p>
+                <p class="id">Driver ID: <?= $driver['userID'] ?></p>
               </li>
               <li class="right">
                 <a class="orderLink" href="404.html">
@@ -68,9 +68,13 @@
         }
         else
         {
-          echo "Nope";
+          echo "Security Violation";
         }
+
+        
+
       ?>
+      <hr width="100%">
     </section>
     <footer>
       <center>Copyright ©2018 Brookings Area Transit Authority</center>

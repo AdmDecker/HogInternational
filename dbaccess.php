@@ -73,7 +73,7 @@ class dbAccess
     {
         $statement = $this->dbObject->prepare('SELECT * FROM drivers');
         $statement->execute();
-        $statement->setFetchMode(PDO::FETCH_OBJ);
+        $statement->setFetchMode(PDO::FETCH_ASSOC);
         return $statement->fetchAll();
     }
     
