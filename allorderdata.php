@@ -5,7 +5,7 @@
     PupSession::LoadSession();
     $type = PupSession::getUserType();
 
-    if (type == 'M')
+    if ($type == 'M')
     {
 
         //Make the database queries
@@ -29,7 +29,7 @@
     }
     else
     {
-          $ordersObject = [];
+        $ordersObject = [];
         $sjson = json_encode($ordersObject);
         echo $sjson;
     }
