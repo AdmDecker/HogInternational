@@ -55,7 +55,7 @@ class dbAccess
     }
 
     //Returns userID/driverID of the inserted driver
-    public function addDriver($username, $password)
+    public function addDriver($username, $password, $salary, $hours)
     {
         $role = 'D';
         $driverID = $this->addUser($username, $password, $role);
