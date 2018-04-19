@@ -80,6 +80,7 @@ button {
 
 .orderListElement button span {
   font-size: 4em;
+  margin-top: -.5em;
 }
 
 .orderListElement button {
