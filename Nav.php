@@ -183,17 +183,21 @@
         private static function printOrderCustomerContactInfo($customer)
         {
             ?>
+            <p>
                 <h3>Customer Contact</h3>
                 Print Customer contact info here
+            </p>
+
             <?php
         }
 
         private static function printOrderDriverContactInfo($customer)
         {
             ?>
+            <p>
                 <h3>Driver Contact</h3>
-
                 Print Driver contact info here
+            </p>
             <?php
         }
 
