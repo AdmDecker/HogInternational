@@ -219,7 +219,7 @@ class dbAccess
             $handicap = 0;
         $statement = $this->dbObject->prepare("insert into busses values(NULL, :handicap");
         $statement->bindParam(':handicap', $handicap);
-        return $db->lastInsertID();
+        return $db->dbObject->lastInsertID();
     }
 
     public function getAllBusses()
