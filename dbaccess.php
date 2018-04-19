@@ -236,6 +236,7 @@ class dbAccess
             $handicap = 0;
         $statement = $this->dbObject->prepare("insert into busses values(NULL, :handicap");
         $statement->bindParam(':handicap', $handicap);
+        $statement->execute();
         return $this->dbObject->lastInsertId();
     }
 
