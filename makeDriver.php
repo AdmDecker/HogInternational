@@ -23,7 +23,7 @@
             if(response.includes("success-register"))
             {
                 // go to register complete page
-                window.location = "registerCompletePage.php";
+                window.location = "drivers.php";
             }
             else if (response.includes("success"))
             {
@@ -38,7 +38,7 @@
         
         function submitForm(reason)
         {
-			let action = "/registerDriver.php";
+			   let action = "/registerDriver.php";
 
             
 

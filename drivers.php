@@ -51,17 +51,19 @@
           {
              ?>
               <ul class="orderListElement">
-              <li>
-                <p class="id">Driver ID: <?= $driver->driverID ?></p>
-              </li>
-              <li class="right">
-                <a class="orderLink" href="404.html">
-                  <button><span>i</span></button>
-                </a>
+                <li>
+                  <p class="id">Driver ID: <?= $driver->driverID ?></p>
+                  <p class="id">Driver Salary: <?= $driver->salary ?></p>
+                  <p class="id">Driver Hours: <?= $driver->hours ?></p>
+                </li>
+                <li class="right">
+                  <a class="orderLink" href="404.html">
+                    <button><span>i</span></button>
+                  </a>
 
-              </li>
-            </ul>
-          <?php
+                </li>
+              </ul>
+            <?php
           }
 
          
