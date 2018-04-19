@@ -20,6 +20,8 @@ class dbAccess
         $dbObject = NULL;
     }
     
+    //Do not use this for Driver, use addDriver instead
+    //Returns userID of the added user
     public function addUser($username, $password, $role)
     {
         //Insert user to database
@@ -29,6 +31,21 @@ class dbAccess
         $statement->bindParam(':password', password_hash($password, PASSWORD_DEFAULT));
         $statement->bindParam(':role', $role);
         $statement->execute();
+        return $this->dbObject->lastInsertId();
+    }
+
+    //Returns userID/driverID of the inserted driver
+    public function addDriver($username, $password)
+    {
+        $driverID = addUser($username, $password, $role);
+        $statement = $this->dbObject->prepare("insert into drivers values(:driverID, :salary, :hours, NULL)");
+        $statement->bindParam(':driverID', $driverID);
+        $statement->bindParam(':salary', $salary);
+        $statement->bindParam(':hours', $hours);
+        $statement->execute();
+
+        return $this->dbObject->lastInsertId();
+
     }
     
     public function getPassword($username)
@@ -44,6 +61,15 @@ class dbAccess
             return $passwd_inDB["password"];
         else
             return NULL;
+    }
+
+
+    public function setPassword($userID, $password)
+    {
+        $statement = $this->dbObject->prepare("UPDATE users SET password=:password WHERE userID=:userID");
+        $statement->bindParam(':password', password_hash($password, PASSWORD_DEFAULT));
+        $statement->bindParam(':userID', $userID);
+        $statement->execute();
     }
     
     public function getUserID($username)
@@ -176,9 +202,28 @@ class dbAccess
         return $db->lastInsertID();
     }
 
+    public function getAllBusses()
+    {
+        $statement = $this->dbObject->prepare("SELECT * FROM busses");
+        $statement->execute();
+        $statement->setFetchMode(PDO::FETCH_ASSOC);
+        return $statement->fetchAll();
+    }
+    
+    public function getBus($busID)
+    {
+        $statement = $this->dbObject->prepare("SELECT * FROM busses WHERE busID=:busID");
+        $statement->bindParam(':busID', $busID);
+        $statement->execute();
+        $statement->setFetchMode(PDO::FETCH_ASSOC);
+        return $statement->fetch();
+    }
+
     public function deleteBus($busID)
     {
-
+        $statement = $this->dbObject->prepare("DELETE FROM busses WHERE busID=:busID");
+        $statement->bindParam(':busID', $busID);
+        $statement->execute();
     }
 
     public function getAvailableBus($orderID)
