@@ -108,7 +108,7 @@
 
             ?>
             <p>
-            <div class="w3 row">
+            <div class="w3 row w3-container">
                 <div class="w3-half w3-container">
                     <h3>Info:</h3>
                     <?= Nav::printOrder($order) ?>
@@ -470,6 +470,8 @@
         }
 
     }
+
+    
 
     
     

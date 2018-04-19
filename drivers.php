@@ -28,7 +28,12 @@
         <li class="left">
           <h1 class="left">Drivers</h1>
         </li>
-      
+        <li class="right">
+          <a href="makeDriver.php">
+            <button><b>New Driver</b></button>
+          </a>
+          
+        </li>
       </ul>
        <hr width="100%">
     </section>
