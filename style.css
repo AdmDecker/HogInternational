@@ -83,7 +83,6 @@ button {
   font-size: 4em;
   text-align: center; 
   display: flex;
-  margin-top: -1em;
 }
 
 .orderListElement button {
