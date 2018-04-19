@@ -71,9 +71,8 @@ button {
   text-align: center;
   padding: 1em 5em;
   cursor: pointer;
-  display: flex;
-  align-items: center
 }
+
 
 
 .orderListElement li {
@@ -82,6 +81,9 @@ button {
 
 .orderListElement button span {
   font-size: 4em;
+  text-align: center; 
+  display: flex;
+  margin-top: -1em;
 }
 
 .orderListElement button {

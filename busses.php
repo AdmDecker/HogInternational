@@ -60,7 +60,7 @@
                   </li>
                   <li class="right">
                     <a class="orderLink" href=<?= "deleteBus.php?busID=" . $bus["busID"] ?>>
-                      <button><span style="display: block; text-align: center;">x</span></button>
+                      <button><span>x</span></button>
                     </a>
 
 
