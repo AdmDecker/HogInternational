@@ -50,11 +50,11 @@
             $sum = $sum + $order->price;
           }
 
-          echo "Total Revenue: " . $sum;
+          echo "Total Revenue: $" . $sum;
 
           ?>
-            <br/>
-            Export JSON
+            <br/><br/>
+            Export as JSON
             <br/><br/>
           <?php
 

@@ -59,7 +59,7 @@
                       <p class="id">Bus ID: <?= $bus["busID"] ?></p>
                     </li>
                     <li class="right">
-                      <a class="orderLink" href=<?= "deleteBus.php?busID=" . $bus["busID"] ?>>
+                      <a class="orderLink" href=<?= "deleteBus.php?busID=" . $bus->busID ?>>
                         <button><h1>x</h1></button>
                       </a>
 

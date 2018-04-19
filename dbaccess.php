@@ -71,9 +71,17 @@ class dbAccess
 
     public function getAllDrivers()
     {
-        $statement = $this->dbObject->prepare('SELECT * FROM drivers');
+        $statement = $this->dbObject->prepare('SELECT * FROM users WHERE role=D');
         $statement->execute();
-        $statement->setFetchMode(PDO::FETCH_ASSOC);
+        $statement->setFetchMode(PDO::FETCH_OBJ);
+        return $statement->fetchAll();
+    }
+
+    public function getAllManagers()
+    {
+        $statement = $this->dbObject->prepare('SELECT * FROM users WHERE role=M');
+        $statement->execute();
+        $statement->setFetchMode(PDO::FETCH_OBJ);
         return $statement->fetchAll();
     }
     
@@ -235,7 +243,7 @@ class dbAccess
     {
         $statement = $this->dbObject->prepare("SELECT * FROM busses");
         $statement->execute();
-        $statement->setFetchMode(PDO::FETCH_ASSOC);
+        $statement->setFetchMode(PDO::FETCH_OBJ);
         return $statement->fetchAll();
     }
     
