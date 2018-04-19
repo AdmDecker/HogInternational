@@ -79,7 +79,7 @@ button {
 }
 
 .orderListElement button span {
-    display:inline-block;
+    display:inline;
   font-size: 4em;
   vertical-align: middle;
   align-items:: center;
@@ -89,9 +89,9 @@ button {
 .orderListElement button {
     vertical-align: middle;
     align-items:: center;
-    display:inline-block;
+    display:inline;
     border-radius:50%;
-    padding: -1em;
+    padding: .5em;
     width:5em;
     height:5em;
 }
