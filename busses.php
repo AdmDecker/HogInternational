@@ -56,7 +56,7 @@
                 ?>
                   <ul class="orderListElement">
                     <li>
-                      <p class="id">Bus ID: <?= $bus["busID"] ?></p>
+                      <p class="id">Bus ID: <?= $bus->busID ?></p>
                     </li>
                     <li class="right">
                       <a class="orderLink" href=<?= "deleteBus.php?busID=" . $bus->busID ?>>

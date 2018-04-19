@@ -52,7 +52,7 @@
              ?>
               <ul class="orderListElement">
               <li>
-                <p class="id">Driver ID: <?= $driver->userID ?></p>
+                <p class="id">Driver ID: <?= $driver->driverID ?></p>
               </li>
               <li class="right">
                 <a class="orderLink" href="404.html">

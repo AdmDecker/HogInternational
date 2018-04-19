@@ -71,7 +71,7 @@ class dbAccess
 
     public function getAllDrivers()
     {
-        $statement = $this->dbObject->prepare('SELECT * FROM users WHERE role=D');
+        $statement = $this->dbObject->prepare('SELECT * FROM drivers');
         $statement->execute();
         $statement->setFetchMode(PDO::FETCH_OBJ);
         return $statement->fetchAll();
