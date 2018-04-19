@@ -68,7 +68,7 @@
 
 
             // get date from order
-            $date = new DateTime(@$order['pickupDate']);
+            $date = new DateTime((int)@$order['pickupDate']);
 
             
             $curTime = new DateTime("now");
@@ -158,7 +158,7 @@
         private static function printOrder($order)
         {
             $handicap = "No";
-            $date = new DateTime(@$order['pickupDate']);
+            $date = new DateTime((int)$order['pickupDate']);
 
 
             if ($order["handicap"] != "0")
