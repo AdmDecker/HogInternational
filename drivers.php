@@ -44,6 +44,7 @@
 
         if ($type == 'M')
         {
+          $db = new dbaccess();
           $lookup = $db->getAllDrivers();
 
           foreach ($lookup as $driver)
