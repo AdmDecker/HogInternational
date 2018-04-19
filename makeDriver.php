@@ -57,9 +57,6 @@
             let username = "username=" + document.getElementById("username").value;
             let password = "password=" + document.getElementById("password").value;
             xmlhttp.send(username +"&" + password);
-            };
-
-			xmlhttp.send(myJSON);
         }
 
         function onRegister()
@@ -95,9 +92,7 @@
           <br/>
       </form>
 
-
-
-
+      <hr width="100%">
     </section>
 
 
@@ -112,9 +107,6 @@
   </body>
 <body>
 
-<script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLPoefHbYJCIvyhqpsj13man604bMmhto&callback=initMap&libraries=places">
-</script>
 
 
 </html>
