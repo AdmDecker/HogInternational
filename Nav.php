@@ -68,7 +68,7 @@
 
 
             // get date from order
-            $date = new DateTime((int) $order['pickupDate']);
+            $date = new DateTime('@' . $order['pickupDate']);
 
             
             $curTime = new DateTime("now");
