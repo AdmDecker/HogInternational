@@ -9,6 +9,7 @@
     <meta name="description" content="rides-r-us bus system">
     <meta name="author" content="Justin Hoogestraat">
     <script src="common.js"></script>
+    <script src="cmain.js"></script>
     <link href="w3.css" rel="stylesheet" type="text/css">
     <link href="style.css" rel="stylesheet" type="text/css">
   </head>
@@ -26,57 +27,41 @@
     <section>
       <ul class="order-header-list">
         <li class="left">
-          <h1 class="left">Busses</h1>
+          <h1 class="left">All Orders</h1>
         </li>
         <li class="right">
-          <a href="addBus.php">
-            <button><b>Make Bus</b></button>
+          <a href="placeorderpage.php">
           </a>
           
         </li>
-      
       </ul>
        <hr width="100%">
     </section>
 
+    <template id="order-template">
+      <ul class="orderListElement">
+        <li>
+          <p class="pickup">Pickup: </p>
+          <p class="destination">Destination: </p>
+          <p class="pickupTime">Pickup Time: </p>
+        </li>
+        <li class="right">
+          <a class="orderLink" href="404.html">
+            <button><span>i</span></button>
+          </a>
+
+
+        </li>
+        <li class="right status">
+          <p class="Status">Status: </p>
+          <progress class="statusBar" value= "0" max="100"></progress> 
+        </li>
+      </ul>
+      <hr class="light" width="100%">
+    </template>
     <section>
-      <div id="busses">
-        <?php 
-          $type = PupSession::getUserType();
-          if ($type == "M")
-          {
-              $db = new dbaccess();
-
-              $lookup = $db->getAllBusses();
-
-              // print busses
-
-              foreach ($lookup as $bus)
-              {
-                ?>
-                  <ul class="orderListElement">
-                    <li>
-                      <p class="id">Bus ID: <?= $bus["busID"] ?></p>
-                    </li>
-                    <li class="right">
-                      <a class="orderLink" href=<?= "deleteBus.php?busID=" . $bus["busID"] ?>>
-                        <button><h1>x</h1></button>
-                      </a>
-
-
-                    </li>
-                    <hr class="light" width="100%">
-                  </ul>
-
-
-                <?php
-              }
-
-          }
-            
-        ?>
+      <div id="orders">
       </div>
-        
     </section>
     <footer>
       <center>Copyright ©2018 Brookings Area Transit Authority</center>
