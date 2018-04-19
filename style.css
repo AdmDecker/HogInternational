@@ -86,7 +86,7 @@ button {
 }
 
 .orderListElement button {
-    vertical-align: super;
+    display: flex;
     border-radius:50%;
     padding: 0px;
     width:5em;
