@@ -9,7 +9,7 @@
     <meta name="description" content="rides-r-us bus system">
     <meta name="author" content="Justin Hoogestraat">
     <script src="common.js"></script>
-    <script src="cmain.js"></script>
+    <script src="mmain.js"></script>
     <link href="w3.css" rel="stylesheet" type="text/css">
     <link href="style.css" rel="stylesheet" type="text/css">
   </head>
