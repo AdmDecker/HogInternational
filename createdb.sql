@@ -7,6 +7,15 @@ CREATE TABLE users
 	PRIMARY KEY (userID)
 );
 
+CREATE TABLE customers
+(
+    userID int NOT NULL AUTO_INCREMENT,
+    FOREIGN KEY(userID) REFERENCES users(userID),
+    homeAddress VARCHAR(255),
+    phoneNumber VARCHAR(25),
+    email VARCHAR(50)
+);
+
 CREATE TABLE creditCards
 (
     ccID int NOT NULL AUTO_INCREMENT,

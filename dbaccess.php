@@ -21,6 +21,7 @@ class dbAccess
     }
     
     //Do not use this for Driver, use addDriver instead
+    //Do not use this for Customer, use addCustomer instead
     //Returns userID of the added user
     public function addUser($username, $password, $role)
     {
@@ -34,6 +35,25 @@ class dbAccess
         return $this->dbObject->lastInsertId();
     }
 
+    public function addCustomer($username, $password, $address, $phoneNumber, $email)
+    {
+        $customerID = addUser($username, $password);
+        $statement = $this->dbObject->prepare('INSERT INTO customers values(:userID, :homeAddress, :phoneNumber, :email)');
+        $statement->bindParam(':userID', $customerID);
+        $statement->bindParam(':homeAddress', $address);
+        $statement->bindParam(':phoneNumber', $phoneNumber);
+        $statement->bindParam(':email', $email);
+        return $customerID;
+    }
+
+    public function getCustomerByID($userID)
+    {
+        $statement = $this->dbObject->prepare('SELECT * FROM customers WHERE customerID=:userID');
+        $statement->bindParam(':userID', $userID);
+        $statement->execute();
+        return $statement->fetch();
+    }
+
     //Returns userID/driverID of the inserted driver
     public function addDriver($username, $password)
     {
@@ -44,7 +64,7 @@ class dbAccess
         $statement->bindParam(':hours', $hours);
         $statement->execute();
 
-        return $this->dbObject->lastInsertId();
+        return $driverID;
 
     }
     
