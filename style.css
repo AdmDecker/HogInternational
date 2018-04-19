@@ -71,6 +71,8 @@ button {
   text-align: center;
   padding: 1em 5em;
   cursor: pointer;
+  display: flex;
+  align-items: center
 }
 
 
