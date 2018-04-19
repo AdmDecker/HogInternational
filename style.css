@@ -74,18 +74,15 @@ button {
 }
 
 
-
 .orderListElement li {
   padding: .4em;
 }
 
 .orderListElement button span {
   font-size: 4em;
-  text-align: center; 
 }
 
 .orderListElement button {
-    display: flex;
     border-radius:50%;
     padding: 0px;
     width:5em;
