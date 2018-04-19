@@ -52,8 +52,19 @@
 
           echo "Total Revenue: " . $sum;
 
+          ?>
+            <br/>
+            Export JSON
+            <br/><br/>
+          <?php
+
           $sjson = json_encode($orders);
           echo $sjson;
+
+          ?>
+
+            <br/><br/>
+          <?php
 
         }
      
