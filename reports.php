@@ -47,7 +47,7 @@
           $sum = 0;
 
           foreach ($orders as $order) {
-            $sum = $sum + $order['price'];
+            $sum = $sum + $order->price;
           }
 
           echo "Total Revenue: " . $sum;
