@@ -62,10 +62,23 @@
                       <a class="orderLink" href=<?= "deleteBus.php?busID=" . $bus->busID ?>>
                         <button><h1>x</h1></button>
                       </a>
+                    <?php
+                      $orders = $db->getTodaysOrders($bus->busID);
+                      foreach ($orders as $order)
+                      {
+                        ?>
+                          <br/>
+                          <a class="orderLink" href=<?= "order.php?order=" . $order->orderID ?>>
+                            <?= "Order to " . $order->destination ?>
+                          </a>
+                        <?php
+                      }
 
+                    ?>
                     </li>
                     
                   </ul>
+
                   <hr class="light" width="100%">
 
 
