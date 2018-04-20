@@ -257,7 +257,7 @@ class dbAccess
     public function deleteBus($busID)
     {
         $statement = $this->dbObject->prepare("DELETE FROM busses WHERE busID=:busID");
-        $statement->bindParam(':busID', $busID);
+        $statement->bindParam(':busID', $busID, PDO::PARAM_INT);
         $statement->execute();
     }
 

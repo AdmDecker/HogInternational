@@ -10,7 +10,7 @@ CREATE TABLE users
 CREATE TABLE customers
 (
     userID int NOT NULL AUTO_INCREMENT,
-    FOREIGN KEY(userID) REFERENCES users(userID),
+    FOREIGN KEY(userID) REFERENCES users(userID) ON DELETE CASCADE,
     homeAddress VARCHAR(255),
     phoneNumber VARCHAR(25),
     email VARCHAR(50)
@@ -20,7 +20,7 @@ CREATE TABLE creditCards
 (
     ccID int NOT NULL AUTO_INCREMENT,
     customer int NOT NULL,
-    FOREIGN KEY (customer) REFERENCES users(userID),
+    FOREIGN KEY (customer) REFERENCES users(userID) ON DELETE CASCADE,
     type VARCHAR(255),
     number CHAR(16),
     expirationDate DATE,
@@ -37,18 +37,18 @@ CREATE TABLE busses
 CREATE TABLE drivers
 (
     driverID int,
-    FOREIGN KEY(driverID) REFERENCES users(userID),
+    FOREIGN KEY(driverID) REFERENCES users(userID) ON DELETE CASCADE,
     salary int NOT NULL,
     hours int NOT NULL,
     assignedBus int,
-    FOREIGN KEY(assignedBus) REFERENCES busses(busID),
+    FOREIGN KEY(assignedBus) REFERENCES busses(busID) ON DELETE CASCADE,
     PRIMARY KEY(driverID)
 );
 
 CREATE TABLE orders
 (
     userID int NOT NULL,
-    FOREIGN KEY (userID) references users(userID),
+    FOREIGN KEY (userID) references users(userID) ON DELETE CASCADE,
     orderID int NOT NULL AUTO_INCREMENT,
     destination VARCHAR(255),
     pickup VARCHAR(255),
@@ -64,7 +64,7 @@ CREATE TABLE orders
     assignedBus int,
     depotTime int,
     returnDate bigint,
-    FOREIGN KEY(assignedBus) REFERENCES busses(busID),
+    FOREIGN KEY(assignedBus) REFERENCES busses(busID) ON DELETE CASCADE,
     PRIMARY KEY(orderID)
 );
 
