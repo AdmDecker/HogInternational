@@ -158,6 +158,15 @@ class dbAccess
         return $statement->fetchAll();
     }
 
+    public function getBusOrders($busID)
+    {
+        $statement = $this->dbObject->prepare("SELECT * FROM orders WHERE assignedBus=:busID");
+        $statement->bindParam(':busID', $busID);
+        $statement->execute();
+        $statement->setFetchMode(PDO::FETCH_OBJ);
+        return $statement->fetchAll();
+    }
+
     public function getOrderById($orderID)
     {
         $statement = $this->dbObject->prepare("SELECT * FROM orders WHERE orderID=:orderID");
