@@ -236,8 +236,9 @@ class dbAccess
         if ($handicap === FALSE) {
             $handicap = 0;
         }
+        trigger_error("handicap value: $handicap");
         $statement = $this->dbObject->prepare("insert into busses values(NULL, :handicap");
-        $statement->bindParam(':handicap', $handicap);
+        $statement->bindParam(':handicap', $handicap, PDO::PARAM_INT);
         $statement->execute();
         return $this->dbObject->lastInsertId();
     }
