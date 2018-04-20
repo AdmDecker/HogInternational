@@ -57,11 +57,12 @@
                   <p class="id">Driver Hours: <?= $driver->hours ?></p>
                 </li>
                 <li class="right">
-                  <a class="orderLink" href="404.html">
+                  <a class="orderLink" href=<?= "driverInfo.php?" . $driver->driverID ?>>
                     <button><span>i</span></button>
                   </a>
 
                 </li>
+                <hr class="light" width="100%">
               </ul>
             <?php
           }
