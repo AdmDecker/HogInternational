@@ -230,15 +230,10 @@ class dbAccess
 
     public function addBus($handicap)
     {
-        /*if ($handicap === TRUE) {
-            $handicap = 1;
-        }
-        if ($handicap === FALSE) {
-            $handicap = 0;
-        }*/
+        $handicap = (int)$handicap;
         trigger_error("handicap value: $handicap");
-        $statement = $this->dbObject->prepare("insert into busses values(NULL, :handicap");
-        $statement->bindParam(':handicap', $handicap);
+        $statement = $this->dbObject->prepare("insert into busses values(NULL, :handicap)");
+        $statement->bindParam(':handicap', $handicap, PDO::PARAM_BOOL);
         $statement->execute();
         return $this->dbObject->lastInsertId();
     }
