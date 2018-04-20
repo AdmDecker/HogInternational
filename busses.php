@@ -57,13 +57,15 @@
                   <ul class="orderListElement">
                     <li>
                       <p class="id">Bus ID: <?= $bus->busID ?></p>
-                    </li>
-                    <li class="right">
-                      <a class="orderLink" href=<?= "deleteBus.php?busID=" . $bus->busID ?>>
-                        <button><h1>x</h1></button>
-                      </a>
-                    <?php
+                      <?php
                       $orders = $db->getTodaysOrders($bus->busID);
+                      if (count($orders) == 0)
+                      {
+                        ?>
+                          <br/>
+                          No orders for this bus today.
+                        <?php
+                      }
                       foreach ($orders as $order)
                       {
                         ?>
@@ -75,6 +77,12 @@
                       }
 
                     ?>
+                    </li>
+                    <li class="right">
+                      <a class="orderLink" href=<?= "deleteBus.php?busID=" . $bus->busID ?>>
+                        <button><h1>x</h1></button>
+                      </a>
+                    
                     </li>
                     
                   </ul>
