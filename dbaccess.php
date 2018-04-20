@@ -231,7 +231,6 @@ class dbAccess
     public function addBus($handicap)
     {
         $handicap = (int)$handicap;
-        trigger_error("handicap value: $handicap");
         $statement = $this->dbObject->prepare("insert into busses values(NULL, :handicap)");
         $statement->bindParam(':handicap', $handicap, PDO::PARAM_BOOL);
         $statement->execute();
