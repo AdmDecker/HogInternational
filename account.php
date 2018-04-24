@@ -37,24 +37,44 @@
         $uid = PupSession::getUserType();
         $uidi = PupSession::getUserID();
 
+        $print = true;
+
         if ($uid == 'M')
         {
             ?>
-              Account Info For Manager
+              Account Info For Manager<br/>
+
+              <b>Name: </b>John Doe<br/>
+              <b>Phone Number: </b> 666-123-1234<br/>
+              <b>Email: </b> john.doe@ridesrus.com<br/>
+              <b>Address: </b> 12312 N 14th St, Brookings, SD<br/>
             <?php
         }
         else if ($uid == 'D')
         {
             ?>
               Account Info For Driver<br/>
+
+              <b>Name: </b>Robert Doe<br/>
+              <b>Phone Number: </b> 666-123-1235<br/>
+              <b>Email: </b> robert.doe@ridesrus.com<br/>
+              <b>Address: </b> 12313 N 14th St, Brookings, SD<br/>
             <?php
 
             echo Nav::getDriverInfo($uidi);
+
+
         }
         else if ($uid == 'C')
         {
             ?>
                 Account Info For Customer<br/><br/>
+
+              <b>Name: </b>Sam Doe<br/>
+              <b>Phone Number: </b> 605-123-5632<br/>
+              <b>Email: </b> sam.doe@gmail.com<br/>
+              <b>Address: </b> 3123 N 13th St, Lennox, SD<br/>
+
                 <a href= 'callorders.php'>
                   <button class="w3-button w3-blue"><b>All Orders</b></button>
               </a>
@@ -64,6 +84,17 @@
         {
             ?>
                 Not valid account type.
+            <?php
+            $print = false;
+
+        }
+
+
+        if ($print == true)
+        {
+          ?>
+              <h2>Notfications </h2><br/>
+              No notifications<br/>
             <?php
         }
 
