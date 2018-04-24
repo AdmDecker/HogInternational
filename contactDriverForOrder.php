@@ -48,9 +48,8 @@
               <b>Phone Number: </b> 666-123-1235<br/>
               <b>Email: </b> robert.doe@ridesrus.com<br/>
               <b>Address: </b> 12313 N 14th St, Brookings, SD<br/>  
-            
+
           <?php
-          echo "Put info for driver here";
         }
 
 

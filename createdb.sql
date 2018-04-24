@@ -16,6 +16,28 @@ CREATE TABLE customers
     email VARCHAR(50)
 );
 
+CREATE TABLE notifications
+(
+    notificationId int NOT NULL AUTO_INCREMENT,
+    customer int NOT NULL,
+    FOREIGN KEY (customer) REFERENCES users(userID) ON DELETE CASCADE,
+    message VARCHAR(2048),
+    sendDate DATE,
+    PRIMARY KEY(notificationId)
+);
+
+CREATE TABLE userInfo
+(
+    userInfoID int NOT NULL AUTO_INCREMENT,
+    user int NOT NULL,
+    FOREIGN KEY (user) REFERENCES users(userID) ON DELETE CASCADE,
+    name VARCHAR(255),
+    phone VARCHAR(255),
+    email VARCHAR(255),
+    PRIMARY KEY(userInfoID)
+);
+
+
 CREATE TABLE creditCards
 (
     ccID int NOT NULL AUTO_INCREMENT,
