@@ -47,6 +47,8 @@
             ?>
               Account Info For Driver
             <?php
+
+            echo Nav::getDriverInfo($uid);
         }
         else if ($uid == 'C')
         {
