@@ -309,7 +309,7 @@
             if ($type == "M")
             {
                 // print admin
-                echo Nav::printDriverInfo($lookup);
+                echo Nav::printDriverManagerFunctions($lookup);
 
 
             }
@@ -338,7 +338,7 @@
             ?>
                 <b>Driver ID: </b> <?= $driver->driverID ?><br />
                 <b>Salary: </b> <?= $driver->salary  ?><br />
-                <b>Hours: </b> <?= $order->hours ?><br />
+                <b>Hours: </b> <?= $driver->hours ?><br />
             <?php
         }
 

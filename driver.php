@@ -43,7 +43,7 @@
         else
         {
           // try
-          echo Nav::getDriverInfo($_GET['order']);
+          echo Nav::getDriverInfo($_GET['driver']);
         }
 
 
