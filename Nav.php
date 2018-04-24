@@ -303,7 +303,6 @@
                 return;
             }
 
-            $id = $lookup["userID"];
 
             // depending on user type define access
             if ($type == "M")
