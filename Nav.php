@@ -309,14 +309,14 @@
             if ($type == "M")
             {
                 // print admin
-                echo printDriverInfo($lookup);
+                echo Nav::printDriverInfo($lookup);
 
 
             }
             else if ($type == "D")
             {
                 // print simple
-                echo printDriverInfo($lookup);
+                echo Nav::printDriverInfo($lookup);
 
 
 
@@ -324,7 +324,7 @@
             }
             else if ($type == "C")
             {
-                echo printDriverInfo($lookup);
+                echo Nav::printDriverInfo($lookup);
             }
             else{
                 echo Nav::printPermsDenied();
