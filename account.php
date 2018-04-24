@@ -35,6 +35,7 @@
       <?php 
 
         $uid = PupSession::getUserType();
+        $uidi = PupSession::getUserID();
 
         if ($uid == 'M')
         {
@@ -48,7 +49,7 @@
               Account Info For Driver
             <?php
 
-            echo Nav::getDriverInfo($uid);
+            echo Nav::getDriverInfo($uidi);
         }
         else if ($uid == 'C')
         {
