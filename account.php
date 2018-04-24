@@ -68,12 +68,12 @@
         else if ($uid == 'C')
         {
             ?>
-                Account Info For Customer<br/><br/>
+              <br/>
 
               <b>Name: </b>Sam Doe<br/>
               <b>Phone Number: </b> 605-123-5632<br/>
               <b>Email: </b> sam.doe@gmail.com<br/>
-              <b>Address: </b> 3123 N 13th St, Lennox, SD<br/>
+              <b>Address: </b> 3123 N 13th St, Lennox, SD<br/><br/>
 
                 <a href= 'callorders.php'>
                   <button class="w3-button w3-blue"><b>All Orders</b></button>
