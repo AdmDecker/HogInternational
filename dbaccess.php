@@ -69,12 +69,37 @@ class dbAccess
 
     }
 
+    public function setHours($driverID, $hours)
+    {
+        $statement = $this->dbObject->prepare("UPDATE drivers SET hours=:hours WHERE driverID=:driverID");
+        $statement->bindParam(':hours', $hours);
+        $statement->bindParam(':driverID', $driverID);
+        $statement->execute();
+    }
+
+    public function setSalary($driverID, $salary)
+    {
+        $statement = $this->dbObject->prepare("UPDATE drivers SET salary=:salary WHERE driverID=:driverID");
+        $statement->bindParam(':salary', $salary);
+        $statement->bindParam(':driverID', $driverID);
+        $statement->execute();
+    }
+
     public function getAllDrivers()
     {
         $statement = $this->dbObject->prepare('SELECT * FROM drivers');
         $statement->execute();
         $statement->setFetchMode(PDO::FETCH_OBJ);
         return $statement->fetchAll();
+    }
+
+    public function getDriver($driverID)
+    {
+        $statement = $this->dbObject->prepare('SELECT * FROM drivers where driverID=:driverID');
+        $statement->bindParam(':driverID', $userID);
+        $statement->execute();
+        $statement->setFetchMode(PDO::FETCH_OBJ);
+        return $statement->fetch();
     }
 
     public function getAllManagers()
@@ -318,6 +343,8 @@ class dbAccess
         $statement->bindParam(':driverID', $driverID);
         $statement->execute();
     }
+
+
 
     public function getAssignedBus($driverID)
     {

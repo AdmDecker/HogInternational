@@ -283,6 +283,80 @@
 
         }
 
+
+        public static function getDriverInfo($driverID) {
+
+            $type = PupSession::getUserType();
+            $userID = PupSession::getUserID();
+
+
+            //Initialize db
+            $db = new dbaccess();
+
+            $lookup = $db->getDriver($driverID);
+
+
+
+            if (is_null($lookup))
+            {
+                echo "Order not found :(";
+                return;
+            }
+
+            $id = $lookup["userID"];
+
+            // depending on user type define access
+            if ($type == "M")
+            {
+                // print admin
+                echo printDriverInfo($lookup);
+
+
+            }
+            else if ($type == "D")
+            {
+                // print simple
+                echo printDriverInfo($lookup);
+
+
+
+
+            }
+            else if ($type == "C")
+            {
+                echo printDriverInfo($lookup);
+            }
+            else{
+                echo Nav::printPermsDenied();
+            }
+
+        }
+
+        private static function printDriverInfo($driver)
+        {
+
+            ?>
+                <b>Driver ID: </b> <?= $driver->driverID ?><br />
+                <b>Salary: </b> <?= $driver->salary  ?><br />
+                <b>Hours: </b> <?= $order->hours ?><br />
+            <?php
+        }
+
+        private static function printDriverManagerFunctions($driver)
+        {
+
+            ?>
+                <br/><form onsubmit="return validateForm(update)">
+                    <input class ="w3-input" type="text" name="salary" id="salary" style="width: 20em" placeholder="Salary" /><br/><br/>
+                    <input class ="w3-input" type="text" name="hours" id="hours" style="width: 20em" placeholder="Hours" /><br/><br/>
+                    <input class ="w3-button w3-blue" type="button" value="Update" onClick="onRegister()" style="width: 10em"/>
+                </form>
+                <b>Driver ID: </b> <?= $driver->driverID ?><br />
+                <b>Salary: </b> <?= $driver->salary  ?><br />
+                <b>Hours: </b> <?= $order->hours ?><br />
+            <?php
+        }
+
         public static function requestOrderCancel($orderId)
         {
             $type = PupSession::getUserType();
