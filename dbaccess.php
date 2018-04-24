@@ -96,7 +96,7 @@ class dbAccess
     public function getDriver($driverID)
     {
         $statement = $this->dbObject->prepare('SELECT * FROM drivers where driverID=:driverID');
-        $statement->bindParam(':driverID', $userID);
+        $statement->bindParam(':driverID', $driverID);
         $statement->execute();
         $statement->setFetchMode(PDO::FETCH_OBJ);
         return $statement->fetch();
